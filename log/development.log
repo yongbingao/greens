@@ -35,3 +35,167 @@ Migrating to CreateUsers (20190528023656)
   ↳ bin/rails:9
   [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:9
+Started GET "/" for ::1 at 2019-05-28 14:37:01 -0400
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/ben/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+
+NameError - uninitialized constant StaticPagesController:
+
+Started POST "/__better_errors/7e1e3d454cdf4497/variables" for ::1 at 2019-05-28 14:37:01 -0400
+Started GET "/" for ::1 at 2019-05-28 14:38:39 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 1859ms (Views: 1855.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-05-28 14:43:52 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 518ms (Views: 515.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2019-05-28 14:45:09 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 489ms (Views: 486.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/users" for ::1 at 2019-05-28 14:46:11 -0400
+Processing by Api::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"admin", "email"=>"admin@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Exists (10.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "ENL5MpfAyJszs9mEqcU2dA"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[36mUser Create (13.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@gmail.com"], ["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["session_token", "ENL5MpfAyJszs9mEqcU2dA"], ["created_at", "2019-05-28 18:46:12.028075"], ["updated_at", "2019-05-28 18:46:12.028075"]]
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:4
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (1.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "admin"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "admin@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "bUpE24H7ZEghCQkryFJelw"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Update (2.6ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "bUpE24H7ZEghCQkryFJelw"], ["updated_at", "2019-05-28 18:46:12.051211"], ["id", 1]]
+  ↳ app/models/user.rb:32
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (0.4ms)
+Completed 200 OK in 138ms (Views: 6.4ms | ActiveRecord: 54.7ms)
+
+
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started POST "/api/session" for ::1 at 2019-05-28 14:47:15 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"admin", "email"=>"admin@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "admin"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "admin@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "O4CS5SrUImz69k7b0X9jJA"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "O4CS5SrUImz69k7b0X9jJA"], ["updated_at", "2019-05-28 18:47:15.738762"], ["id", 1]]
+  ↳ app/models/user.rb:32
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 2.9ms)
+
+
+
+ActionView::MissingTemplate - Missing template api/sessions/show, application/show with {:locale=>[:en], :formats=>[:json], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/ben/Documents/Workspace/App Academy/greens/app/views"
+:
+  app/controllers/api/sessions_controller.rb:6:in `create'
+
+Started GET "/" for ::1 at 2019-05-28 14:48:38 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/session" for ::1 at 2019-05-28 14:48:44 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"admin", "email"=>"admin@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "admin"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "admin@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "fditUDlgU7v8Cl7meJf6Jg"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "fditUDlgU7v8Cl7meJf6Jg"], ["updated_at", "2019-05-28 18:48:44.295146"], ["id", 1]]
+  ↳ app/models/user.rb:32
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (0.5ms)
+Completed 200 OK in 91ms (Views: 6.4ms | ActiveRecord: 7.7ms)
+
+
+Started DELETE "/api/session" for ::1 at 2019-05-28 14:48:53 -0400
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "fditUDlgU7v8Cl7meJf6Jg"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "admin"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "admin@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["password_digest", "$2a$10$pfCbTwPzHLDiRuUKINYIveOO3e6VOeD6TME8VF60RPSzFi9gOxr8."], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "0B2GhUspbbbC5iGHqI727Q"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:32
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "0B2GhUspbbbC5iGHqI727Q"], ["updated_at", "2019-05-28 18:48:53.605289"], ["id", 1]]
+  ↳ app/models/user.rb:32
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:32
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 2.8ms)
+
+
+Started DELETE "/api/session" for ::1 at 2019-05-28 14:48:56 -0400
+Processing by Api::SessionsController#destroy as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.4ms)
+
+
+
+NoMethodError - undefined method `reset_session_token!' for nil:NilClass:
+  app/controllers/application_controller.rb:18:in `logout'
+  app/controllers/api/sessions_controller.rb:13:in `destroy'
+
+Started GET "/" for ::1 at 2019-05-28 15:52:15 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 859ms (Views: 857.4ms | ActiveRecord: 0.0ms)
+
+
