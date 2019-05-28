@@ -1,0 +1,8 @@
+node_modules/
+bundle.js
+bundle.js.map
+
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
