@@ -11,7 +11,7 @@ const receiveCurrentUser = user => {
     }
 }
 
-const receiveErrors = errors => {
+export const receiveErrors = errors => {
     return {
         type: RECEIVE_ERRORS,
         errors
@@ -25,11 +25,15 @@ const logoutCurrentUser = () => {
 }
 
 export const loginUser = user => dispatch => {
-    return APISessionUtil.loginUser(user).then( user => dispatch(receiveCurrentUser(user)))
+    return APISessionUtil.loginUser(user).then( 
+        user => dispatch(receiveCurrentUser(user)),
+        err => dispatch(receiveErrors(err.responseJSON)))
 }
 
 export const signupUser = user => dispatch => {
-    return APISessionUtil.signupUser(user).then( user => dispatch(receiveCurrentUser(user)))
+    return APISessionUtil.signupUser(user).then( 
+        user => dispatch(receiveCurrentUser(user)),
+        err => dispatch(receiveErrors(err)))
 }
 
 export const logoutUser = () => dispatch => {

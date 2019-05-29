@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById('root');
 
     const store = configureStore();
-    ReactDOM.render(<h1>Greens</h1>, root);
-    // ReactDOM.render(<Root store={store} />, root);
+    // ReactDOM.render(<h1>Greens</h1>, root);
+    ReactDOM.render(<Root store={store} />, root);
 })
 
 //TESTING ONLY

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.login-page-container{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    height: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.left-side-img{
+    background-image: url("login_page_img.png");
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    
+}
+
+.right-side-container{
+    flex-direction: column;
+    display: flex;
+    width: auto;
+    vertical-align: middle;
+    justify-content: center;
+    margin-left: 55px;
+    font-size: 13px;
+}
+
+.right-side-container > h2 {
+    font-size: 30px;
+    margin-bottom: 35px;
+    font-weight: bold;
+}
+
+.right-side-container > form > label{
+    padding: 10px 0;
+
+} 
+
+.right-side-container input {
+    border-style: solid;
+    border: 1px solid #fafafa;
+    height: 15px;
+    padding: 15px;
+    margin: 10px 0;
+    width: 415px;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+#login-submit-button {
+    width:140px;
+    height:50px;
+    background-color: #21ce99;
+    color: #ffffff;
+    margin-top: 70px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+#login-submit-button:hover {
+    background-color: #1ae9aa;
+}
+
+.right-side-container input:focus {
+    background-color: #ffffff;
+    outline: none;
+    border: 1px solid #21ce99;
+}
+
+.right-side-container a {
+    text-decoration: none;
+    color: #21ce99;
+    font-weight: 700;
+}
+
+.right-side-container ul {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.right-side-container i {
+    margin-right: 8px;
+    font-size: 16px;
+} 
