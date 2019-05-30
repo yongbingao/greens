@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
 .login-page-container{
     display: flex;
@@ -13,7 +13,6 @@
     background-position: center;
     background-size: cover;
     width: 50%;
-    
 }
 
 .right-side-container{
@@ -29,7 +28,7 @@
 .right-side-container > h2 {
     font-size: 30px;
     margin-bottom: 35px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .right-side-container > form > label{
@@ -54,12 +53,14 @@
     background-color: #21ce99;
     color: #ffffff;
     margin-top: 70px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 13px;
 }
 
 #login-submit-button:hover {
     background-color: #1ae9aa;
+    border-color: #1ae9aa;
+    cursor: pointer;
 }
 
 .right-side-container input:focus {
@@ -71,13 +72,13 @@
 .right-side-container a {
     text-decoration: none;
     color: #21ce99;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .right-side-container ul {
     margin-top: 10px;
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .right-side-container i {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { signupUser } from '../actions/session_actions';
+import { signupUser, clearErrors } from '../actions/session_actions';
 import { connect} from 'react-redux';
 
 class SignupForm extends React.Component {
@@ -12,9 +12,10 @@ class SignupForm extends React.Component {
             email: "",
             password: "",
             blankFields: false,
-            blankFieldName: null,
+            blankFieldName: null
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleFocus(type) {
@@ -25,16 +26,21 @@ class SignupForm extends React.Component {
                 // debugger
                 if (type == "password" && event.target.value.length < 10){
                     // debugger
-                    this.setState({blankFieldName: [type]})
+                    this.setState({blankFieldName: type})
                 } else if(!event.target.value) {
-                    this.setState({blankFieldName: [type]})
+                    this.setState({blankFieldName: type})
                 }
             }
         }
     }
 
+    handleBlur(event) {
+        this.setState({blankFieldName: null});
+    }
+
     updateField(type){
         return event => {
+            // this.props.clearErrors();
             if (type == 'password') {
                 if (event.target.value.length >= 10){
                     this.setState({blankFieldName: null});
@@ -49,7 +55,7 @@ class SignupForm extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         const { fname, lname, email, username, password } = this.state;
-        if (!fname || !lname || !email || !username || !password) {
+        if (!fname || !lname || !email || !username || (password.length < 10)) {
             // debugger
             this.setState({blankFields: true});
         } else {
@@ -61,73 +67,119 @@ class SignupForm extends React.Component {
     render() {
         const { fname, lname, username, email, password } = this.state;
         const { blankFields, blankFieldName } = this.state;
-        const errorList = this.props.errors.map( (el, idx) => {
-            return <li key={idx}>{el}</li>
-        })
-        let blankInputField = null;
-        // debugger
+
+        let errorList = null;
+        let blankFnameInputField = null;
+        let blankLnameInputField = null;
+        let blankUsernameInputField = null;
+        let blankEmailInputField = null;
+        let invalidPasswordInputField = null;
+        
         if (blankFields && blankFieldName){
             // debugger
-            if (blankFieldName == "password" && password.length < 10){
-                // debugger
-                blankInputField = <p>Your password must be at least 10 characters.</p>
-            } else {
-                blankInputField = <p>Please enter your {blankFieldName}.</p>
+            switch(blankFieldName){
+                case "password":
+                    if (password.length < 10) invalidPasswordInputField = <span className='password-tooltip'>Your password must be at least 10 <br/>characters.</span>;
+                    break;
+                case "first name":
+                    blankFnameInputField = <span className="first-name-tooltip">Please enter your {blankFieldName}.</span>;
+                    break;
+                case "last name":
+                    blankLnameInputField = <span className="last-name-tooltip">Please enter your {blankFieldName}.</span>;
+                    break;
+                case "username":
+                    blankUsernameInputField = <span className="username-tooltip">Please enter your {blankFieldName}.</span>;
+                    break;
+                case "email address":
+                    blankEmailInputField = <span className="email-tooltip">Please enter your {blankFieldName}.</span>;
+                    break;
             }
         }
 
+        // debugger
+        this.props.errors.map( (el, idx) => {
+            debugger
+            if (el.includes("Username")) {
+                blankUsernameInputField = <span className="username-tooltip">A user with this username already exists.</span>;
+            } else if (el.includes("Email")){
+                blankEmailInputField = <span className="email-tooltip">A user with this email already exists.</span>;
+            } else {
+                errorList = <li key={idx}>{el}</li>
+            }
+        })
+
         return (
-            <>
-                <h2>Sign Up</h2>
+            <div className='signup-form-container'>
                 <form className="signup-form" onSubmit={this.handleSubmit}>
-                    <input 
-                        className={(blankFields && !fname) ? "blank-input-field" : null } 
-                        type="text" 
-                        value={fname} 
-                        onChange={this.updateField("fname")} 
-                        placeholder="First name" 
-                        onFocus={this.handleFocus('first name')}/> 
-                    <input  
-                        className={(blankFields && !lname) ? "blank-input-field" : null} 
-                        type="text" 
-                        value={lname} 
-                        onChange={this.updateField("lname")} 
-                        placeholder="Last name" 
-                        onFocus={this.handleFocus('last name')}/>
-                    <br/>
-                    <input 
-                        className={(blankFields && !username) ? "blank-input-field" : null} 
-                        type="text" 
-                        value={username} 
-                        onChange={this.updateField("username")} 
-                        placeholder="Username" 
-                        onFocus={this.handleFocus('username')}/>
-                    <br/>
-                    <input 
-                        className={(blankFields && !email) ? "blank-input-field" : null}  
-                        type="text"     
-                        value={email} 
-                        onChange={this.updateField("email")} 
-                        placeholder="Email address" 
-                        onFocus={this.handleFocus('email address')}/>
-                    <br/>
-                    <input 
-                        className={(blankFields && password.length < 10) ? "blank-input-field" : null} 
-                        type="password" 
-                        value={password} 
-                        onChange={this.updateField("password")} 
-                        placeholder="Password (min. 10 characters)" 
-                        onFocus={this.handleFocus('password')}/>
-                    <br/>
-                    {blankInputField}
-                    <br/>
-                    <input type="submit" value="Sign Up" />
+                    <h2>Make Your Money Move</h2>
+                    <h3>Greens lets you invest in companies you love,<br/>commission-free.</h3>
+                    <div className='name-input-fields'>
+                        <input 
+                            className={(blankFields && !fname) ? "blank-input-field" : null } 
+                            type="text" 
+                            value={fname} 
+                            onChange={this.updateField("fname")} 
+                            placeholder="First name" 
+                            onFocus={this.handleFocus('first name')}
+                            onBlur={this.handleBlur} /> 
+                        <input  
+                            className={(blankFields && !lname) ? "blank-input-field" : null} 
+                            type="text" 
+                            value={lname} 
+                            onChange={this.updateField("lname")} 
+                            placeholder="Last name" 
+                            onFocus={this.handleFocus('last name')}
+                            onBlur={this.handleBlur} />
+                        <br/>
+                        {blankFnameInputField}
+                        {blankLnameInputField}
+                    </div>
+                    <div className='username-email-password-input-fields'>
+                        <input 
+                            className={(blankFields && !username) ? "blank-input-field" : null} 
+                            type="text" 
+                            value={username} 
+                            onChange={this.updateField("username")} 
+                            placeholder="Username" 
+                            onFocus={this.handleFocus('username')}
+                            onBlur={this.handleBlur} />
+                        <br/>
+                        <input 
+                            className={(blankFields && !email) ? "blank-input-field" : null}  
+                            type="text"     
+                            value={email} 
+                            onChange={this.updateField("email")} 
+                            placeholder="Email address" 
+                            onFocus={this.handleFocus('email address')}
+                            onBlur={this.handleBlur} />
+                        <br/>
+                        <input 
+                            className={(blankFields && password.length < 10) ? "blank-input-field" : null} 
+                            type="password" 
+                            value={password} 
+                            onChange={this.updateField("password")} 
+                            placeholder="Password (min. 10 characters)" 
+                            onFocus={this.handleFocus('password')}
+                            onBlur={this.handleBlur} />
+                        <br/>
+                        {blankEmailInputField}
+                        {blankUsernameInputField}
+                        {invalidPasswordInputField}
+                        <br/>
+                    </div>
+                    <input id="signup-submit-button" type="submit" value="Sign Up" />
                     <br />
                     <ul>
                         {errorList}
                     </ul>
                 </form>
-            </>
+                <section className='signup-form-right-section'>
+                    <img src={window.signinImgURL} className='signup-page-img' />
+                    <p className='signup-form-right-section-title'>Free Stock trading.</p>
+                    <p className='signup-form-right-section-text'>Fast execution, updated market data, and 
+                    data visualization help you make the most of the stock market no matter where you are.</p>
+                </section>
+            </div>
         )
     }
 }
@@ -140,7 +192,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        signupUser: user => dispatch(signupUser(user))
+        signupUser: user => dispatch(signupUser(user)),
+        clearErrors: () => dispatch(clearErrors())
     }
 }
 

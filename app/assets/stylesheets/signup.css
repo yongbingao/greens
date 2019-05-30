@@ -1,3 +1,234 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap');
+
+.signup-form-container{
+
+    min-height: 100vh;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.signup-form-container h2 {
+    font-size: 42px;
+    text-align: left;
+    margin: 10px 15px;
+}
+
+.signup-form-container h3 {
+    font-size: 22px;
+    text-align: left;
+    margin: 10px 15px;
+}
+
+.signup-form-right-section {
+    margin-top: 100px;
+    height: 500px;
+    width: 220px;
+    color: #b3bfc4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.signup-form-right-section-title{
+    color:#040c14;
+    padding: 20px 0;
+}
+
+.signup-page-img {
+    width: 100%;
+    height: auto;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.name-input-fields{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.username-email-password-input-fields {
+    position: relative;
+}
+
+.name-input-fields > input{
+    width: 205px;
+}
+
+input {
+    height: 15px;
+    padding: 15px;
+    border: 1px solid #b1bfc4;
+    margin: 15px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 470px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #21ce99;
+}
+
+#signup-submit-button {
+    height: 50px;
+    background-color: #21ce99;
+    color: #ffffff;
+    width: 500px;
+    font-size: 18px;
+}
+
+#signup-submit-button:hover {
+    background-color: #1aa278;
+    border-color: #199972;
+    cursor: pointer;
+}
+
+
 .blank-input-field {
-    border-color: red;
+    border-color: #f45531;
+    color: #f45531;
+}
+
+.blank-input-field:focus{
+    border-color: #f45531;
+}
+
+::placeholder {
+    color: #b3bfc4;
+}
+
+.first-name-tooltip {
+    position: absolute;
+    font-size: 14px;
+    top: -30px;
+    left: 30px;
+    background-color: #040d14;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.first-name-tooltip:after{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-top: 10px solid #040d14;
+    position: absolute;
+    left: 50%;
+    bottom: -100%;
+    top: 34px;
+    margin-left:-10px;
+}
+
+.last-name-tooltip {
+    position: absolute;
+    font-size: 14px;
+    top: -30px;
+    left: 300px;
+    background-color: #040d14;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.last-name-tooltip:after{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-top: 10px solid #040d14;
+    position: absolute;
+    left: 50%;
+    bottom: -100%;
+    top: 34px;
+    margin-left:-10px;
+}
+
+.username-tooltip {
+    position: absolute;
+    font-size: 14px;
+    top: -30px;
+    left: 30px;
+    background-color: #040d14;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.username-tooltip:after{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-top: 10px solid #040d14;
+    position: absolute;
+    left: 50%;
+    bottom: -100%;
+    top: 34px;
+    margin-left:-10px;
+}
+
+.email-tooltip {
+    position: absolute;
+    font-size: 14px;
+    top: 47px;
+    left: 30px;
+    background-color: #040d14;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.email-tooltip:after{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-top: 10px solid #040d14;
+    position: absolute;
+    left: 50%;
+    bottom: -100%;
+    top: 34px;
+    margin-left:-10px;
+}
+
+.password-tooltip {
+    position: absolute;
+    font-size: 14px;
+    top: 110px;
+    left: 30px;
+    background-color: #040d14;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.password-tooltip:after{
+    content: " ";
+    width: 0px;
+    height: 0px;
+    border: 10px solid transparent;
+    border-top: 10px solid black;
+    position: absolute;
+    left: 50%;
+    bottom: -100%;
+    top: 48px;
+    margin-left:-10px;
 }
