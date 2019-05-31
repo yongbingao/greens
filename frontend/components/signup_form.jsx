@@ -27,7 +27,14 @@ class SignupForm extends React.Component {
                 if (type == "password" && event.target.value.length < 10){
                     // debugger
                     this.setState({blankFieldName: type})
-                } else if(!event.target.value) {
+                } 
+                else if(type == "email address"){
+                    const re = /[^@]+@[^\.]+\..+/;
+                    if (!re.test(event.target.value)){
+                        this.setState({blankFieldName: type})
+                    }
+                } 
+                else if(!event.target.value) {
                     this.setState({blankFieldName: type})
                 }
             }
@@ -41,11 +48,19 @@ class SignupForm extends React.Component {
     updateField(type){
         return event => {
             // this.props.clearErrors();
+            // debugger
             if (type == 'password') {
                 if (event.target.value.length >= 10){
                     this.setState({blankFieldName: null});
                 }
-            } else {
+            } 
+            else if(type =='email'){
+                const re = /[^@]+@[^\.]+\..+/;
+                if(re.test(event.target.value)){
+                    this.setState({blankFieldName: null})
+                }
+            } 
+            else {
                 this.setState({blankFieldName: null});
             }
             this.setState({[type]: event.target.value});
@@ -74,6 +89,7 @@ class SignupForm extends React.Component {
         let blankUsernameInputField = null;
         let blankEmailInputField = null;
         let invalidPasswordInputField = null;
+        let validEmail = false;
         
         if (blankFields && blankFieldName){
             // debugger
@@ -91,14 +107,14 @@ class SignupForm extends React.Component {
                     blankUsernameInputField = <span className="username-tooltip">Please enter your {blankFieldName}.</span>;
                     break;
                 case "email address":
-                    blankEmailInputField = <span className="email-tooltip">Please enter your {blankFieldName}.</span>;
+                    blankEmailInputField = <span className="email-tooltip">Please enter your email address.</span>;
                     break;
             }
         }
 
         // debugger
         this.props.errors.map( (el, idx) => {
-            debugger
+            // debugger
             if (el.includes("Username")) {
                 blankUsernameInputField = <span className="username-tooltip">A user with this username already exists.</span>;
             } else if (el.includes("Email")){
@@ -107,6 +123,15 @@ class SignupForm extends React.Component {
                 errorList = <li key={idx}>{el}</li>
             }
         })
+        // debugger
+        if (blankFields && blankFieldName == 'email address') {
+            // debugger
+            const re = /[^@]+@[^\.]+\..+/;
+            if (!re.test(email)) {
+                blankEmailInputField = <span className="email-tooltip">Please enter a valid email address.</span>
+            } else validEmail = true;
+            // debugger
+        }
 
         return (
             <div className='signup-form-container'>
@@ -115,7 +140,7 @@ class SignupForm extends React.Component {
                     <h3>Greens lets you invest in companies you love,<br/>commission-free.</h3>
                     <div className='name-input-fields'>
                         <input 
-                            className={(blankFields && !fname) ? "blank-input-field" : null } 
+                            className={"sign-up-fname-input ".concat((blankFields && !fname) ? "blank-input-field" : "") } 
                             type="text" 
                             value={fname} 
                             onChange={this.updateField("fname")} 
@@ -145,7 +170,7 @@ class SignupForm extends React.Component {
                             onBlur={this.handleBlur} />
                         <br/>
                         <input 
-                            className={(blankFields && !email) ? "blank-input-field" : null}  
+                            className={"email ".concat((blankFields && !validEmail) ? "blank-input-field" : "")}  
                             type="text"     
                             value={email} 
                             onChange={this.updateField("email")} 

@@ -8,6 +8,7 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {username:"", password:""};
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDemo = this.handleDemo.bind(this);
     }
 
     updateField(type){
@@ -22,6 +23,12 @@ class LoginForm extends React.Component {
         } else {
             this.props.loginUser(this.state)
         }
+    }
+
+    handleDemo(event) {
+        this.props.demoLogin({username:"Demo", password:"longpassword"}) 
+        //.then( () => { this.props.history.push('/dashboard')};
+        
     }
 
     render() {
@@ -53,6 +60,7 @@ class LoginForm extends React.Component {
                         </ul>
                         <br/>
                         <input id='login-submit-button' type="submit" value="Sign In"/>
+                        <button className='login-page-demo-button' onClick={this.handleDemo}>Demo</button>
                         <br/>
                     </form>
                 </section> 
@@ -70,7 +78,8 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         loginUser: user => dispatch(loginUser(user)),
-        receiveErrors: errors => dispatch(receiveErrors(errors))
+        receiveErrors: errors => dispatch(receiveErrors(errors)),
+        demoLogin: user => dispatch(loginUser(user))
     }
 }
 

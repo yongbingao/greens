@@ -43,18 +43,20 @@
 }
 
 .splash-page-dropdown-content {
-  display: none;
+  display: flex;
   position: absolute;
   flex-direction: column;
   left: -3px;
   width: 100%;
   opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s, opacity 0.5s ease-in;
+  box-shadow: 1px 1px 5px #f6f6f6;
 }
 
-.splash-page-dropdown:hover  .splash-page-dropdown-content{
-  display: flex;
+.splash-page-dropdown:hover .splash-page-dropdown-content{
   opacity: 1;
-  transition: opacity 2s linear;
+  visibility: visible;
   
 }
 
@@ -168,4 +170,27 @@
   margin-bottom: 15px;
   color: #21ce99;
   text-decoration: none;
+  margin-top: 25px;
+}
+
+.splash-page-demo-button {
+  background-color: #21ce99;
+  outline: none;
+  border:none;
+  font-size: 16px;
+  padding: 15px 20px 16px 20px;
+  margin-left: 20px;
+  border-radius: 27px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.splash-page-demo-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+i {
+  font-size: 12px;
+  vertical-align: top;
 }

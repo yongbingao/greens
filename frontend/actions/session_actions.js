@@ -44,8 +44,8 @@ export const signupUser = user => dispatch => {
 }
 
 export const logoutUser = () => dispatch => {
-    debugger
+    // debugger
     return APISessionUtil.logout().then( () => {
-        debugger
+        // debugger
         return dispatch(logoutCurrentUser())})
 }

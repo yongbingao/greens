@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../actions/session_actions';
+import { connect } from 'react-redux';
 
 const SplashPage = (props) => {
     return (
@@ -31,7 +33,17 @@ const SplashPage = (props) => {
                     <p>Invest in stocks, ETFs, options, and <br/>
                     cryptocurrencies, all commission-free, <br/>
                     right from your phone or desktop.</p>
-                    <Link className="splash-page-signup-button" to='/signup'>Sign Up</Link>
+                    <div>
+                        <Link className="splash-page-signup-button" to='/signup'>Sign Up</Link>
+                        <button 
+                            className='splash-page-demo-button' 
+                            onClick={() => {
+                                props.demoLogin({username: "Demo", password:'longpassword'})
+                                .then(props.history.push('/dashboard')) 
+                            }}>
+                            Demo
+                        </button>
+                    </div>
                     <a href="javascript:;">Commissions Disclosure <i className='far fa-question-circle'></i></a>
                 </section>
                 <section className='splash-page-content-right-section'>
@@ -43,4 +55,8 @@ const SplashPage = (props) => {
     );
 }
 
-export default SplashPage;
+const mdp = dispatch => {
+    return {demoLogin: user => dispatch(loginUser(user))};
+}
+
+export default connect(null, mdp)(SplashPage);

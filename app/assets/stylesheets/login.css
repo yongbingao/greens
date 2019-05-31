@@ -47,12 +47,13 @@
     background-color: #fafafa;
 }
 
-#login-submit-button {
+#login-submit-button, .login-page-demo-button {
     width:140px;
     height:50px;
     background-color: #21ce99;
     color: #ffffff;
     margin-top: 70px;
+    margin-right: 20px;
     font-weight: 500;
     font-size: 13px;
 }
@@ -85,3 +86,13 @@
     margin-right: 8px;
     font-size: 16px;
 } 
+
+.login-page-demo-button{
+    border: none;
+    border-radius: 5px;
+}
+
+.login-page-demo-button:hover {
+    cursor: pointer;
+    background-color: #1ae9aa;
+}
