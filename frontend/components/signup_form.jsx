@@ -12,7 +12,8 @@ class SignupForm extends React.Component {
             email: "",
             password: "",
             blankFields: false,
-            blankFieldName: null
+            blankFieldName: null,
+            validEmail: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
@@ -80,7 +81,7 @@ class SignupForm extends React.Component {
     }
 
     render() {
-        const { fname, lname, username, email, password } = this.state;
+        const { fname, lname, username, email, password, validEmail } = this.state;
         const { blankFields, blankFieldName } = this.state;
 
         let errorList = null;
@@ -89,7 +90,6 @@ class SignupForm extends React.Component {
         let blankUsernameInputField = null;
         let blankEmailInputField = null;
         let invalidPasswordInputField = null;
-        let validEmail = false;
         
         if (blankFields && blankFieldName){
             // debugger
@@ -124,13 +124,14 @@ class SignupForm extends React.Component {
             }
         })
         // debugger
-        if (blankFields && blankFieldName == 'email address') {
+        if (blankFields && blankFieldName == 'email address' && email) {
             // debugger
             const re = /[^@]+@[^\.]+\..+/;
             if (!re.test(email)) {
                 blankEmailInputField = <span className="email-tooltip">Please enter a valid email address.</span>
-            } else validEmail = true;
-            // debugger
+            } else {
+                this.setState({validEmail: true})
+            }
         }
 
         return (
@@ -170,7 +171,7 @@ class SignupForm extends React.Component {
                             onBlur={this.handleBlur} />
                         <br/>
                         <input 
-                            className={"email ".concat((blankFields && !validEmail) ? "blank-input-field" : "")}  
+                            className={"email ".concat((blankFields && !(/[^@]+@[^\.]+\..+/.test(email))) ? "blank-input-field" : "")}  
                             type="text"     
                             value={email} 
                             onChange={this.updateField("email")} 
