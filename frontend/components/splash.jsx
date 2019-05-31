@@ -8,7 +8,11 @@ const SplashPage = (props) => {
         <div className="splash-page-container">
             <nav className="splash-page-nav-bar">
                 <section className='nav-bar-left-section'>
-                    <Link className="logo-home-link" to='/'>Greens</Link> 
+                     
+                    <Link className="logo-home-link" to='/'>
+                        <i id="fa-feather" className="fas fa-feather"></i>
+                        Greens
+                    </Link> 
                     <a href='javascript:;'>Investing</a> 
                     <a href='javascript:;'>Cash Management</a>
                     <div className="splash-page-dropdown">
@@ -47,7 +51,7 @@ const SplashPage = (props) => {
                     <a href="javascript:;">Commissions Disclosure <i className='far fa-question-circle'></i></a>
                 </section>
                 <section className='splash-page-content-right-section'>
-                
+                    <img src={window.splashImgURL} className="splash-page-img" />
                 </section>
             </div>
 

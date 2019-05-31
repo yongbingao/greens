@@ -41,7 +41,9 @@ class LoginForm extends React.Component {
         })
         return (
             <div className="login-page-container">
-                <section className='left-side-img'> </section>
+                <section className='left-side-img'> 
+                    <img src={window.loginImgURL} className='login-page-img' /> 
+                </section>
                 <section className='right-side-container'>
                     <h2>Welcome to Greens</h2>
                     <form onSubmit={this.handleSubmit}>

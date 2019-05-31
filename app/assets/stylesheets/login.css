@@ -9,10 +9,15 @@
 }
 
 .left-side-img{
-    background-image: url("login_page_img.png");
+/*     background-image: url("login_page_img.png"); */
     background-position: center;
     background-size: cover;
     width: 50%;
+}
+
+.login-page-img {
+    width: 100%;
+    height: 100%;
 }
 
 .right-side-container{

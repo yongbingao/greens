@@ -13,7 +13,7 @@ class SignupForm extends React.Component {
             password: "",
             blankFields: false,
             blankFieldName: null,
-            validEmail: false,
+            validEmail: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
@@ -76,6 +76,7 @@ class SignupForm extends React.Component {
             this.setState({blankFields: true});
         } else {
             // debugger
+            this.setState({ blankFields: true });
             this.props.signupUser(this.state);
         }
     }
@@ -123,6 +124,7 @@ class SignupForm extends React.Component {
                 errorList = <li key={idx}>{el}</li>
             }
         })
+        
         // debugger
         if (blankFields && blankFieldName == 'email address' && email) {
             // debugger

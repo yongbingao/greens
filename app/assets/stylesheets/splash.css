@@ -3,25 +3,47 @@
   flex-direction: column;
   min-width: 500px;
   width: auto;
-  margin: 0px 20px 20px 10px;
-  padding: 10px 20px 20px 10px;
   font-family: 'Roboto', sans-serif;
 }
 
 .splash-page-nav-bar {
+  min-width: 100%;
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  background-color: #ffffff;
 }
 
 .splash-page-nav-bar > section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+}
+
+.nav-bar-left-section {
+  margin-left: 50px;
+}
+
+.nav-bar-right-section {
+  margin-right: 50px;
 }
 
 .splash-page-nav-bar a, Link {
   padding: 15px 20px 15px 20px ;
   text-decoration: none;
+}
+
+.splash-page-nav-bar > .nav-bar-left-section > .logo-home-link {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.fa-feather {
+  font-size: 25px;
+  margin-right: 10px;
 }
 
 .splash-page-dropdown {
@@ -75,12 +97,18 @@
   font-weight: 700;
   color: #040D14;
 }
-.nav-bar-left-section > .logo-home-link {
-  font-weight: 400;
-}
-.nav-bar-left-section > a:hover, Link:hover {
+
+.nav-bar-left-section > a:hover {
   text-decoration: underline;
   color: #21ce99;
+}
+
+.nav-bar-left-section > a:hover #fa-feather {
+  text-decoration: none;
+}
+
+.splash-page-nav-bar > .nav-bar-left-section > a > .fa-feather:hover {
+  text-decoration: none;
 }
 
 .splash-page-dropdown-button:hover {
@@ -115,20 +143,24 @@
 
 .splash-page-content {
   display: flex;
-  min-height: 80vh;
+  min-height: 100%;
   height: auto;
   min-width: 500px;
-  width: auto;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
 }
 
 .splash-page-content-right-section{
-    background: url("splash_page_img.png");
-    background-size: cover;
-    width: 75%;
-    overflow: visible;
-    position: absolute;
-    right: -80px;
-    height: 725px;
+/*     background: url("splash_page_img.png"); */
+/*     background-size: cover; */
+    width: 65%;
+    max-width: 200%;
+    height: 100%;
+    overflow: hidden;
+
+/*     right: -80px; */
+/*     height: 725px; */
     z-index: -1;
     animation: fadein 4s;
 }
@@ -143,11 +175,16 @@
     to   { opacity: 1; }
 }
 
+.splash-page-img{
+  width:100%;
+}
+
 .splash-page-content-left-section {
   display: flex;
+  width: 35%;
   flex-direction: column;
   padding-top: 200px;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 
 .splash-page-content-left-section h1 {
