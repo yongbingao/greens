@@ -11,7 +11,7 @@ const SplashPage = (props) => {
                      
                     <Link className="logo-home-link" to='/'>
                         <i id="fa-feather" className="fas fa-feather"></i>
-                        Greens
+                        <span>Greens</span> 
                     </Link> 
                     <a href='javascript:;'>Investing</a> 
                     <a href='javascript:;'>Cash Management</a>
@@ -27,7 +27,7 @@ const SplashPage = (props) => {
                 </section>
                 <section className='nav-bar-right-section'>
                     <Link className="splash-page-login-button" to='/login'>Log In</Link>
-                    <Link className="splash-page-signup-button" to='/signup'>Sign Up</Link>
+                    <Link className="splash-page-signup-button splash-page-green-button" to='/signup'>Sign Up</Link>
                 </section>
             </nav>
 
@@ -38,9 +38,9 @@ const SplashPage = (props) => {
                     cryptocurrencies, all commission-free, <br/>
                     right from your phone or desktop.</p>
                     <div>
-                        <Link className="splash-page-signup-button" to='/signup'>Sign Up</Link>
+                        <Link className="splash-page-signup-button splash-page-green-button" to='/signup'>Sign Up</Link>
                         <button 
-                            className='splash-page-demo-button' 
+                            className='splash-page-demo-button splash-page-green-button' 
                             onClick={() => {
                                 props.demoLogin({username: "Demo", password:'longpassword'})
                                 .then(props.history.push('/dashboard')) 

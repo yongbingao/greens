@@ -1,36 +1,35 @@
 .splash-page-container {
   display: flex;
   flex-direction: column;
-  min-width: 500px;
-  width: auto;
+  width: 90%;
   font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
 }
 
 .splash-page-nav-bar {
-  min-width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 90%;
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: #ffffff;
+  z-index: 1;
 }
 
 .splash-page-nav-bar > section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-}
-
-.nav-bar-left-section {
-  margin-left: 50px;
+  padding: 10px 0;
 }
 
 .nav-bar-right-section {
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
 
 .splash-page-nav-bar a, Link {
-  padding: 15px 20px 15px 20px ;
+  padding: 15px 20px;
   text-decoration: none;
 }
 
@@ -78,8 +77,7 @@
 
 .splash-page-dropdown:hover .splash-page-dropdown-content{
   opacity: 1;
-  visibility: visible;
-  
+  visibility: visible;  
 }
 
 .splash-page-dropdown-content > button {
@@ -98,13 +96,21 @@
   color: #040D14;
 }
 
+.nav-bar-left-section a:first-child {
+  padding-left: 0;
+}
+
 .nav-bar-left-section > a:hover {
   text-decoration: underline;
   color: #21ce99;
 }
 
-.nav-bar-left-section > a:hover #fa-feather {
+.nav-bar-left-section > .logo-home-link:hover {
   text-decoration: none;
+}
+
+.nav-bar-left-section > .logo-home-link:hover > span {
+  text-decoration: underline;
 }
 
 .splash-page-nav-bar > .nav-bar-left-section > a > .fa-feather:hover {
@@ -134,7 +140,7 @@
   border-radius: 27px;
   background-color: #21ce99;
   color: #FFFFFF;
-  width: 56px;
+  margin-left: 20px;
 }
 
 .splash-page-signup-button:hover {
@@ -143,6 +149,7 @@
 
 .splash-page-content {
   display: flex;
+  justify-content: space-between;
   min-height: 100%;
   height: auto;
   min-width: 500px;
@@ -152,16 +159,11 @@
 }
 
 .splash-page-content-right-section{
-/*     background: url("splash_page_img.png"); */
-/*     background-size: cover; */
-    width: 65%;
-    max-width: 200%;
-    height: 100%;
+    /* width: 100%; */
+    /* max-width: 200%; */
+    /* height: 100%; */
     overflow: hidden;
-
-/*     right: -80px; */
-/*     height: 725px; */
-    z-index: -1;
+    /* z-index: -1; */
     animation: fadein 4s;
 }
 
@@ -176,15 +178,16 @@
 }
 
 .splash-page-img{
-  width:100%;
+  width: 900px;
+  margin-left: -150px;
+  margin-top: 30px;
 }
 
 .splash-page-content-left-section {
   display: flex;
-  width: 35%;
+  width: 350px;
   flex-direction: column;
   padding-top: 200px;
-  margin-left: 50px;
 }
 
 .splash-page-content-left-section h1 {
@@ -230,4 +233,28 @@
 i {
   font-size: 12px;
   vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Shared-css rules */
+.splash-page-green-button {
+  transition: box-shadow 200ms linear;
+}
+
+.splash-page-green-button:hover {
+  box-shadow: 0px 4px 8px rgb(222, 222, 222);
 }

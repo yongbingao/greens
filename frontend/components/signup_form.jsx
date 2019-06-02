@@ -13,7 +13,8 @@ class SignupForm extends React.Component {
             password: "",
             blankFields: false,
             blankFieldName: null,
-            validEmail: false
+            focusEmail: false,
+            focusUsername: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
@@ -31,10 +32,16 @@ class SignupForm extends React.Component {
                 } 
                 else if(type == "email address"){
                     const re = /[^@]+@[^\.]+\..+/;
+                    this.setState({focusEmail: true})
                     if (!re.test(event.target.value)){
                         this.setState({blankFieldName: type})
                     }
-                } 
+                } else if( type =='username'){
+                    this.setState({focusUsername: true})
+                    if (!event.target.value) {
+                        this.setState({blankFieldName: type})
+                    }
+                }
                 else if(!event.target.value) {
                     this.setState({blankFieldName: type})
                 }
@@ -43,7 +50,7 @@ class SignupForm extends React.Component {
     }
 
     handleBlur(event) {
-        this.setState({blankFieldName: null});
+        this.setState({blankFieldName: null, focusEmail: false, focusUsername: false});
     }
 
     updateField(type){
@@ -65,6 +72,9 @@ class SignupForm extends React.Component {
                 this.setState({blankFieldName: null});
             }
             this.setState({[type]: event.target.value});
+            if (this.props.errors.length) {
+                this.props.clearErrors();
+            }
         }
     }
 
@@ -82,7 +92,7 @@ class SignupForm extends React.Component {
     }
 
     render() {
-        const { fname, lname, username, email, password, validEmail } = this.state;
+        const { fname, lname, username, email, password, validEmail, focusUsername, focusEmail } = this.state;
         const { blankFields, blankFieldName } = this.state;
 
         let errorList = null;
@@ -91,6 +101,8 @@ class SignupForm extends React.Component {
         let blankUsernameInputField = null;
         let blankEmailInputField = null;
         let invalidPasswordInputField = null;
+        let invalidEmailInputField = false;
+        let invalidUsernameInputField = false;
         
         if (blankFields && blankFieldName){
             // debugger
@@ -117,12 +129,18 @@ class SignupForm extends React.Component {
         this.props.errors.map( (el, idx) => {
             // debugger
             if (el.includes("Username")) {
-                blankUsernameInputField = <span className="username-tooltip">A user with this username already exists.</span>;
-            } else if (el.includes("Email")){
-                blankEmailInputField = <span className="email-tooltip">A user with this email already exists.</span>;
-            } else {
-                errorList = <li key={idx}>{el}</li>
+                invalidUsernameInputField = true;
+                if (focusUsername) {
+                    blankUsernameInputField = <span className="username-tooltip">A user with this username already exists.</span>;
+                }
+            } 
+            if (el.includes("Email")){
+                invalidEmailInputField = true;
+                if (focusEmail){
+                    blankEmailInputField = <span className="email-tooltip">A user with this email already exists.</span>;
+                }
             }
+            debugger
         })
         
         // debugger
@@ -130,6 +148,7 @@ class SignupForm extends React.Component {
             // debugger
             const re = /[^@]+@[^\.]+\..+/;
             if (!re.test(email)) {
+                invalidEmailInputField = true;
                 blankEmailInputField = <span className="email-tooltip">Please enter a valid email address.</span>
             } else {
                 this.setState({validEmail: true})
@@ -164,7 +183,7 @@ class SignupForm extends React.Component {
                     </div>
                     <div className='username-email-password-input-fields'>
                         <input 
-                            className={(blankFields && !username) ? "blank-input-field" : null} 
+                            className={(blankFields && (!username || invalidUsernameInputField)) ? "blank-input-field" : null} 
                             type="text" 
                             value={username} 
                             onChange={this.updateField("username")} 
@@ -173,7 +192,7 @@ class SignupForm extends React.Component {
                             onBlur={this.handleBlur} />
                         <br/>
                         <input 
-                            className={"email ".concat((blankFields && !(/[^@]+@[^\.]+\..+/.test(email))) ? "blank-input-field" : "")}  
+                            className={"email ".concat((blankFields && (!email || invalidEmailInputField)) ? "blank-input-field" : "")}  
                             type="text"     
                             value={email} 
                             onChange={this.updateField("email")} 

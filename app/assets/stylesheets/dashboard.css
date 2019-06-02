@@ -1,0 +1,10 @@
+.price-data .time-data{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+.recharts-tooltip-wrapper {
+    transform: none !important;
+
+}
