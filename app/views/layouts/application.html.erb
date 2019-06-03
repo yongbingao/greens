@@ -19,6 +19,9 @@
         };
       </script>
     <% end%>
+    <script type="text/javascript">
+      window.iexAPIKey = "<%= Rails.application.credentials.iex[:api_key] %>"
+    </script>
     
     <%= favicon_link_tag image_url('header_img.png') %>
 
