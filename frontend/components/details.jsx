@@ -11,7 +11,8 @@ class DetailsPage extends React.Component {
         super(props);
         this.state = {
             data: [],
-            news: []};
+            news: [],
+            intervalFunction: null};
         this.getNewPrice = this.getNewPrice.bind(this);
     }
 
@@ -21,19 +22,84 @@ class DetailsPage extends React.Component {
         this.props.fetchCompanyInfo(id)
             .then((resp) => {
                 // debugger
-                fetchPrices(resp.company.ticker, "1D").then(data => this.setState({ data }))
-                fetchNews(resp.company.ticker).then(news => this.setState({news}))
-            })
+                const ticker = resp.company.ticker
+                fetchPrices(ticker, "1D")
+                    .then(data => this.setState({ data }));
+                fetchNews(ticker)
+                    .then(news => this.setState({news}));
+                
+                if (!this.state.intervalFunction) {
+                    this.setState(
+                        {intervalFunction: setInterval( () => {
+                            // console.log("in componentDidMount interval"); 
+                            fetchPrices(ticker, "1D")
+                                .then(data => this.setState({ data }))
+                            } 
+                    ,60000)}
+                    );
+                    // debugger
+                }
+            }
+        )
     }
 
-    componentDidUpdate() {
-        
+    componentWillUnmount() {
+        debugger
+        if(this.state.intervalFunction) {
+            clearInterval(this.state.intervalFunction);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const companyId = this.props.match.params.companyId;
+        // debugger
+        if (companyId !== prevProps.match.params.companyId){
+            // debugger
+            clearInterval(this.state.intervalFunction);
+            this.setState({intervalFunction: null});
+            // this.props.history.push(`/stock/${companyId}`)
+            this.props.fetchCompanyInfo(companyId)
+                .then((resp) => {
+                    const ticker = resp.company.ticker;
+                    fetchPrices(ticker, '1D')
+                        .then(data => this.setState({ data }))
+                    fetchNews(ticker)
+                        .then(news => this.setState({ news }))
+
+                    if (!this.state.intervalFunction) {
+                        this.setState(
+                            {
+                                intervalFunction: setInterval(() => {
+                                    // console.log("in componentDidUpdate interval");
+                                    fetchPrices(ticker, "1D")
+                                        .then(data => this.setState({ data }))
+                                }
+                                    , 60000)
+                            }
+                        );
+                        // debugger
+                    }
+                })
+        }
     }
 
     getNewPrice(timeframe) {
         return event => {
             if (this.props.company.ticker){
                 // debugger
+                if (timeframe != "1D") {
+                    clearInterval(this.state.intervalFunction);
+                    this.setState({intervalFunction: null})
+                } else {
+                    this.setState({
+                        intervalFunction: setInterval(() => {
+                            // console.log("in getNewPrice interval");
+                            fetchPrices(this.props.company.ticker, "1D")
+                                .then(data => this.setState({ data }))
+                        }
+                        , 60000)
+                    })
+                }
                 fetchPrices(this.props.company.ticker, timeframe)
                     .then(data => this.setState({data}))
             }
@@ -60,11 +126,17 @@ class DetailsPage extends React.Component {
         let priceChangePercent = null;
         let graphColor = "green";
         if (data && data.length){
-            latestPrice = (data[data.length - 1].close).toFixed(2);
+            let pos = data.length - 1;
+            while (!data[pos].close) {
+                pos--;
+            }
+            // debugger
+            latestPrice = (data[pos].close).toFixed(2);
             startPrice = (data[0].close).toFixed(2);
             priceChange = (latestPrice - startPrice).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
+            // debugger
         }
         return (
             <div className="details-page-container">
