@@ -4,13 +4,14 @@ import LoginForm from './login_form';
 import SignupForm from './signup_form';
 import SplashPage from './splash';
 import DashboardPage from './dashboard';
+import DetailsPage from './details';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { connect } from 'react-redux';
 
-const App = ({state}) => {
+const App = () => {
     // debugger
     return (
         <>
+            <Route path='/stock/:companyId' component={DetailsPage} />
             <ProtectedRoute path='/dashboard' component={DashboardPage} />
             <Route path='/' exact component={SplashPage} />
             <AuthRoute path='/login' component={LoginForm} />

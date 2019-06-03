@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_023656) do
+ActiveRecord::Schema.define(version: 2019_06_02_173558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "ticker", null: false
+    t.string "name", null: false
+    t.string "ceo", null: false
+    t.float "market_cap", null: false
+    t.integer "employees"
+    t.float "dividend"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "about", null: false
+    t.integer "founded", null: false
+    t.string "headquarter", null: false
+    t.float "pe_ratio"
+    t.integer "avg_volume", null: false
+    t.index ["name"], name: "index_companies_on_name"
+    t.index ["ticker"], name: "index_companies_on_ticker"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false

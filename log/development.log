@@ -2498,3 +2498,1035 @@ Processing by Api::SessionsController#destroy as JSON
 Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 2.6ms)
 
 
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateCompanies (20190602113617)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (58.1ms)[0m  [1m[35mCREATE TABLE "companies" ("id" bigserial primary key, "ticker" character varying NOT NULL, "name" character varying NOT NULL, "ceo" character varying NOT NULL, "market_cap" integer NOT NULL, "employees" integer NOT NULL, "dividen" float NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20190602113617_create_companies.rb:3
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_companies_on_ticker" ON "companies"  ("ticker")[0m
+  ↳ db/migrate/20190602113617_create_companies.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX  "index_companies_on_name" ON "companies"  ("name")[0m
+  ↳ db/migrate/20190602113617_create_companies.rb:14
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190602113617"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (3.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/ben/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddColumnCompanies (20190602114313)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (11.2ms)[0m  [1m[35mALTER TABLE "compnaies" ADD "about" text NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:3
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddColumnCompanies (20190602114313)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.1ms)[0m  [1m[35mALTER TABLE "companies" ADD "about" text NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:3
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "companies" ADD "founded" interger NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:4
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to AddColumnCompanies (20190602114313)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "companies" ADD "about" text NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "companies" ADD "founded" integer NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:4
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "companies" ADD "headquarter" character varying NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:5
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "companies" ADD "pe_ratio" float NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:6
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "companies" ADD "avg_volume" integer NOT NULL[0m
+  ↳ db/migrate/20190602114313_add_column_companies.rb:7
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190602114313"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/ben/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnCompanies (20190602115458)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnCompanies (20190602115458)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnCompanies (20190602115458)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnCompanies (20190602115458)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (10.3ms)[0m  [1m[35mALTER TABLE "companies" ALTER COLUMN "employees" TYPE integer, ALTER COLUMN "employees" DROP NOT NULL[0m
+  ↳ db/migrate/20190602115458_change_column_companies.rb:3
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "companies" ALTER COLUMN "pe_ratio" TYPE float, ALTER COLUMN "pe_ratio" DROP NOT NULL[0m
+  ↳ db/migrate/20190602115458_change_column_companies.rb:4
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "companies" ALTER COLUMN "dividen" TYPE float, ALTER COLUMN "dividen" DROP NOT NULL[0m
+  ↳ db/migrate/20190602115458_change_column_companies.rb:5
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190602115458"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumnName (20190602120150)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.9ms)[0m  [1m[35mALTER TABLE "companies" RENAME COLUMN "dividen" TO "dividend"[0m
+  ↳ db/migrate/20190602120150_change_column_name.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190602120150"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (6.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (6.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (1.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCompany Load (2.7ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (4.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@demo.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$kj1Yrx93Pk2ufkdbjLZZSe.yJ80uGhpU5112/T26PdZWx0nkcH01."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "S1rf_MMg85R9mxyjNrRWcA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (3.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$10$kj1Yrx93Pk2ufkdbjLZZSe.yJ80uGhpU5112/T26PdZWx0nkcH01."], ["session_token", "S1rf_MMg85R9mxyjNrRWcA"], ["created_at", "2019-06-02 15:45:28.572790"], ["updated_at", "2019-06-02 15:45:28.572790"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$lOQUe5yG1j.Jvg3n4Xwf8uEWjPY/mEpmCxmQ/e29ieiIB.78oSctm"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "uMifi0zLvd6eQZCy5zJKAA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$lOQUe5yG1j.Jvg3n4Xwf8uEWjPY/mEpmCxmQ/e29ieiIB.78oSctm"], ["session_token", "uMifi0zLvd6eQZCy5zJKAA"], ["created_at", "2019-06-02 15:45:28.636503"], ["updated_at", "2019-06-02 15:45:28.636503"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ben"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ben@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$qIz4XRVII4P.Z.TodmpR4.VwFTBIxIP1Z4dtbQ4ub5XKUW987wZjC"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9wsSmLp7wNS-mGncd-XzCQ"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "ben"], ["email", "ben@gmail.com"], ["password_digest", "$2a$10$qIz4XRVII4P.Z.TodmpR4.VwFTBIxIP1Z4dtbQ4ub5XKUW987wZjC"], ["session_token", "9wsSmLp7wNS-mGncd-XzCQ"], ["created_at", "2019-06-02 15:45:28.698647"], ["updated_at", "2019-06-02 15:45:28.698647"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "GOOG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Alphabet, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Create (5.9ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "GOOG"], ["name", "Alphabet, Inc."], ["ceo", "Lawrence E. Page"], ["market_cap", 767], ["employees", 98771], ["created_at", "2019-06-02 15:45:28.723850"], ["updated_at", "2019-06-02 15:45:28.723850"], ["about", "Alphabet, Inc. is a holding company, which engages in the business of acquisition and operation of different companies. It operates through the Google and Other Bets segments. The Google segment includes its main Internet products such as Ads, Android, Chrome, Commerce, Google Cloud, Google Maps, Google Play, Hardware, Search, and YouTube. The Other Bets segment includes businesses such as Access, Calico, CapitalG, GV, Nest, Verily, Waymo, and X. The company was founded by Lawrence E. Page and Sergey Mikhaylovich Brin on October 2, 2015 and is headquartered in Mountain View, CA."], ["founded", 2015], ["headquarter", "Mountain View, CA"], ["pe_ratio", 26.53], ["avg_volume", 1579481]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AAPL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Apple, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "AAPL"], ["name", "Apple, Inc."], ["ceo", "Timothy Donald Cook"], ["market_cap", 805], ["employees", 132000], ["dividend", 1.76], ["created_at", "2019-06-02 15:45:28.734492"], ["updated_at", "2019-06-02 15:45:28.734492"], ["about", "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA."], ["founded", 1976], ["headquarter", "Cupertino, CA"], ["pe_ratio", 14.74], ["avg_volume", 27043584]]
+  ↳ db/seeds.rb:28
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AMZN"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Amazon.com, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "AMZN"], ["name", "Amazon.com, Inc."], ["ceo", "Jeffrey P. Bezos"], ["market_cap", 873], ["employees", 647500], ["created_at", "2019-06-02 15:45:28.739590"], ["updated_at", "2019-06-02 15:45:28.739590"], ["about", "Amazon.com, Inc. engages in the provision of online retail shopping services. It operates through the following business segments: North America, International, and Amazon Web Services (AWS). The North America segment includes retail sales of consumer products and subscriptions through North America-focused websites such as www.amazon.com and www.amazon.ca. The International segment offers retail sales of consumer products and subscriptions through internationally-focused websites. The Amazon Web Services segment involves in the global sales of compute, storage, database, and AWS service offerings for start-ups, enterprises, government agencies, and academic institutions. The company was founded by Jeffrey P. Bezos in July 1994 and is headquartered in Seattle, WA."], ["founded", 1994], ["headquarter", "Seattle, WA"], ["pe_ratio", 78.0], ["avg_volume", 4618819]]
+  ↳ db/seeds.rb:41
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "MSFT"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Microsoft Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Create (1.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "MSFT"], ["name", "Microsoft Corp."], ["ceo", "Satya Nadella"], ["market_cap", 947], ["employees", 131000], ["dividend", 1.49], ["created_at", "2019-06-02 15:45:28.743780"], ["updated_at", "2019-06-02 15:45:28.743780"], ["about", "Microsoft Corp. engages in the development and support of software, services, devices, and solutions. Its products includes operating systems; cross-device productivity applications; server applications; business solution applications; desktop and server management tools; software development tools; and video games. It also offers personal computers, tablets, gaming and entertainment consoles, other intelligent devices, and related accessories. It operates through the following business segments: Productivity and Business Processes; Intelligent Cloud; and More Personal Computing. The Productivity and Business Processes segment is comprised of products and services in the portfolio of productivity, communication, and information services of the company spanning a variety of devices and platform. The Intelligent Cloud segment refers to the public, private, and hybrid serve products and cloud services of the company which can power modern business. The More Personal Computing segment encompasses the products and services such as windows operating system, devices, gaming platform, and search engines. The company was founded by William Henry Gates III in 1975 and is headquartered in Redmond, WA."], ["founded", 1975], ["headquarter", "Redmond, WA"], ["pe_ratio", 28.7], ["avg_volume", 26646769]]
+  ↳ db/seeds.rb:53
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:53
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "NFLX"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Netflix, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "NFLX"], ["name", "Netflix, Inc."], ["ceo", "Wilmot Reed Hastings"], ["market_cap", 150], ["employees", 7100], ["created_at", "2019-06-02 15:45:28.749981"], ["updated_at", "2019-06-02 15:45:28.749981"], ["about", "Netflix, Inc. is an Internet subscription service company, which provides subscription service streaming movies and television episodes over the Internet and sending DVDs by mail. It operates through the following segments: Domestic Streaming, International Streaming and Domestic DVD. The Domestic Streaming segment derives revenues from monthly membership fees for services consisting solely of streaming content to its members in the United States. The International Streaming segment includes fees from members outside the United States. The Domestic DVD segment covers revenues from services consisting solely of DVD-by-mail. The company was founded by Marc Randolph and Wilmot Reed Hastings Jr., on August 29, 1997 and is headquartered in Los Gatos, CA."], ["founded", 1997], ["headquarter", "Los Gatos, CA"], ["pe_ratio", 122.6], ["avg_volume", 5023449]]
+  ↳ db/seeds.rb:66
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ADDYY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "adidas AG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Create (0.9ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "ADDYY"], ["name", "adidas AG"], ["ceo", "Kasper Bo Rørsted"], ["market_cap", 57], ["employees", 57016], ["dividend", 1.32], ["created_at", "2019-06-02 15:45:28.754505"], ["updated_at", "2019-06-02 15:45:28.754505"], ["about", "adidas AG engages in design, distribution, and marketing of athletic and sporting lifestyle products. It operates through the following segments: Western Europe, North America, USA Reebok, Russia/CIS, Latin America, Asia/Pacific, and Emerging Markets. It operates under the adidas and Reebok brands. The company was founded by Adolf Dassler in 1920 and is headquartered in Herzogenaurach, Germany."], ["founded", 1920], ["headquarter", "Herzogenaurach, Germany"], ["avg_volume", 20205]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "FB"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Facebook, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "FB"], ["name", "Facebook, Inc."], ["ceo", "Mark Elliot Zuckerberg"], ["market_cap", 506], ["employees", 35587], ["created_at", "2019-06-02 15:45:28.759469"], ["updated_at", "2019-06-02 15:45:28.759469"], ["about", "Facebook, Inc. engages in the development of social media applications for people to connect through mobile devices, personal computers, and other surfaces. It enables users to share opinions, ideas, photos, videos, and other activities online. Its products include Facebook, Instagram, Messenger, WhatsApp, and Oculus. The company was founded by Mark Elliot Zuckerberg, Dustin Moskovitz, Chris R. Hughes, Andrew McCollum, and Eduardo P. Saverin on February 4, 2004 and is headquartered in Menlo Park, CA."], ["founded", 2004], ["headquarter", "Menlo Park, CA"], ["pe_ratio", 22.82], ["avg_volume", 15226536]]
+  ↳ db/seeds.rb:90
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:90
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "INTC"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Intel Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "INTC"], ["name", "Intel Corp."], ["ceo", "Robert Holmes Swan"], ["market_cap", 197], ["employees", 107400], ["dividend", 2.86], ["created_at", "2019-06-02 15:45:28.764618"], ["updated_at", "2019-06-02 15:45:28.764618"], ["about", "Intel Corp. engages in the design, manufacture, and sale of computer products and technologies. It delivers computer, networking, data storage and communications platforms. It operates its business through the following segments: Client Computing Group, Data Center Group, Internet of Things Group, Non-Volatile Memory Solutions Group, Programmable Solutions and All Other. The Client Computing Group segment consists of platforms designed for notebooks, 2 in 1 systems, desktops, tablets, phones, wireless and wired connectivity products, and mobile communication components. The Data Center Group segment includes workload-optimized platforms and related products designed for enterprise, cloud, and communication infrastructure market. The Internet of Things Group segment comprises of platforms such as retail, transportation, industrial, video, buildings and smart cities, along with a broad range of other market segments. The Non-Volatile Memory Solutions Group segment constitutes of NAND flash memory products primarily used in solid-state drives. The Programmable Solutions Group segment contains programmable semiconductors and related products for a broad range of markets, including communications, data center, industrial, military, and automotive. The All Other segment consists of results from other non-reportable segment and corporate-related charges. The company was founded by Robert Norton Noyce and Gordon Earle Moore on July 18, 1968 and is headquartered in Santa Clara, CA."], ["founded", 1968], ["headquarter", "Santa Clara, CA"], ["pe_ratio", 10.2], ["avg_volume", 25532529]]
+  ↳ db/seeds.rb:102
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:102
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "JPM"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "JPMorgan Chase & Co."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:115
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "CLAR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Clarus Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Create (0.7ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "CLAR"], ["name", "Clarus Corp."], ["ceo", "-"], ["market_cap", 0], ["employees", 500], ["dividend", 0.78], ["created_at", "2019-06-02 15:45:28.784120"], ["updated_at", "2019-06-02 15:45:28.784120"], ["about", "Clarus Corp. engages in development, manufacture, and distribution of outdoor equipment and lifestyle products focused on the climb, ski, mountain, and sport categories. It operates through the Black Diamond and Sierra segment. The Black Diamond segment designs, manufactures, and markets outdoor engineered equipment and apparel for climbing, mountaineering, backpacking, skiing, and a range of other year-round outdoor recreation activities. The Sierra segment produces a range of bullets for both rifles and pistols that are used for precision target shooting, hunting, and military and law enforcement purposes. The company was founded in 1989 and is headquartered in Salt Lake City, UT."], ["founded", 1989], ["headquarter", "Salt Lake City, UT"], ["pe_ratio", 35.2], ["avg_volume", 241205]]
+  ↳ db/seeds.rb:126
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:126
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TCEHY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tencent Holdings Ltd."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TCEHY"], ["name", "Tencent Holdings Ltd."], ["ceo", "Hua Teng Ma"], ["market_cap", 397], ["employees", 54309], ["dividend", 0.31], ["created_at", "2019-06-02 15:45:28.788065"], ["updated_at", "2019-06-02 15:45:28.788065"], ["about", "Tencent Holdings Ltd. is an investment company, which engages in the provision of value-added services and online advertising services. It operates through the following segments: Value-Added Services, Online Advertising, and Others. The Value-added Services segment involves online and mobile games, community value-added services, and applications across various Internet and mobile platforms. The Online Advertising segment represents display based and performance based advertisements. The Other segment consists of trademark licensing, software development services, software sales, and other services. The company was founded by Yi Dan Chen, Hua Teng Ma, Chen Ye Xu, Li Qing Zeng, and Zhi Dong Zhang in 1998 and is headquartered in Shenzhen, China."], ["founded", 1998], ["headquarter", "Shenzhen, China"], ["avg_volume", 2840120]]
+  ↳ db/seeds.rb:139
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:139
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ORCL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Oracle Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "ORCL"], ["name", "Oracle Corp."], ["ceo", "Safra Ada Catz / Mark V. Hurd"], ["market_cap", 172], ["employees", 137000], ["dividend", 1.9], ["created_at", "2019-06-02 15:45:28.791363"], ["updated_at", "2019-06-02 15:45:28.791363"], ["about", "Oracle Corp. engages in the provision of products and services that address all aspects of corporate information technology environments. It operates through the following segments: Cloud and License, Hardware, and Services. The Cloud and License segment markets, sells, and delivers applications, platform, and infrastructure technologies. The Hardware segment provides hardware products and hardware-related software products including Oracle Engineered Systems, servers, storage, industry-specific hardware, operating systems, virtualization, management and other hardware related software, and related hardware support. The Services segment offers consulting, advanced support, and education services. The company was founded by Lawrence Joseph Ellison, Robert Nimrod Miner, and Edward A. Oates on June 16, 1977 and is headquartered in Redwood City, CA."], ["founded", 1977], ["headquarter", "Redwood City, CA"], ["pe_ratio", 18.16], ["avg_volume", 11847089]]
+  ↳ db/seeds.rb:151
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:151
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TWTR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Twitter, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TWTR"], ["name", "Twitter, Inc."], ["ceo", "Jack Dorsey"], ["market_cap", 28], ["employees", 3920], ["created_at", "2019-06-02 15:45:28.794568"], ["updated_at", "2019-06-02 15:45:28.794568"], ["about", "Twitter, Inc. is a global platform for public self-expression and conversation in real time. It provides a network that connects users to people, information, ideas, opinions, and news. The company's services include live commentary, live connections and live conversations. Its application provides social networking services and micro-blogging services through mobile devices and the Internet. The company can also be used as a marketing tool for businesses. Twitter was founded by Jack Dorsey, Christopher Isaac Stone, Noah E. Glass, Jeremy LaTrasse, and Evan Williams on March 21, 2006 and is headquartered in San Francisco, CA."], ["founded", 2006], ["headquarter", "San Francisco, CA"], ["pe_ratio", 42.43], ["avg_volume", 8556067]]
+  ↳ db/seeds.rb:164
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:164
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "YELP"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Yelp, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Create (0.5ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "YELP"], ["name", "Yelp, Inc."], ["ceo", "Jeremy Stoppelman"], ["market_cap", 2], ["employees", 6030], ["created_at", "2019-06-02 15:45:28.798638"], ["updated_at", "2019-06-02 15:45:28.798638"], ["about", "Yelp, Inc. hosts an online database of user-generated reviews of local businesses. It provides reviews on local businesses, which include restaurants, boutiques and salons, dentists, mechanics and plumbers. The firm offers multiple free and paid advertising solutions to engage with consumers, including free online business accounts, search advertising and Yelp Deals. The company was founded by Jeremy Stoppelman and Russell Simmons in July 2004 and is headquartered in San Francisco, CA."], ["founded", 2004], ["headquarter", "San Francisco, CA"], ["pe_ratio", 47.31], ["avg_volume", 1793371]]
+  ↳ db/seeds.rb:176
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:176
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TSLA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tesla, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["ticker", "TSLA"], ["name", "Tesla, Inc."], ["ceo", "Elon Reeve Musk"], ["market_cap", 32], ["employees", 48817], ["created_at", "2019-06-02 15:45:28.802520"], ["updated_at", "2019-06-02 15:45:28.802520"], ["about", "Tesla, Inc. engages in the design, development, manufacture, and sale of fully electric vehicles, energy generation and storage systems. It also provides vehicle service centers, supercharger station, and self-driving capability. The company operates through Automotive, and Energy Generation and Storage segments. The Automotive segment includes the design, development, manufacture and sale of electric vehicles. The Energy Generation and Storage segment includes the design, manufacture, installation, sale, and lease of stationary energy storage products and solar energy systems, and sale of electricity generated by its solar energy systems to customers. The company was founded by Jeffrey B. Straubel, Elon Reeve Musk, Martin Eberhard, and Marc Tarpenning on July 1, 2003 and is headquartered in Palo Alto, CA."], ["founded", 2003], ["headquarter", "Palo Alto, CA"], ["avg_volume", 10406732]]
+  ↳ db/seeds.rb:188
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:188
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeColumn (20190602173558)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (44.9ms)[0m  [1m[35mALTER TABLE "companies" ALTER COLUMN "market_cap" TYPE float[0m
+  ↳ db/migrate/20190602173558_change_column.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20190602173558"]]
+  ↳ bin/rails:9
+  [1m[35m (10.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (4.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413939433977219260)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCompany Load (0.7ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 1]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (1.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 2]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 3]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 4]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 5]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 6]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 7]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 8]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 9]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 10]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 11]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 12]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 13]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 14]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@demo.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$clLV6/kXaU/twOGGlGfDBudBHxkITTlgej/ok5ulxqFT60K/nRWla"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "A2sf5dKmFp0s4dVSwj6Tiw"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$10$clLV6/kXaU/twOGGlGfDBudBHxkITTlgej/ok5ulxqFT60K/nRWla"], ["session_token", "A2sf5dKmFp0s4dVSwj6Tiw"], ["created_at", "2019-06-02 17:37:14.006941"], ["updated_at", "2019-06-02 17:37:14.006941"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$LjBoOrQZbRZPArtWPJN4JOBtjCXFLjLt9xiaNCLpZbvNO5HEALyJG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "MCWYkyqwSLcpjNqxHIH1Iw"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$LjBoOrQZbRZPArtWPJN4JOBtjCXFLjLt9xiaNCLpZbvNO5HEALyJG"], ["session_token", "MCWYkyqwSLcpjNqxHIH1Iw"], ["created_at", "2019-06-02 17:37:14.064426"], ["updated_at", "2019-06-02 17:37:14.064426"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ben"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ben@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$KCsR0ubeJ9q7qpmrdzKVhugGWqpLxmMqsOyN01.leyoz40PSQqO1i"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "qu0blEwBjAEfRyShLEW2AQ"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "ben"], ["email", "ben@gmail.com"], ["password_digest", "$2a$10$KCsR0ubeJ9q7qpmrdzKVhugGWqpLxmMqsOyN01.leyoz40PSQqO1i"], ["session_token", "qu0blEwBjAEfRyShLEW2AQ"], ["created_at", "2019-06-02 17:37:14.122020"], ["updated_at", "2019-06-02 17:37:14.122020"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "GOOG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Alphabet, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Create (0.6ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "GOOG"], ["name", "Alphabet, Inc."], ["ceo", "Lawrence E. Page"], ["market_cap", 767.11], ["employees", 98771], ["created_at", "2019-06-02 17:37:14.127328"], ["updated_at", "2019-06-02 17:37:14.127328"], ["about", "Alphabet, Inc. is a holding company, which engages in the business of acquisition and operation of different companies. It operates through the Google and Other Bets segments. The Google segment includes its main Internet products such as Ads, Android, Chrome, Commerce, Google Cloud, Google Maps, Google Play, Hardware, Search, and YouTube. The Other Bets segment includes businesses such as Access, Calico, CapitalG, GV, Nest, Verily, Waymo, and X. The company was founded by Lawrence E. Page and Sergey Mikhaylovich Brin on October 2, 2015 and is headquartered in Mountain View, CA."], ["founded", 2015], ["headquarter", "Mountain View, CA"], ["pe_ratio", 26.53], ["avg_volume", 1579481]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AAPL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Apple, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "AAPL"], ["name", "Apple, Inc."], ["ceo", "Timothy Donald Cook"], ["market_cap", 805.51], ["employees", 132000], ["dividend", 1.76], ["created_at", "2019-06-02 17:37:14.132345"], ["updated_at", "2019-06-02 17:37:14.132345"], ["about", "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA."], ["founded", 1976], ["headquarter", "Cupertino, CA"], ["pe_ratio", 14.74], ["avg_volume", 27043584]]
+  ↳ db/seeds.rb:28
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AMZN"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Amazon.com, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "AMZN"], ["name", "Amazon.com, Inc."], ["ceo", "Jeffrey P. Bezos"], ["market_cap", 873.92], ["employees", 647500], ["created_at", "2019-06-02 17:37:14.142143"], ["updated_at", "2019-06-02 17:37:14.142143"], ["about", "Amazon.com, Inc. engages in the provision of online retail shopping services. It operates through the following business segments: North America, International, and Amazon Web Services (AWS). The North America segment includes retail sales of consumer products and subscriptions through North America-focused websites such as www.amazon.com and www.amazon.ca. The International segment offers retail sales of consumer products and subscriptions through internationally-focused websites. The Amazon Web Services segment involves in the global sales of compute, storage, database, and AWS service offerings for start-ups, enterprises, government agencies, and academic institutions. The company was founded by Jeffrey P. Bezos in July 1994 and is headquartered in Seattle, WA."], ["founded", 1994], ["headquarter", "Seattle, WA"], ["pe_ratio", 78.0], ["avg_volume", 4618819]]
+  ↳ db/seeds.rb:41
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "MSFT"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Microsoft Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "MSFT"], ["name", "Microsoft Corp."], ["ceo", "Satya Nadella"], ["market_cap", 947.74], ["employees", 131000], ["dividend", 1.49], ["created_at", "2019-06-02 17:37:14.145453"], ["updated_at", "2019-06-02 17:37:14.145453"], ["about", "Microsoft Corp. engages in the development and support of software, services, devices, and solutions. Its products includes operating systems; cross-device productivity applications; server applications; business solution applications; desktop and server management tools; software development tools; and video games. It also offers personal computers, tablets, gaming and entertainment consoles, other intelligent devices, and related accessories. It operates through the following business segments: Productivity and Business Processes; Intelligent Cloud; and More Personal Computing. The Productivity and Business Processes segment is comprised of products and services in the portfolio of productivity, communication, and information services of the company spanning a variety of devices and platform. The Intelligent Cloud segment refers to the public, private, and hybrid serve products and cloud services of the company which can power modern business. The More Personal Computing segment encompasses the products and services such as windows operating system, devices, gaming platform, and search engines. The company was founded by William Henry Gates III in 1975 and is headquartered in Redmond, WA."], ["founded", 1975], ["headquarter", "Redmond, WA"], ["pe_ratio", 28.7], ["avg_volume", 26646769]]
+  ↳ db/seeds.rb:53
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:53
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "NFLX"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Netflix, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "NFLX"], ["name", "Netflix, Inc."], ["ceo", "Wilmot Reed Hastings"], ["market_cap", 150.01], ["employees", 7100], ["created_at", "2019-06-02 17:37:14.148891"], ["updated_at", "2019-06-02 17:37:14.148891"], ["about", "Netflix, Inc. is an Internet subscription service company, which provides subscription service streaming movies and television episodes over the Internet and sending DVDs by mail. It operates through the following segments: Domestic Streaming, International Streaming and Domestic DVD. The Domestic Streaming segment derives revenues from monthly membership fees for services consisting solely of streaming content to its members in the United States. The International Streaming segment includes fees from members outside the United States. The Domestic DVD segment covers revenues from services consisting solely of DVD-by-mail. The company was founded by Marc Randolph and Wilmot Reed Hastings Jr., on August 29, 1997 and is headquartered in Los Gatos, CA."], ["founded", 1997], ["headquarter", "Los Gatos, CA"], ["pe_ratio", 122.6], ["avg_volume", 5023449]]
+  ↳ db/seeds.rb:66
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ADDYY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "adidas AG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "ADDYY"], ["name", "adidas AG"], ["ceo", "Kasper Bo Rørsted"], ["market_cap", 57.27], ["employees", 57016], ["dividend", 1.32], ["created_at", "2019-06-02 17:37:14.153205"], ["updated_at", "2019-06-02 17:37:14.153205"], ["about", "adidas AG engages in design, distribution, and marketing of athletic and sporting lifestyle products. It operates through the following segments: Western Europe, North America, USA Reebok, Russia/CIS, Latin America, Asia/Pacific, and Emerging Markets. It operates under the adidas and Reebok brands. The company was founded by Adolf Dassler in 1920 and is headquartered in Herzogenaurach, Germany."], ["founded", 1920], ["headquarter", "Herzogenaurach, Germany"], ["avg_volume", 20205]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "FB"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Facebook, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "FB"], ["name", "Facebook, Inc."], ["ceo", "Mark Elliot Zuckerberg"], ["market_cap", 506.62], ["employees", 35587], ["created_at", "2019-06-02 17:37:14.156495"], ["updated_at", "2019-06-02 17:37:14.156495"], ["about", "Facebook, Inc. engages in the development of social media applications for people to connect through mobile devices, personal computers, and other surfaces. It enables users to share opinions, ideas, photos, videos, and other activities online. Its products include Facebook, Instagram, Messenger, WhatsApp, and Oculus. The company was founded by Mark Elliot Zuckerberg, Dustin Moskovitz, Chris R. Hughes, Andrew McCollum, and Eduardo P. Saverin on February 4, 2004 and is headquartered in Menlo Park, CA."], ["founded", 2004], ["headquarter", "Menlo Park, CA"], ["pe_ratio", 22.82], ["avg_volume", 15226536]]
+  ↳ db/seeds.rb:90
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:90
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "INTC"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Intel Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "INTC"], ["name", "Intel Corp."], ["ceo", "Robert Holmes Swan"], ["market_cap", 197.17], ["employees", 107400], ["dividend", 2.86], ["created_at", "2019-06-02 17:37:14.159671"], ["updated_at", "2019-06-02 17:37:14.159671"], ["about", "Intel Corp. engages in the design, manufacture, and sale of computer products and technologies. It delivers computer, networking, data storage and communications platforms. It operates its business through the following segments: Client Computing Group, Data Center Group, Internet of Things Group, Non-Volatile Memory Solutions Group, Programmable Solutions and All Other. The Client Computing Group segment consists of platforms designed for notebooks, 2 in 1 systems, desktops, tablets, phones, wireless and wired connectivity products, and mobile communication components. The Data Center Group segment includes workload-optimized platforms and related products designed for enterprise, cloud, and communication infrastructure market. The Internet of Things Group segment comprises of platforms such as retail, transportation, industrial, video, buildings and smart cities, along with a broad range of other market segments. The Non-Volatile Memory Solutions Group segment constitutes of NAND flash memory products primarily used in solid-state drives. The Programmable Solutions Group segment contains programmable semiconductors and related products for a broad range of markets, including communications, data center, industrial, military, and automotive. The All Other segment consists of results from other non-reportable segment and corporate-related charges. The company was founded by Robert Norton Noyce and Gordon Earle Moore on July 18, 1968 and is headquartered in Santa Clara, CA."], ["founded", 1968], ["headquarter", "Santa Clara, CA"], ["pe_ratio", 10.2], ["avg_volume", 25532529]]
+  ↳ db/seeds.rb:102
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:102
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "JPM"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "JPMorgan Chase & Co."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ db/seeds.rb:115
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "CLAR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Clarus Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:126
+  [1m[36mCompany Create (0.6ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "CLAR"], ["name", "Clarus Corp."], ["ceo", "-"], ["market_cap", 0.38], ["employees", 500], ["dividend", 0.78], ["created_at", "2019-06-02 17:37:14.171487"], ["updated_at", "2019-06-02 17:37:14.171487"], ["about", "Clarus Corp. engages in development, manufacture, and distribution of outdoor equipment and lifestyle products focused on the climb, ski, mountain, and sport categories. It operates through the Black Diamond and Sierra segment. The Black Diamond segment designs, manufactures, and markets outdoor engineered equipment and apparel for climbing, mountaineering, backpacking, skiing, and a range of other year-round outdoor recreation activities. The Sierra segment produces a range of bullets for both rifles and pistols that are used for precision target shooting, hunting, and military and law enforcement purposes. The company was founded in 1989 and is headquartered in Salt Lake City, UT."], ["founded", 1989], ["headquarter", "Salt Lake City, UT"], ["pe_ratio", 35.2], ["avg_volume", 241205]]
+  ↳ db/seeds.rb:126
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:126
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TCEHY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tencent Holdings Ltd."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:139
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TCEHY"], ["name", "Tencent Holdings Ltd."], ["ceo", "Hua Teng Ma"], ["market_cap", 397.58], ["employees", 54309], ["dividend", 0.31], ["created_at", "2019-06-02 17:37:14.174814"], ["updated_at", "2019-06-02 17:37:14.174814"], ["about", "Tencent Holdings Ltd. is an investment company, which engages in the provision of value-added services and online advertising services. It operates through the following segments: Value-Added Services, Online Advertising, and Others. The Value-added Services segment involves online and mobile games, community value-added services, and applications across various Internet and mobile platforms. The Online Advertising segment represents display based and performance based advertisements. The Other segment consists of trademark licensing, software development services, software sales, and other services. The company was founded by Yi Dan Chen, Hua Teng Ma, Chen Ye Xu, Li Qing Zeng, and Zhi Dong Zhang in 1998 and is headquartered in Shenzhen, China."], ["founded", 1998], ["headquarter", "Shenzhen, China"], ["avg_volume", 2840120]]
+  ↳ db/seeds.rb:139
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:139
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ORCL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Oracle Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:151
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "ORCL"], ["name", "Oracle Corp."], ["ceo", "Safra Ada Catz / Mark V. Hurd"], ["market_cap", 172.93], ["employees", 137000], ["dividend", 1.9], ["created_at", "2019-06-02 17:37:14.177743"], ["updated_at", "2019-06-02 17:37:14.177743"], ["about", "Oracle Corp. engages in the provision of products and services that address all aspects of corporate information technology environments. It operates through the following segments: Cloud and License, Hardware, and Services. The Cloud and License segment markets, sells, and delivers applications, platform, and infrastructure technologies. The Hardware segment provides hardware products and hardware-related software products including Oracle Engineered Systems, servers, storage, industry-specific hardware, operating systems, virtualization, management and other hardware related software, and related hardware support. The Services segment offers consulting, advanced support, and education services. The company was founded by Lawrence Joseph Ellison, Robert Nimrod Miner, and Edward A. Oates on June 16, 1977 and is headquartered in Redwood City, CA."], ["founded", 1977], ["headquarter", "Redwood City, CA"], ["pe_ratio", 18.16], ["avg_volume", 11847089]]
+  ↳ db/seeds.rb:151
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:151
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TWTR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Twitter, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:164
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TWTR"], ["name", "Twitter, Inc."], ["ceo", "Jack Dorsey"], ["market_cap", 28.01], ["employees", 3920], ["created_at", "2019-06-02 17:37:14.180613"], ["updated_at", "2019-06-02 17:37:14.180613"], ["about", "Twitter, Inc. is a global platform for public self-expression and conversation in real time. It provides a network that connects users to people, information, ideas, opinions, and news. The company's services include live commentary, live connections and live conversations. Its application provides social networking services and micro-blogging services through mobile devices and the Internet. The company can also be used as a marketing tool for businesses. Twitter was founded by Jack Dorsey, Christopher Isaac Stone, Noah E. Glass, Jeremy LaTrasse, and Evan Williams on March 21, 2006 and is headquartered in San Francisco, CA."], ["founded", 2006], ["headquarter", "San Francisco, CA"], ["pe_ratio", 42.43], ["avg_volume", 8556067]]
+  ↳ db/seeds.rb:164
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:164
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "YELP"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Yelp, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:176
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "YELP"], ["name", "Yelp, Inc."], ["ceo", "Jeremy Stoppelman"], ["market_cap", 2.38], ["employees", 6030], ["created_at", "2019-06-02 17:37:14.183605"], ["updated_at", "2019-06-02 17:37:14.183605"], ["about", "Yelp, Inc. hosts an online database of user-generated reviews of local businesses. It provides reviews on local businesses, which include restaurants, boutiques and salons, dentists, mechanics and plumbers. The firm offers multiple free and paid advertising solutions to engage with consumers, including free online business accounts, search advertising and Yelp Deals. The company was founded by Jeremy Stoppelman and Russell Simmons in July 2004 and is headquartered in San Francisco, CA."], ["founded", 2004], ["headquarter", "San Francisco, CA"], ["pe_ratio", 47.31], ["avg_volume", 1793371]]
+  ↳ db/seeds.rb:176
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:176
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TSLA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tesla, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["ticker", "TSLA"], ["name", "Tesla, Inc."], ["ceo", "Elon Reeve Musk"], ["market_cap", 32.98], ["employees", 48817], ["created_at", "2019-06-02 17:37:14.187007"], ["updated_at", "2019-06-02 17:37:14.187007"], ["about", "Tesla, Inc. engages in the design, development, manufacture, and sale of fully electric vehicles, energy generation and storage systems. It also provides vehicle service centers, supercharger station, and self-driving capability. The company operates through Automotive, and Energy Generation and Storage segments. The Automotive segment includes the design, development, manufacture and sale of electric vehicles. The Energy Generation and Storage segment includes the design, manufacture, installation, sale, and lease of stationary energy storage products and solar energy systems, and sale of electricity generated by its solar energy systems to customers. The company was founded by Jeffrey B. Straubel, Elon Reeve Musk, Martin Eberhard, and Marc Tarpenning on July 1, 2003 and is headquartered in Palo Alto, CA."], ["founded", 2003], ["headquarter", "Palo Alto, CA"], ["avg_volume", 10406732]]
+  ↳ db/seeds.rb:188
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:188
+  [1m[36mCompany Load (0.8ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  ↳ db/seeds.rb:9
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 10]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 11]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCompany Load (0.8ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.4ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 15]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 16]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 17]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 18]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 19]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 20]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 21]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 22]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 23]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 24]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 25]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 26]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.2ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 27]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCompany Destroy (0.3ms)[0m  [1m[31mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 28]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "demo@demo.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$u3t./DDWMyNZJ6R/BswAX.DhgbdLxF0ajwJ1rM9nCnmuwZxmgZYzW"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "t0Wy8oZgwdweQiPl4ILuFQ"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "Demo"], ["email", "demo@demo.com"], ["password_digest", "$2a$10$u3t./DDWMyNZJ6R/BswAX.DhgbdLxF0ajwJ1rM9nCnmuwZxmgZYzW"], ["session_token", "t0Wy8oZgwdweQiPl4ILuFQ"], ["created_at", "2019-06-02 17:40:42.586805"], ["updated_at", "2019-06-02 17:40:42.586805"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$RlXNhzyzYiJTyFqj8R0V5OJSltsQH7npu51OnimsTWadMRuE6bF.u"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "j1yQPNGMBKygiHOfarf3WA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$10$RlXNhzyzYiJTyFqj8R0V5OJSltsQH7npu51OnimsTWadMRuE6bF.u"], ["session_token", "j1yQPNGMBKygiHOfarf3WA"], ["created_at", "2019-06-02 17:40:42.646821"], ["updated_at", "2019-06-02 17:40:42.646821"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "ben"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ben@gmail.com"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 LIMIT $2[0m  [["password_digest", "$2a$10$YkWDjnJlzvdwIWmsTrVlOOSz/UZhx4w2WpjRChyTDgwwDHTikcpyW"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "F4Dgzm7Y-FLQMITxPzHh8w"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["username", "ben"], ["email", "ben@gmail.com"], ["password_digest", "$2a$10$YkWDjnJlzvdwIWmsTrVlOOSz/UZhx4w2WpjRChyTDgwwDHTikcpyW"], ["session_token", "F4Dgzm7Y-FLQMITxPzHh8w"], ["created_at", "2019-06-02 17:40:42.706113"], ["updated_at", "2019-06-02 17:40:42.706113"]]
+  ↳ db/seeds.rb:14
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "GOOG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Alphabet, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "GOOG"], ["name", "Alphabet, Inc."], ["ceo", "Lawrence E. Page"], ["market_cap", 767.11], ["employees", 98771], ["created_at", "2019-06-02 17:40:42.710562"], ["updated_at", "2019-06-02 17:40:42.710562"], ["about", "Alphabet, Inc. is a holding company, which engages in the business of acquisition and operation of different companies. It operates through the Google and Other Bets segments. The Google segment includes its main Internet products such as Ads, Android, Chrome, Commerce, Google Cloud, Google Maps, Google Play, Hardware, Search, and YouTube. The Other Bets segment includes businesses such as Access, Calico, CapitalG, GV, Nest, Verily, Waymo, and X. The company was founded by Lawrence E. Page and Sergey Mikhaylovich Brin on October 2, 2015 and is headquartered in Mountain View, CA."], ["founded", 2015], ["headquarter", "Mountain View, CA"], ["pe_ratio", 26.53], ["avg_volume", 1579481]]
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AAPL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Apple, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:28
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "AAPL"], ["name", "Apple, Inc."], ["ceo", "Timothy Donald Cook"], ["market_cap", 805.51], ["employees", 132000], ["dividend", 1.76], ["created_at", "2019-06-02 17:40:42.714713"], ["updated_at", "2019-06-02 17:40:42.714713"], ["about", "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA."], ["founded", 1976], ["headquarter", "Cupertino, CA"], ["pe_ratio", 14.74], ["avg_volume", 27043584]]
+  ↳ db/seeds.rb:28
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "AMZN"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Amazon.com, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:41
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "AMZN"], ["name", "Amazon.com, Inc."], ["ceo", "Jeffrey P. Bezos"], ["market_cap", 873.92], ["employees", 647500], ["created_at", "2019-06-02 17:40:42.724049"], ["updated_at", "2019-06-02 17:40:42.724049"], ["about", "Amazon.com, Inc. engages in the provision of online retail shopping services. It operates through the following business segments: North America, International, and Amazon Web Services (AWS). The North America segment includes retail sales of consumer products and subscriptions through North America-focused websites such as www.amazon.com and www.amazon.ca. The International segment offers retail sales of consumer products and subscriptions through internationally-focused websites. The Amazon Web Services segment involves in the global sales of compute, storage, database, and AWS service offerings for start-ups, enterprises, government agencies, and academic institutions. The company was founded by Jeffrey P. Bezos in July 1994 and is headquartered in Seattle, WA."], ["founded", 1994], ["headquarter", "Seattle, WA"], ["pe_ratio", 78.0], ["avg_volume", 4618819]]
+  ↳ db/seeds.rb:41
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "MSFT"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Microsoft Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:53
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "MSFT"], ["name", "Microsoft Corp."], ["ceo", "Satya Nadella"], ["market_cap", 947.74], ["employees", 131000], ["dividend", 1.49], ["created_at", "2019-06-02 17:40:42.727190"], ["updated_at", "2019-06-02 17:40:42.727190"], ["about", "Microsoft Corp. engages in the development and support of software, services, devices, and solutions. Its products includes operating systems; cross-device productivity applications; server applications; business solution applications; desktop and server management tools; software development tools; and video games. It also offers personal computers, tablets, gaming and entertainment consoles, other intelligent devices, and related accessories. It operates through the following business segments: Productivity and Business Processes; Intelligent Cloud; and More Personal Computing. The Productivity and Business Processes segment is comprised of products and services in the portfolio of productivity, communication, and information services of the company spanning a variety of devices and platform. The Intelligent Cloud segment refers to the public, private, and hybrid serve products and cloud services of the company which can power modern business. The More Personal Computing segment encompasses the products and services such as windows operating system, devices, gaming platform, and search engines. The company was founded by William Henry Gates III in 1975 and is headquartered in Redmond, WA."], ["founded", 1975], ["headquarter", "Redmond, WA"], ["pe_ratio", 28.7], ["avg_volume", 26646769]]
+  ↳ db/seeds.rb:53
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:53
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "NFLX"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Netflix, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:66
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "NFLX"], ["name", "Netflix, Inc."], ["ceo", "Wilmot Reed Hastings"], ["market_cap", 150.01], ["employees", 7100], ["created_at", "2019-06-02 17:40:42.730397"], ["updated_at", "2019-06-02 17:40:42.730397"], ["about", "Netflix, Inc. is an Internet subscription service company, which provides subscription service streaming movies and television episodes over the Internet and sending DVDs by mail. It operates through the following segments: Domestic Streaming, International Streaming and Domestic DVD. The Domestic Streaming segment derives revenues from monthly membership fees for services consisting solely of streaming content to its members in the United States. The International Streaming segment includes fees from members outside the United States. The Domestic DVD segment covers revenues from services consisting solely of DVD-by-mail. The company was founded by Marc Randolph and Wilmot Reed Hastings Jr., on August 29, 1997 and is headquartered in Los Gatos, CA."], ["founded", 1997], ["headquarter", "Los Gatos, CA"], ["pe_ratio", 122.6], ["avg_volume", 5023449]]
+  ↳ db/seeds.rb:66
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:66
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ADDYY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "adidas AG"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:78
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "ADDYY"], ["name", "adidas AG"], ["ceo", "Kasper Bo Rørsted"], ["market_cap", 57.27], ["employees", 57016], ["dividend", 1.32], ["created_at", "2019-06-02 17:40:42.734407"], ["updated_at", "2019-06-02 17:40:42.734407"], ["about", "adidas AG engages in design, distribution, and marketing of athletic and sporting lifestyle products. It operates through the following segments: Western Europe, North America, USA Reebok, Russia/CIS, Latin America, Asia/Pacific, and Emerging Markets. It operates under the adidas and Reebok brands. The company was founded by Adolf Dassler in 1920 and is headquartered in Herzogenaurach, Germany."], ["founded", 1920], ["headquarter", "Herzogenaurach, Germany"], ["avg_volume", 20205]]
+  ↳ db/seeds.rb:78
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:78
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "FB"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Facebook, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:90
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "FB"], ["name", "Facebook, Inc."], ["ceo", "Mark Elliot Zuckerberg"], ["market_cap", 506.62], ["employees", 35587], ["created_at", "2019-06-02 17:40:42.738472"], ["updated_at", "2019-06-02 17:40:42.738472"], ["about", "Facebook, Inc. engages in the development of social media applications for people to connect through mobile devices, personal computers, and other surfaces. It enables users to share opinions, ideas, photos, videos, and other activities online. Its products include Facebook, Instagram, Messenger, WhatsApp, and Oculus. The company was founded by Mark Elliot Zuckerberg, Dustin Moskovitz, Chris R. Hughes, Andrew McCollum, and Eduardo P. Saverin on February 4, 2004 and is headquartered in Menlo Park, CA."], ["founded", 2004], ["headquarter", "Menlo Park, CA"], ["pe_ratio", 22.82], ["avg_volume", 15226536]]
+  ↳ db/seeds.rb:90
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:90
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "INTC"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Intel Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:102
+  [1m[36mCompany Create (0.4ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "INTC"], ["name", "Intel Corp."], ["ceo", "Robert Holmes Swan"], ["market_cap", 197.17], ["employees", 107400], ["dividend", 2.86], ["created_at", "2019-06-02 17:40:42.742523"], ["updated_at", "2019-06-02 17:40:42.742523"], ["about", "Intel Corp. engages in the design, manufacture, and sale of computer products and technologies. It delivers computer, networking, data storage and communications platforms. It operates its business through the following segments: Client Computing Group, Data Center Group, Internet of Things Group, Non-Volatile Memory Solutions Group, Programmable Solutions and All Other. The Client Computing Group segment consists of platforms designed for notebooks, 2 in 1 systems, desktops, tablets, phones, wireless and wired connectivity products, and mobile communication components. The Data Center Group segment includes workload-optimized platforms and related products designed for enterprise, cloud, and communication infrastructure market. The Internet of Things Group segment comprises of platforms such as retail, transportation, industrial, video, buildings and smart cities, along with a broad range of other market segments. The Non-Volatile Memory Solutions Group segment constitutes of NAND flash memory products primarily used in solid-state drives. The Programmable Solutions Group segment contains programmable semiconductors and related products for a broad range of markets, including communications, data center, industrial, military, and automotive. The All Other segment consists of results from other non-reportable segment and corporate-related charges. The company was founded by Robert Norton Noyce and Gordon Earle Moore on July 18, 1968 and is headquartered in Santa Clara, CA."], ["founded", 1968], ["headquarter", "Santa Clara, CA"], ["pe_ratio", 10.2], ["avg_volume", 25532529]]
+  ↳ db/seeds.rb:102
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:102
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "JPM"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "JPMorgan Chase & Co."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:115
+  [1m[36mCompany Create (0.5ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "JPM"], ["name", "JPMorgan Chase & Co."], ["ceo", "James Dimon"], ["market_cap", 343.73], ["employees", 256105], ["dividend", 3.02], ["created_at", "2019-06-02 17:40:42.746084"], ["updated_at", "2019-06-02 17:40:42.746084"], ["about", "JPMorgan Chase & Co. is a financial holding company, which provides financial and investment banking services. It offers a range of investment banking products and services in all capital markets, including advising on corporate strategy and structure; capital raising in equity and debt markets; sophisticated risk management; market making in cash securities and derivative instruments; and prime brokerage and research. It operates its business through the following segments: Consumer and Community Banking; Corporate and Investment Bank; Commercial Banking; and Asset and Wealth Management. The Consumer and Community Banking segment serves consumers and businesses through personal service at bank branches and through automated teller machine, online, mobile, and telephone banking. The Corporate and Investment Bank segment offers a suite of investment banking, market-making, prime brokerage, and treasury and securities products and services to a global client base of corporations, investors, financial institutions, government and municipal entities. The Commercial Banking segment delivers services to U.S. and its multinational clients, including corporations, municipalities, financial institutions, and non profit entities. It also provides financing to real estate investors and owners as well as financial solutions, including lending, treasury services, investment banking, and asset management. The Asset and Wealth Management segment provides asset and wealth management services. It offers investment management across all major asset services, including equities, fixed income, alternatives, and money market funds. The company was founded in 1968 and is headquartered in New York, NY."], ["founded", 1968], ["headquarter", "New York, NY"], ["pe_ratio", 11.47], ["avg_volume", 10952857]]
+  ↳ db/seeds.rb:115
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:115
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:128
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "CLAR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:128
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Clarus Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:128
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "CLAR"], ["name", "Clarus Corp."], ["ceo", "-"], ["market_cap", 0.38], ["employees", 500], ["dividend", 0.78], ["created_at", "2019-06-02 17:40:42.749709"], ["updated_at", "2019-06-02 17:40:42.749709"], ["about", "Clarus Corp. engages in development, manufacture, and distribution of outdoor equipment and lifestyle products focused on the climb, ski, mountain, and sport categories. It operates through the Black Diamond and Sierra segment. The Black Diamond segment designs, manufactures, and markets outdoor engineered equipment and apparel for climbing, mountaineering, backpacking, skiing, and a range of other year-round outdoor recreation activities. The Sierra segment produces a range of bullets for both rifles and pistols that are used for precision target shooting, hunting, and military and law enforcement purposes. The company was founded in 1989 and is headquartered in Salt Lake City, UT."], ["founded", 1989], ["headquarter", "Salt Lake City, UT"], ["pe_ratio", 35.2], ["avg_volume", 241205]]
+  ↳ db/seeds.rb:128
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:128
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:141
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TCEHY"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:141
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tencent Holdings Ltd."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:141
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TCEHY"], ["name", "Tencent Holdings Ltd."], ["ceo", "Hua Teng Ma"], ["market_cap", 397.58], ["employees", 54309], ["dividend", 0.31], ["created_at", "2019-06-02 17:40:42.753003"], ["updated_at", "2019-06-02 17:40:42.753003"], ["about", "Tencent Holdings Ltd. is an investment company, which engages in the provision of value-added services and online advertising services. It operates through the following segments: Value-Added Services, Online Advertising, and Others. The Value-added Services segment involves online and mobile games, community value-added services, and applications across various Internet and mobile platforms. The Online Advertising segment represents display based and performance based advertisements. The Other segment consists of trademark licensing, software development services, software sales, and other services. The company was founded by Yi Dan Chen, Hua Teng Ma, Chen Ye Xu, Li Qing Zeng, and Zhi Dong Zhang in 1998 and is headquartered in Shenzhen, China."], ["founded", 1998], ["headquarter", "Shenzhen, China"], ["avg_volume", 2840120]]
+  ↳ db/seeds.rb:141
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:141
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:153
+  [1m[36mCompany Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "ORCL"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:153
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Oracle Corp."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:153
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "dividend", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["ticker", "ORCL"], ["name", "Oracle Corp."], ["ceo", "Safra Ada Catz / Mark V. Hurd"], ["market_cap", 172.93], ["employees", 137000], ["dividend", 1.9], ["created_at", "2019-06-02 17:40:42.756935"], ["updated_at", "2019-06-02 17:40:42.756935"], ["about", "Oracle Corp. engages in the provision of products and services that address all aspects of corporate information technology environments. It operates through the following segments: Cloud and License, Hardware, and Services. The Cloud and License segment markets, sells, and delivers applications, platform, and infrastructure technologies. The Hardware segment provides hardware products and hardware-related software products including Oracle Engineered Systems, servers, storage, industry-specific hardware, operating systems, virtualization, management and other hardware related software, and related hardware support. The Services segment offers consulting, advanced support, and education services. The company was founded by Lawrence Joseph Ellison, Robert Nimrod Miner, and Edward A. Oates on June 16, 1977 and is headquartered in Redwood City, CA."], ["founded", 1977], ["headquarter", "Redwood City, CA"], ["pe_ratio", 18.16], ["avg_volume", 11847089]]
+  ↳ db/seeds.rb:153
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:153
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:166
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TWTR"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:166
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Twitter, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:166
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "TWTR"], ["name", "Twitter, Inc."], ["ceo", "Jack Dorsey"], ["market_cap", 28.01], ["employees", 3920], ["created_at", "2019-06-02 17:40:42.760198"], ["updated_at", "2019-06-02 17:40:42.760198"], ["about", "Twitter, Inc. is a global platform for public self-expression and conversation in real time. It provides a network that connects users to people, information, ideas, opinions, and news. The company's services include live commentary, live connections and live conversations. Its application provides social networking services and micro-blogging services through mobile devices and the Internet. The company can also be used as a marketing tool for businesses. Twitter was founded by Jack Dorsey, Christopher Isaac Stone, Noah E. Glass, Jeremy LaTrasse, and Evan Williams on March 21, 2006 and is headquartered in San Francisco, CA."], ["founded", 2006], ["headquarter", "San Francisco, CA"], ["pe_ratio", 42.43], ["avg_volume", 8556067]]
+  ↳ db/seeds.rb:166
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:166
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:178
+  [1m[36mCompany Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "YELP"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:178
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Yelp, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:178
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "pe_ratio", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["ticker", "YELP"], ["name", "Yelp, Inc."], ["ceo", "Jeremy Stoppelman"], ["market_cap", 2.38], ["employees", 6030], ["created_at", "2019-06-02 17:40:42.763347"], ["updated_at", "2019-06-02 17:40:42.763347"], ["about", "Yelp, Inc. hosts an online database of user-generated reviews of local businesses. It provides reviews on local businesses, which include restaurants, boutiques and salons, dentists, mechanics and plumbers. The firm offers multiple free and paid advertising solutions to engage with consumers, including free online business accounts, search advertising and Yelp Deals. The company was founded by Jeremy Stoppelman and Russell Simmons in July 2004 and is headquartered in San Francisco, CA."], ["founded", 2004], ["headquarter", "San Francisco, CA"], ["pe_ratio", 47.31], ["avg_volume", 1793371]]
+  ↳ db/seeds.rb:178
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:178
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:190
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."ticker" = $1 LIMIT $2[0m  [["ticker", "TSLA"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:190
+  [1m[36mCompany Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "Tesla, Inc."], ["LIMIT", 1]]
+  ↳ db/seeds.rb:190
+  [1m[36mCompany Create (0.3ms)[0m  [1m[32mINSERT INTO "companies" ("ticker", "name", "ceo", "market_cap", "employees", "created_at", "updated_at", "about", "founded", "headquarter", "avg_volume") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["ticker", "TSLA"], ["name", "Tesla, Inc."], ["ceo", "Elon Reeve Musk"], ["market_cap", 32.98], ["employees", 48817], ["created_at", "2019-06-02 17:40:42.766407"], ["updated_at", "2019-06-02 17:40:42.766407"], ["about", "Tesla, Inc. engages in the design, development, manufacture, and sale of fully electric vehicles, energy generation and storage systems. It also provides vehicle service centers, supercharger station, and self-driving capability. The company operates through Automotive, and Energy Generation and Storage segments. The Automotive segment includes the design, development, manufacture and sale of electric vehicles. The Energy Generation and Storage segment includes the design, manufacture, installation, sale, and lease of stationary energy storage products and solar energy systems, and sale of electricity generated by its solar energy systems to customers. The company was founded by Jeffrey B. Straubel, Elon Reeve Musk, Martin Eberhard, and Marc Tarpenning on July 1, 2003 and is headquartered in Palo Alto, CA."], ["founded", 2003], ["headquarter", "Palo Alto, CA"], ["avg_volume", 10406732]]
+  ↳ db/seeds.rb:190
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:190
+  [1m[36mCompany Load (1.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
