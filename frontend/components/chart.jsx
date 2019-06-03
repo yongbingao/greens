@@ -1,17 +1,32 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
-const Chart = ({data}) => {
+const Chart = ({data, graphColor, startPrice}) => {
 
     function CustomToolTip({ label, payload, active, coordinate }) {
-        if (active && payload.length) {
+        if (active && payload && payload.length) {
             // debugger
+            let newLabel;
+            let priceChange = (payload[0].value - startPrice).toFixed(2);
+            let priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
+            if (["AM", "PM"].includes(label.split(" ")[1])){
+                newLabel = label.concat(" ET");
+            } else if (label.split(",").length < 2 ){ 
+                newLabel = label.concat(", ", new Date().getFullYear() % 100);
+            } else {
+                newLabel = label;
+            }
             return (
                 <div>
                     <span className="time-data"
                         style={{ "position": "absolute", "left": `${coordinate.x}px` }}
-                    >{label}</span>
-                    <span className="price-data">{payload[0].value}</span>
+                    >{newLabel}</span>
+                    <span className="price-data">${payload[0].value}</span>
+                    <span className="price-data-change">{
+                        priceChange ?
+                            (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange * -1, ` (${priceChangePercent}%)`))
+                            : priceChange}
+                    </span>
                 </div>
             );
         } else {
@@ -31,7 +46,12 @@ const Chart = ({data}) => {
             <XAxis dataKey="label" hide={true}/>
             <YAxis hide={true} type='number' domain={['dataMin', 'dataMax']} />
             <Tooltip content={<CustomToolTip />} wrapperStyle={{ 'transform': "none !important", "translate": "none !important" }} />
-            <Line type="linear" dataKey='close' stroke="#00ea9c" strokeWidth="2" dot={false} />
+            <Line 
+                type="linear" 
+                dataKey='close' 
+                stroke={graphColor == "green" ? "#21ce99" : "#f45531"} 
+                strokeWidth="2" 
+                dot={false} />
         </LineChart>
     )
 }

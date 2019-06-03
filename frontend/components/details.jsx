@@ -26,8 +26,11 @@ class DetailsPage extends React.Component {
             })
     }
 
-    getNewPrice(timeframe) {
+    componentDidUpdate() {
         
+    }
+
+    getNewPrice(timeframe) {
         return event => {
             if (this.props.company.ticker){
                 // debugger
@@ -38,7 +41,6 @@ class DetailsPage extends React.Component {
     }
 
     render() {
-        // console.log(this.state.data);
         // debugger
         if (!this.props.company) {
             return (
@@ -51,7 +53,19 @@ class DetailsPage extends React.Component {
         }
         // debugger
         const { name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume} = this.props.company;
-
+        const { data } = this.state;
+        let latestPrice = null;
+        let startPrice = null;
+        let priceChange = null;
+        let priceChangePercent = null;
+        let graphColor = "green";
+        if (data && data.length){
+            latestPrice = (data[data.length - 1].close).toFixed(2);
+            startPrice = (data[0].close).toFixed(2);
+            priceChange = (latestPrice - startPrice).toFixed(2);
+            priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
+            graphColor = priceChange > 0 ? "green" : "red";
+        }
         return (
             <div className="details-page-container">
                 <nav className="details-page-nav-bar">
@@ -73,14 +87,19 @@ class DetailsPage extends React.Component {
                     <section className='details-page-content-left-section'>
 
                         <h1>{name}</h1>
-                        <Chart data={this.state.data} />
+                        <h2>{latestPrice ? "$".concat(latestPrice) : latestPrice}</h2>
+                        <h4>{
+                            priceChange ? 
+                            (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange*-1, ` (${priceChangePercent}%)`)) 
+                            : priceChange} </h4>
+                        <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
                         <br/>
                         <section className="details-page-timeframe-buttons">
-                            <button className="details-page-timeframe-button" onClick={this.getNewPrice("1D")}>1D</button>
-                            <button className="details-page-timeframe-button" onClick={this.getNewPrice("1M")}>1M</button>
-                            <button className="details-page-timeframe-button" onClick={this.getNewPrice("3M")}>3M</button>
-                            <button className="details-page-timeframe-button" onClick={this.getNewPrice("1Y")}>1Y</button>
-                            <button className="details-page-timeframe-button" onClick={this.getNewPrice("5Y")}>5Y</button>
+                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1D")}>1D</button>
+                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1M")}>1M</button>
+                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("3M")}>3M</button>
+                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1Y")}>1Y</button>
+                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("5Y")}>5Y</button>
                         </section>
                         <br/>
                         <h3>About</h3>
