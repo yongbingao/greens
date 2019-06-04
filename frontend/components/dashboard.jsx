@@ -47,7 +47,7 @@ class DashboardPage extends React.Component {
 
                 <br/>
                 <br/>
-                <LineChart style={{"marginTop": "300px"}}
+                {/* <LineChart style={{"marginTop": "300px"}}
                     width={500}
                     height={300}
                     data={data}
@@ -59,7 +59,7 @@ class DashboardPage extends React.Component {
                     <YAxis hide={true} type='number' domain={['dataMin', 'dataMax']} />
                     <Tooltip content={<CustomToolTip />}  wrapperStyle={ {'transform': "none !important", "translate": "none !important"}} />
                     <Line type="linear" dataKey='marketClose' stroke="#00ea9c" dot={false}/>
-                </LineChart>
+                </LineChart> */}
 
             </div>
         )

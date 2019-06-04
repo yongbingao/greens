@@ -3530,3 +3530,53 @@ Migrating to ChangeColumn (20190602173558)
   [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
   ↳ db/seeds.rb:190
   [1m[36mCompany Load (1.2ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m
+Started GET "/" for ::1 at 2019-06-03 18:30:20 -0400
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/ben/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "4RwNM2wRz_VCGzPq4FoVFA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+Completed 200 OK in 3484ms (Views: 3477.7ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/api/session" for ::1 at 2019-06-03 18:30:27 -0400
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"Demo", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Demo"], ["LIMIT", 1]]
+  ↳ app/models/user.rb:22
+  [1m[35m (1.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:45
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["username", "Demo"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "demo@demo.com"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."password_digest" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["password_digest", "$2a$10$u3t./DDWMyNZJ6R/BswAX.DhgbdLxF0ajwJ1rM9nCnmuwZxmgZYzW"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["id", 12], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45
+  [1m[36mUser Update (26.3ms)[0m  [1m[33mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["updated_at", "2019-06-03 22:30:27.363198"], ["id", 12]]
+  ↳ app/models/user.rb:45
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:45
+  Rendering api/users/show.json.jbuilder
+  Rendered api/users/show.json.jbuilder (0.5ms)
+Completed 200 OK in 118ms (Views: 6.4ms | ActiveRecord: 37.6ms)
+
+
+Started GET "/" for ::1 at 2019-06-03 18:31:32 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "9S-kkDS4TWOvo9lKAVDwaA"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:5
+Completed 200 OK in 1296ms (Views: 1293.4ms | ActiveRecord: 0.5ms)
+
+
