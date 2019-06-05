@@ -9,9 +9,9 @@
 User.destroy_all
 Company.destroy_all
 
-user1 = User.create(username: "Demo", email: "demo@demo.com", password:"longpassword")
-user2 = User.create(username: "admin", email: "admin@admin.com", password:"longpassword")
-user3 = User.create(username: "ben", email: "ben@gmail.com", password:"longpassword")
+user1 = User.create(username: "Demo", email: "demo@demo.com", password:"longpassword", current_buying_power: 500000)
+user2 = User.create(username: "admin", email: "admin@admin.com", password:"longpassword", current_buying_power: 100000)
+user3 = User.create(username: "ben", email: "ben@gmail.com", password:"longpassword", current_buying_power: 50000)
 
 company1 = Company.create(
     ticker: "GOOG",
