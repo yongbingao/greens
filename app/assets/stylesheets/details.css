@@ -1,4 +1,5 @@
 /* Charts */
+
 .price-data {
     position: absolute;
     top: -86px;
@@ -195,6 +196,10 @@
     text-decoration: none;
 }
 
+.details-page-nav-bar-button:focus {
+    outline: none;
+}
+
 .details-page-content-container {
     display: flex;
     margin-top: 65px;
@@ -239,6 +244,16 @@ button[class^="details-page-timeframe-button"] {
     padding: 12px 0px;
     margin: 0 12px;
     border-bottom: 2px solid #ffffff;
+}
+
+button[id^="green-details-page-timeframe"] {
+    color: #21ce99;
+    border-bottom: 2px solid #21ce99;    
+}
+
+button[id^="red-details-page-timeframe"] {
+    color: #f45531;
+    border-bottom: 2px solid #f45531;    
 }
 
 .details-page-timeframe-button-green:focus {

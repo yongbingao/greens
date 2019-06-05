@@ -62,7 +62,7 @@ class DashboardPage extends React.Component {
 
         // debugger
         return (
-            <div>
+            <div className="dashboard-page-container">
                 <h1>Dashboard Page</h1>
                 <button onClick={this.handleLogout}>Log Out</button>
                 <br/>
@@ -74,9 +74,6 @@ class DashboardPage extends React.Component {
                 <ul>
                     {transactionList}
                 </ul>
-                {/* <ul>
-                    {companyList}
-                </ul> */}
                 <br/>
                 {/* <LineChart style={{"marginTop": "300px"}}
                     width={500}
@@ -124,7 +121,7 @@ const msp = (state, ownProps) => {
                     // })
     const transactions = Object.values(state.entities.transactions);
     const companies = {};
-    if (state.entities.companies) {
+    if (state.entities.companies && transactions.length) {
         transactions.forEach( el => {
             companies[el.company_id] = state.entities.companies[el.company_id]
         })    

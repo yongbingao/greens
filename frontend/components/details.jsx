@@ -12,6 +12,7 @@ class DetailsPage extends React.Component {
         this.state = {
             data: [],
             news: [],
+            timeframeFocus: null,
             intervalFunction: null};
         this.getNewPrice = this.getNewPrice.bind(this);
     }
@@ -24,7 +25,15 @@ class DetailsPage extends React.Component {
                 // debugger
                 const ticker = resp.company.ticker
                 fetchPrices(ticker, "1D")
-                    .then(data => this.setState({ data }));
+                    .then(data => {
+                        // debugger
+                        if (!data.length){
+                            fetchPrices(ticker, "1M").then(data => this.setState({ data, timeframeFocus: "1M" }));
+                            clearInterval(this.state.intervalFunction);
+                            this.setState({intervalFunction: null})
+                        } else {
+                            this.setState({ data, timeframeFocus: "1D" })}
+                        });
                 fetchNews(ticker)
                     .then(news => this.setState({news}));
                 
@@ -44,7 +53,7 @@ class DetailsPage extends React.Component {
     }
 
     componentWillUnmount() {
-        debugger
+        // debugger
         if(this.state.intervalFunction) {
             clearInterval(this.state.intervalFunction);
         }
@@ -52,7 +61,7 @@ class DetailsPage extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         const companyId = this.props.match.params.companyId;
-        // debugger
+        debugger
         if (companyId !== prevProps.match.params.companyId){
             // debugger
             clearInterval(this.state.intervalFunction);
@@ -62,7 +71,15 @@ class DetailsPage extends React.Component {
                 .then((resp) => {
                     const ticker = resp.company.ticker;
                     fetchPrices(ticker, '1D')
-                        .then(data => this.setState({ data }))
+                        .then(data => {
+                            if (!data.length) {
+                                fetchPrices(ticker, "1M").then(data => this.setState({ data, timeframeFocus: "1M" }));
+                                clearInterval(this.state.intervalFunction);
+                                this.setState({ intervalFunction: null });
+                            } else {
+                                this.setState({ data, timeframeFocus: "1D" })
+                            }
+                        });
                     fetchNews(ticker)
                         .then(news => this.setState({ news }))
 
@@ -84,6 +101,7 @@ class DetailsPage extends React.Component {
     }
 
     getNewPrice(timeframe) {
+        // this.setState({timeframeFocus: null});
         return event => {
             if (this.props.company.ticker){
                 // debugger
@@ -101,7 +119,7 @@ class DetailsPage extends React.Component {
                     })
                 }
                 fetchPrices(this.props.company.ticker, timeframe)
-                    .then(data => this.setState({data}))
+                    .then(data => this.setState({data, timeframeFocus: timeframe}))
             }
         }
     }
@@ -132,12 +150,13 @@ class DetailsPage extends React.Component {
             }
             // debugger
             latestPrice = (data[pos].close).toFixed(2);
-            startPrice = (data[0].close).toFixed(2);
+            startPrice = (data[0].open || data[0].marketOpen).toFixed(2);
             priceChange = (latestPrice - startPrice).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
             // debugger
         }
+        // debugger
         return (
             <div className="details-page-container">
                 <nav className="details-page-nav-bar">
@@ -167,11 +186,31 @@ class DetailsPage extends React.Component {
                         <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
                         <br/>
                         <section className="details-page-timeframe-buttons">
-                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1D")}>1D</button>
-                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1M")}>1M</button>
-                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("3M")}>3M</button>
-                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("1Y")}>1Y</button>
-                            <button className={"details-page-timeframe-button".concat("-", graphColor)} onClick={this.getNewPrice("5Y")}>5Y</button>
+                            <button 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "details-page-timeframe-1D" : "")}`} 
+                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                onClick={this.getNewPrice("1D")}>1D
+                            </button>
+                            <button 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "details-page-timeframe-1M" : "")}`} 
+                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                onClick={this.getNewPrice("1M")}>1M
+                            </button>
+                            <button 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "3M" ? "details-page-timeframe-3M" : "")}`} 
+                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                onClick={this.getNewPrice("3M")}>3M
+                            </button>
+                            <button 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1Y" ? "details-page-timeframe-1Y" : "")}`} 
+                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                onClick={this.getNewPrice("1Y")}>1Y
+                            </button>
+                            <button 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "5Y" ? "details-page-timeframe-5Y" : "")}`} 
+                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                onClick={this.getNewPrice("5Y")}>5Y
+                            </button>
                         </section>
                         <br/>
                         <h3>About</h3>
