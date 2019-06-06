@@ -11,7 +11,7 @@ const App = () => {
     // debugger
     return (
         <>
-            <Route path='/stock/:companyId' component={DetailsPage} />
+            <ProtectedRoute path='/stock/:companyId' component={DetailsPage} />
             <ProtectedRoute path='/dashboard' component={DashboardPage} />
             <Route path='/' exact component={SplashPage} />
             <AuthRoute path='/login' component={LoginForm} />

@@ -151,9 +151,9 @@ class DetailsPage extends React.Component {
                 pos--;
             }
             // debugger
-            latestPrice = (data[pos].close).toFixed(2);
-            startPrice = (data[0].open || data[0].marketOpen).toFixed(2);
-            priceChange = (latestPrice - startPrice).toFixed(2);
+            latestPrice = Number((data[pos].close)).toFixed(2);
+            startPrice = Number((data[0].open || data[0].marketOpen)).toFixed(2);
+            priceChange = Number((latestPrice - startPrice)).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
             // debugger
@@ -166,10 +166,10 @@ class DetailsPage extends React.Component {
                     <section className='logged-in-page-content-left-section'>
 
                         <h1>{name}</h1>
-                        <h2>{latestPrice ? "$".concat(latestPrice) : latestPrice}</h2>
+                        <h2>{latestPrice ? "$".concat(Number(latestPrice).toLocaleString()) : latestPrice}</h2>
                         <h4>{
                             priceChange ? 
-                            (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange*-1, ` (${priceChangePercent}%)`)) 
+                            (priceChange > 0 ? "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : "-".concat("$", priceChange*-1, ` (${priceChangePercent}%)`)) 
                             : priceChange} </h4>
                         <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
                         <br/>
@@ -206,7 +206,7 @@ class DetailsPage extends React.Component {
                         <br/>
                         <ul className="logged-in-page-content-left-section-first-list">
                             <li>CEO  <br/><span>{ceo}</span></li>
-                            <li>Employees <br /><span>{employees}</span></li>
+                            <li>Employees <br /><span>{Number(employees).toLocaleString()}</span></li>
                             <li>Headquarters <br/><span>{headquarter}</span></li>
                             <li>Founded <br/><span>{founded}</span></li>
                         </ul>

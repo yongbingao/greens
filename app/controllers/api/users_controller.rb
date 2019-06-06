@@ -1,6 +1,9 @@
 class Api::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
+        debugger
+        @user.current_buying_power = 50000
+        debugger
         if @user.save
             login(@user)
             render :show

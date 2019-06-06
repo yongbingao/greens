@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchQuotes } from '../util/prices_api_util';
+import { fetchQuotes, fetchBatchNews } from '../util/prices_api_util';
 import { logoutUser } from '../actions/session_actions';
 import { fetchTransactions } from '../actions/transaction_actions';
 import { fetchCompaniesInfo } from '../actions/company_actions';
@@ -7,37 +7,53 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import NavBar from './nav_bar';
 import Chart from './chart';
+import News from './news';
 
 class DashboardPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             data: [],
+            news: [],
             intervalFunction: null,
             quotes: {},    
         };
-        this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogout(event) {
-        this.props.logoutUser();
-    }   
+        // this.handleLogout = this.handleLogout.bind(this);
+    } 
     
     componentDidMount() {
-        debugger
+        // debugger
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions();
     }
 
+    componentWillUnmount() {
+        if (this.state.intervalFunction) {
+            clearInterval(this.state.intervalFunction);
+        }
+    }
+
     componentDidUpdate() {
         if (!this.state.intervalFunction && Object.keys(this.props.companies).length > 0){
-            this.setState({intervalFunction: true});
             const tickers = Object.values(this.props.companies).map( el => el.ticker);
             fetchQuotes(tickers)
-                .then( quotes => {
-                    // debugger
-                    this.setState({quotes})});
-            // setInterval
+                .then( quotes => this.setState({quotes}));
+            fetchBatchNews(tickers).then( resp => {
+                const newsObj = Object.values(resp);
+                let news = [];
+                newsObj.forEach( el => {
+                    debugger
+                    news = news.concat(el.news)
+                })
+                debugger
+                this.setState({news})
+            });
+
+            this.setState({
+                intervalFunction: setInterval(() => {
+                    fetchQuotes(tickers).then( quotes => this.setState({quotes}))
+                }, 60000)
+            });
         }
     }
 
@@ -47,8 +63,8 @@ class DashboardPage extends React.Component {
         const { companies } = this.props;
         const { quotes } = this.state;
         let graphColor = "green";
-        let latestPrice = 100;
-        let startPrice = 100;
+        let latestPrice = 1000;
+        let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
         
@@ -71,9 +87,9 @@ class DashboardPage extends React.Component {
                 <Link key={ticker} className="logged-in-page-content-right-section-stock" to={`/stock/${el.company_id}`}>
                     <section className="content-right-section-stock-left">
                         <span className='content-right-sction-stock-ticker'>{ticker}</span>
-                        <span className='content-right-sction-stock-share'>{`${el.net_shares} Share`}</span>
+                        <span className='content-right-sction-stock-share'>{`${el.net_shares.toLocaleString()} Share`}</span>
                     </section>
-                    <span className='content-right-sction-stock-price'>{`$${price}`}</span>
+                    <span className='content-right-sction-stock-price'>{`$${Number(price).toLocaleString()}`}</span>
                 </Link>
             )
         })
@@ -83,11 +99,10 @@ class DashboardPage extends React.Component {
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user}/>
-                <button style={{"position": "fixed", "top":"70px"}} onClick={this.handleLogout}>Log Out</button>
                 <section className="logged-in-page-content-container">
                     <section className='logged-in-page-content-left-section'>
 
-                        <h2>{latestPrice ? "$".concat(latestPrice) : latestPrice}</h2>
+                        <h2>{latestPrice ? "$".concat(latestPrice.toLocaleString()) : latestPrice}</h2>
                         <h4>{
                             priceChange ?
                                 (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange * -1, ` (${priceChangePercent}%)`))
@@ -121,8 +136,11 @@ class DashboardPage extends React.Component {
                                 onClick={this.getNewPrice("5Y")}>5Y
                             </button>
                         </section>
-                    </section>
 
+                        <h3>Recent News</h3>
+                        <News news={this.state.news} />
+                    </section>
+                    
                     <section className="logged-in-page-content-right-section">
                         <ul className="logged-in-page-content-right-section-stocks">
                             {transactionList}

@@ -21,7 +21,7 @@ const Chart = ({data, graphColor, startPrice}) => {
                     <span className="time-data"
                         style={{ "position": "absolute", "left": `${coordinate.x}px` }}
                     >{newLabel}</span>
-                    <span className="price-data">${payload[0].value}</span>
+                    <span className="price-data">${payload[0].value.toLocaleString()}</span>
                     <span className="price-data-change">{
                         priceChange ?
                             (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange * -1, ` (${priceChangePercent}%)`))

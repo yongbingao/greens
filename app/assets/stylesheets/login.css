@@ -9,10 +9,10 @@
 }
 
 .left-side-img{
-/*     background-image: url("login_page_img.png"); */
     background-position: center;
     background-size: cover;
     width: 50%;
+    height: 100vh;
 }
 
 .login-page-img {

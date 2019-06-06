@@ -111,16 +111,16 @@ class TransactionForm extends React.Component {
                 </div>
                 <div className="transaction-form-price">
                     <div>Market Price</div>                    
-                    <div>${price}</div>
+                    <div>${price.toLocaleString()}</div>
                 </div>
                 <div className='transaction-form-estimated-cost'>
                     <div>Estimated Cost</div>
-                    <div>${ this.state.shares == "-" ? 0.00 : (this.state.shares * price).toFixed(2)}</div>
+                    <div>${this.state.shares == "-" ? 0.00 : Number((this.state.shares * price).toFixed(2)).toLocaleString()}</div>
                 </div>
                 {errorList}
                 <input className="transaction-form-submit-button" type="submit" value="Buy"/>
-                <div className='transaction-form-buying-power'>${user.current_buying_power} Buying Power Available</div>
-                <div className='transaction-form-owned-shares'>{(transaction && Object.keys(transaction).length > 0) ? `You own ${transaction.net_shares} shares.` : ""}</div>
+                <div className='transaction-form-buying-power'>${Number(user.current_buying_power).toLocaleString()} Buying Power Available</div>
+                <div className='transaction-form-owned-shares'>{(transaction && Object.keys(transaction).length > 0) ? `You own ${transaction.net_shares.toLocaleString()} shares.` : ""}</div>
             </form>
         )
     }
