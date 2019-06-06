@@ -4,8 +4,9 @@ import { logoutUser } from '../actions/session_actions';
 import { fetchTransactions } from '../actions/transaction_actions';
 import { fetchCompaniesInfo } from '../actions/company_actions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { withRouter, Link } from 'react-router-dom';
+import NavBar from './nav_bar';
+import Chart from './chart';
 
 class DashboardPage extends React.Component {
     constructor(props){
@@ -23,6 +24,7 @@ class DashboardPage extends React.Component {
     }   
     
     componentDidMount() {
+        debugger
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions();
     }
@@ -33,62 +35,100 @@ class DashboardPage extends React.Component {
             const tickers = Object.values(this.props.companies).map( el => el.ticker);
             fetchQuotes(tickers)
                 .then( quotes => {
-                    debugger
+                    // debugger
                     this.setState({quotes})});
             // setInterval
         }
     }
 
+    getNewPrice() {}
+
     render() {
         const { companies } = this.props;
         const { quotes } = this.state;
+        let graphColor = "green";
+        let latestPrice = 100;
+        let startPrice = 100;
+        let priceChange = 0;
+        let priceChangePercent = 0;
+        
         const transactionList = this.props.transactions.map(el => {
             let ticker = null;
             let price = null;
             // debugger
-            if ( Object.keys(companies).length !== 0 ) {
+            if (el.net_shares === 0) {
+                return;
+            }
+            if ( companies[el.company_id]) {
+                // debugger
                 ticker = companies[el.company_id].ticker;
             }
-
-            if (Object.keys(quotes).length > 0) {
-                debugger
-                price = quotes[companies[el.company_id].ticker].quote.latestPrice;
+            if (quotes[ticker]) {
+                // debugger
+                price = (quotes[ticker].quote.latestPrice).toFixed(2);
             }
-            return <li>{`${ticker}`} <br/> {`net shares: ${el.net_shares}`} <br/> {`price: ${price}`}</li>
+            return (
+                <Link key={ticker} className="logged-in-page-content-right-section-stock" to={`/stock/${el.company_id}`}>
+                    <section className="content-right-section-stock-left">
+                        <span className='content-right-sction-stock-ticker'>{ticker}</span>
+                        <span className='content-right-sction-stock-share'>{`${el.net_shares} Share`}</span>
+                    </section>
+                    <span className='content-right-sction-stock-price'>{`$${price}`}</span>
+                </Link>
+            )
         })
-        // const companyList = this.props.companies.map( el => {
-        //     return <li>{`${el.id}: ${el.ticker}`}</li>
-        // })
 
-        // debugger
+        if (transactionList.length) transactionList.unshift(<div key="stocks-title" className="content-right-section-stock-title">Stocks</div>);
+
         return (
-            <div className="dashboard-page-container">
-                <h1>Dashboard Page</h1>
-                <button onClick={this.handleLogout}>Log Out</button>
-                <br/>
-                {this.props.user.username}
-                <br/>
-                {this.props.user.current_buying_power}
-                <br/>
-                <br/>
-                <ul>
-                    {transactionList}
-                </ul>
-                <br/>
-                {/* <LineChart style={{"marginTop": "300px"}}
-                    width={500}
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 10, right: 10, bottom: 10, left: 100,
-                    }}>
+            <div className="logged-in-page-container">
+                <NavBar user={this.props.user}/>
+                <button style={{"position": "fixed", "top":"70px"}} onClick={this.handleLogout}>Log Out</button>
+                <section className="logged-in-page-content-container">
+                    <section className='logged-in-page-content-left-section'>
 
-                    <XAxis dataKey="label" hide={true} />
-                    <YAxis hide={true} type='number' domain={['dataMin', 'dataMax']} />
-                    <Tooltip content={<CustomToolTip />}  wrapperStyle={ {'transform': "none !important", "translate": "none !important"}} />
-                    <Line type="linear" dataKey='marketClose' stroke="#00ea9c" dot={false}/>
-                </LineChart> */}
+                        <h2>{latestPrice ? "$".concat(latestPrice) : latestPrice}</h2>
+                        <h4>{
+                            priceChange ?
+                                (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange * -1, ` (${priceChangePercent}%)`))
+                                : priceChange} </h4>
+                        <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
+                        <br />
+                        <section className="logged-in-page-timeframe-buttons">
+                            <button
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "logged-in-page-timeframe-1D" : "")}`}
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                                onClick={this.getNewPrice("1D")}>1D
+                            </button>
+                            <button
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "logged-in-page-timeframe-1M" : "")}`}
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                                onClick={this.getNewPrice("1M")}>1M
+                            </button>
+                            <button
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "3M" ? "logged-in-page-timeframe-3M" : "")}`}
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                                onClick={this.getNewPrice("3M")}>3M
+                            </button>
+                            <button
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1Y" ? "logged-in-page-timeframe-1Y" : "")}`}
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                                onClick={this.getNewPrice("1Y")}>1Y
+                            </button>
+                            <button
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "5Y" ? "logged-in-page-timeframe-5Y" : "")}`}
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                                onClick={this.getNewPrice("5Y")}>5Y
+                            </button>
+                        </section>
+                    </section>
 
+                    <section className="logged-in-page-content-right-section">
+                        <ul className="logged-in-page-content-right-section-stocks">
+                            {transactionList}
+                        </ul>
+                    </section>
+                </section>
             </div>
         )
     }
@@ -123,7 +163,11 @@ const msp = (state, ownProps) => {
     const companies = {};
     if (state.entities.companies && transactions.length) {
         transactions.forEach( el => {
-            companies[el.company_id] = state.entities.companies[el.company_id]
+            // debugger
+            if (state.entities.companies[el.company_id]) {
+                // debugger
+                companies[el.company_id] = state.entities.companies[el.company_id]
+            }
         })    
     }
     // debugger
@@ -131,7 +175,7 @@ const msp = (state, ownProps) => {
     return {
         transactions,
         companies,
-        user: state.entities.user,
+        user: state.entities.user[state.session.currentUserId],
     }
 }
 

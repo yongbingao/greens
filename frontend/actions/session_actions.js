@@ -49,3 +49,10 @@ export const logoutUser = () => dispatch => {
         // debugger
         return dispatch(logoutCurrentUser())})
 }
+
+export const updateUser = user => dispatch => {
+    return APISessionUtil.updateUser(user)
+        .then( resp => {
+            // debugger
+            dispatch(receiveCurrentUser(resp))})
+}

@@ -1,0 +1,121 @@
+.details-page-transaction-form-container {
+    flex: 0 0 27%;
+}
+
+.details-page-transaction-form {
+    position: fixed;
+    box-shadow: 0 3px 24px rgba(48, 51, 51, 0.09);
+    border: 1px solid #fafafa;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    width: 275px;
+}
+
+.details-page-transaction-form > div {
+    padding: 12px 24px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-form-title {
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #f4f4f5;
+}
+
+.transaction-form-shares {
+    margin-top: 12px;
+    font-weight: 300;
+}
+
+#transaction-box-shares {
+    width: 56px;
+    height: 34px;
+    background-color: #fafafa;
+    padding: 0 13px;
+    margin: 0;
+    border-color: #fafafa;
+    border-radius: 3px;
+    text-align: right;
+    transition: border-color 200ms;
+}
+
+#transaction-box-shares:hover {
+    background-color: #fff;
+    border-color: #cbcbcd;
+}
+
+#transaction-box-shares:focus {
+    border-color: #21ce99;
+}
+
+.details-page-transaction-form > .transaction-form-price {
+    padding: 12px 12px 12px 0;
+    margin: 0 24px;
+    border-bottom: 1px solid #f4f4f5;
+}
+
+.transaction-form-estimated-cost {
+    margin-right: 12px;
+}
+
+.transaction-form-errors {
+    border-top: 1px solid #f4f4f5;
+    padding: 12px 24px 0 24px;
+    font-weight: 300;
+    line-height: 19px;
+}
+
+.transaction-form-errors > div {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.transaction-form-errors  i {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.transaction-form-errors span {
+    font-weight: 500;
+}
+
+.transaction-form-submit-button {
+    padding: 0;
+    width: 228px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #21ce99;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin: 24px 24px 24px 24px;
+}
+
+.transaction-form-submit-button:hover {
+    background-color: #1ae9aa;
+    border-color: #1ae99a;
+    cursor: pointer;
+}
+
+.details-page-transaction-form .transaction-form-buying-power, .details-page-transaction-form .transaction-form-owned-shares {
+    font-weight: 300;
+    justify-content: center;
+    border-top: 1px solid #f4f4f5;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -5,6 +5,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { fetchPrices, fetchNews } from '../util/prices_api_util';
 import Chart from './chart';
 import News from './news';
+import NavBar from './nav_bar';
+import TransactionForm from './transaction_form';
 
 class DetailsPage extends React.Component {
     constructor(props) {
@@ -61,7 +63,7 @@ class DetailsPage extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         const companyId = this.props.match.params.companyId;
-        debugger
+        // debugger
         if (companyId !== prevProps.match.params.companyId){
             // debugger
             clearInterval(this.state.intervalFunction);
@@ -136,7 +138,7 @@ class DetailsPage extends React.Component {
             )
         }
         // debugger
-        const { name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume} = this.props.company;
+        const { id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume} = this.props.company;
         const { data } = this.state;
         let latestPrice = null;
         let startPrice = null;
@@ -158,24 +160,10 @@ class DetailsPage extends React.Component {
         }
         // debugger
         return (
-            <div className="details-page-container">
-                <nav className="details-page-nav-bar">
-                    <i id="fa-feather" className="fas fa-feather"></i>
-                    <div className="details-page-search-box">
-                        <i className="fas fa-search"></i>
-                        <input className="details-page-search-input-field" type="text" placeholder="Search"/>
-                    </div>
-                    <div className="details-page-nav-bar-right-section">
-                        <button className="details-page-nav-bar-button">
-                            <Link to='/dashboard'>Home</Link>
-                        </button>
-                        <button className="details-page-nav-bar-button">Notifications</button>
-                        <button className="details-page-nav-bar-button">Account</button>
-                    </div>
-                </nav>
-                <br/>
-                <section className="details-page-content-container">
-                    <section className='details-page-content-left-section'>
+            <div className="logged-in-page-container">
+                <NavBar user={this.props.user} />
+                <section className="logged-in-page-content-container">
+                    <section className='logged-in-page-content-left-section'>
 
                         <h1>{name}</h1>
                         <h2>{latestPrice ? "$".concat(latestPrice) : latestPrice}</h2>
@@ -185,30 +173,30 @@ class DetailsPage extends React.Component {
                             : priceChange} </h4>
                         <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
                         <br/>
-                        <section className="details-page-timeframe-buttons">
+                        <section className="logged-in-page-timeframe-buttons">
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "details-page-timeframe-1D" : "")}`} 
-                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "logged-in-page-timeframe-1D" : "")}`} 
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1D")}>1D
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "details-page-timeframe-1M" : "")}`} 
-                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "logged-in-page-timeframe-1M" : "")}`} 
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1M")}>1M
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "3M" ? "details-page-timeframe-3M" : "")}`} 
-                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "3M" ? "logged-in-page-timeframe-3M" : "")}`} 
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("3M")}>3M
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1Y" ? "details-page-timeframe-1Y" : "")}`} 
-                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1Y" ? "logged-in-page-timeframe-1Y" : "")}`} 
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1Y")}>1Y
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "5Y" ? "details-page-timeframe-5Y" : "")}`} 
-                                className={"details-page-timeframe-button".concat("-", graphColor)} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "5Y" ? "logged-in-page-timeframe-5Y" : "")}`} 
+                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("5Y")}>5Y
                             </button>
                         </section>
@@ -216,13 +204,13 @@ class DetailsPage extends React.Component {
                         <h3>About</h3>
                         <p>{about}</p>
                         <br/>
-                        <ul className="details-page-content-left-section-first-list">
+                        <ul className="logged-in-page-content-left-section-first-list">
                             <li>CEO  <br/><span>{ceo}</span></li>
                             <li>Employees <br /><span>{employees}</span></li>
                             <li>Headquarters <br/><span>{headquarter}</span></li>
                             <li>Founded <br/><span>{founded}</span></li>
                         </ul>
-                        <ul className="details-page-content-left-section-second-list">
+                        <ul className="logged-in-page-content-left-section-second-list">
                             <li>Market Cap <br/><span>{market_cap}B</span></li>
                             <li>Price-Earning Ratio <br /><span>{pe_ratio || "-"}</span></li>
                             <li>Dividend Yield <br /><span>{dividend || "-"}</span></li>
@@ -232,7 +220,9 @@ class DetailsPage extends React.Component {
                         <h3>News</h3>
                         <News news={this.state.news}/>
                     </section>
-                    <section className='details-page-content-right-section'></section>
+                    <section className='details-page-transaction-form-container'>
+                        <TransactionForm ticker={ticker} companyId={id} price={Number(latestPrice)}  />
+                    </section>
                 </section>
             </div>
         )
@@ -242,7 +232,8 @@ class DetailsPage extends React.Component {
 const msp = (state, ownProps) => {
     const id = ownProps.match.params.companyId;
     return {
-        company: state.entities.companies[id]
+        company: state.entities.companies[id],
+        user: state.entities.user[state.session.currentUserId],
     }
 }
 

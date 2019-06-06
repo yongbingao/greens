@@ -1,4 +1,4 @@
-@transactions.each do |transaction|
+@recent_transactions.each do |transaction|
     # debugger
     json.set! transaction["id"] do
         json.partial! "api/transactions/transaction", transaction: transaction
