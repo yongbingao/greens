@@ -18,7 +18,6 @@ class TransactionForm extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         this.props.fetchTransactions();
     }
 
@@ -87,7 +86,6 @@ class TransactionForm extends React.Component {
 
     render() {
         const { transaction, ticker, price, user } = this.props;
-        debugger
 
         const { invalidShares, notEnoughMoney, notEnoughSharesToSell } = this.state;
         const errorList = (invalidShares || notEnoughMoney || notEnoughSharesToSell) ? (
@@ -133,7 +131,6 @@ const msp = (state, ownProps) => {
     transactions.forEach( el => {
         if (el.company_id === Number(companyId)) transaction = el;
     })
-    debugger
 
     return {
         transaction, 

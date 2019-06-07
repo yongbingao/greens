@@ -8,6 +8,7 @@
 
 User.destroy_all
 Company.destroy_all
+Transaction.destroy_all
 
 user1 = User.create(username: "Demo", email: "demo@demo.com", password:"longpassword", current_buying_power: 500000)
 user2 = User.create(username: "admin", email: "admin@admin.com", password:"longpassword", current_buying_power: 100000)

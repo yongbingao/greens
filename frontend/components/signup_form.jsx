@@ -140,7 +140,6 @@ class SignupForm extends React.Component {
                     blankEmailInputField = <span className="email-tooltip">A user with this email already exists.</span>;
                 }
             }
-            debugger
         })
         
         // debugger

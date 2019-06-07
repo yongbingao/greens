@@ -41,12 +41,8 @@ class DashboardPage extends React.Component {
             fetchBatchNews(tickers).then( resp => {
                 const newsObj = Object.values(resp);
                 let news = [];
-                newsObj.forEach( el => {
-                    debugger
-                    news = news.concat(el.news)
-                })
-                debugger
-                this.setState({news})
+                newsObj.forEach( el => news = news.concat(el.news));
+                this.setState({news});
             });
 
             this.setState({
