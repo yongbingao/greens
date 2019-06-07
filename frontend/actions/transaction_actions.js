@@ -4,6 +4,7 @@ export const RECEIVE_TRANSACTIONS = 'RECEIVE_TRANSACTIONS';
 export const RECEIVE_TRANSACTION = 'RECEIVE_TRANSACTION';
 export const RECEIVE_TRANSACTION_ERRORS = 'RECEIVE_TRANSACTION_ERRORS';
 export const CLEAR_TRANSACTION_ERRORS = 'CLEAR_TRANSACTION_ERRORS';
+export const CLEAR_TRANSACTION = 'CLEAR_TRANSACTION';
 
 const receiveTransaction = transaction => {
     return {
@@ -29,6 +30,12 @@ export const receiveTransactionErrors = errors => {
 export const receiveClearTransactionErrors = () => {
     return {
         type: CLEAR_TRANSACTION_ERRORS
+    }
+}
+
+export const receiveClearTransaction = () => {
+    return {
+        type: CLEAR_TRANSACTION
     }
 }
 

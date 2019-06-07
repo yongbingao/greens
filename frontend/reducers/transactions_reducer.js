@@ -1,7 +1,7 @@
-import {RECEIVE_TRANSACTION, RECEIVE_TRANSACTIONS} from '../actions/transaction_actions';
+import {RECEIVE_TRANSACTION, RECEIVE_TRANSACTIONS, CLEAR_TRANSACTION} from '../actions/transaction_actions';
 import { merge } from 'lodash';
 
-const transactionReducer = (state={}, action) => {
+const transactionReducer = (state=[], action) => {
     Object.freeze(state);
     switch (action.type){
         case RECEIVE_TRANSACTION:
@@ -17,6 +17,8 @@ const transactionReducer = (state={}, action) => {
             return newState;
         case RECEIVE_TRANSACTIONS:
             return action.transactions;
+        case CLEAR_TRANSACTION:
+            return [];
         default: return state;
     }
 }
