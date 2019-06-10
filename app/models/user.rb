@@ -20,6 +20,7 @@ class User < ApplicationRecord
     attr_reader :password
 
     has_many :transactions
+    has_many :watchlists
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username) || User.find_by(email: username)

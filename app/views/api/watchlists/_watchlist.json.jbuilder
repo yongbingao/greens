@@ -1,0 +1,1 @@
+json.extract! watchlist, "id", "user_id", "company_id"

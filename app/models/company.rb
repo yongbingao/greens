@@ -23,4 +23,5 @@ class Company < ApplicationRecord
     validates :ticker, :name, uniqueness: true
 
     has_many :transactions
+    has_many :watchlists
 end
