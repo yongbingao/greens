@@ -18,7 +18,6 @@ class DashboardPage extends React.Component {
             intervalFunction: null,
             quotes: {},    
         };
-        // this.handleLogout = this.handleLogout.bind(this);
     } 
     
     componentDidMount() {
@@ -94,7 +93,7 @@ class DashboardPage extends React.Component {
 
         return (
             <div className="logged-in-page-container">
-                <NavBar user={this.props.user}/>
+                <NavBar user={this.props.user} fetchCompanies={false} />
                 <section className="logged-in-page-content-container">
                     <section className='logged-in-page-content-left-section'>
 

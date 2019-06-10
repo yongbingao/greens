@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { logoutUser } from '../actions/session_actions';
+import { receiveClearTransaction } from '../actions/transaction_actions'
 import { fetchCompaniesInfo } from '../actions/company_actions';
 
 class NavBar extends React.Component{
@@ -17,7 +18,7 @@ class NavBar extends React.Component{
     }
     
     componentDidMount() {
-        this.props.fetchCompaniesInfo();
+        if (this.props.fetchCompanies) this.props.fetchCompaniesInfo();
     }
     
     handleLogout(event) {
@@ -59,7 +60,7 @@ class NavBar extends React.Component{
         if (searchResults.length) searchResults.unshift( <h5 key="nav-bar-search-box-result-title">Stocks</h5> )
 
         if (this.state.searchInput && !this.state.matchingCompanyNames.length){
-            searchResults = [<span>Unable to find any results for your search.</span>]
+            searchResults = [<span key="nav-bar-search-box-no-result-mesg">Unable to find any results for your search.</span>]
         }
 
         return (
@@ -109,6 +110,7 @@ class NavBar extends React.Component{
 }
 
 const msp = (state, ownProps) => {
+    debugger
     return {
         companies: Object.values(state.entities.companies)
     }
@@ -117,7 +119,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
     return {
         logoutUser: () => dispatch(logoutUser()),
-        fetchCompaniesInfo: () => dispatch(fetchCompaniesInfo())
+        fetchCompaniesInfo: () => dispatch(fetchCompaniesInfo()),
+        clearTransactions: () => dispatch(receiveClearTransaction())
     }
 }
 

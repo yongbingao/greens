@@ -16,7 +16,7 @@ export const fetchNews = ticker => {
 export const fetchQuotes = tickers => {
     return $.ajax({
         method: "GET",
-        url: `https://api.iextrading.com/1.0/stock/market/batch?symbols=${tickers.join(",")}&types=quote`
+        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers.join(",")}&types=quote&token=${window.iexAPIKey}`
     })
 }
 

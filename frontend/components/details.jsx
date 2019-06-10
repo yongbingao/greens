@@ -161,7 +161,7 @@ class DetailsPage extends React.Component {
         // debugger
         return (
             <div className="logged-in-page-container">
-                <NavBar user={this.props.user} />
+                <NavBar user={this.props.user} fetchCompanies={true} />
                 <section className="logged-in-page-content-container">
                     <section className='logged-in-page-content-left-section'>
 
