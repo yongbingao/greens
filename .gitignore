@@ -5,3 +5,7 @@ bundle.js.map
 /log/*
 /tmp/*
 !.keep
+
+.DS_Store
+.byebug_history
+.ruby-version
