@@ -1,8 +1,9 @@
 import React from 'react';
-import { fetchCompanyInfo } from '../actions/company_actions';
-import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
-import { fetchPrices, fetchNews } from '../util/prices_api_util';
+import {fetchCompanyInfo} from '../actions/company_actions';
+import {fetchPrices, fetchNews} from '../util/prices_api_util';
+import {fetchAllWatchlists, fetchWatchlist, createWatchlist, removeWatchlist} from "../actions/watchlist_actions";
+import {connect} from 'react-redux';
+import {withRouter, Link} from 'react-router-dom';
 import Chart from './chart';
 import News from './news';
 import NavBar from './nav_bar';
@@ -17,11 +18,13 @@ class DetailsPage extends React.Component {
             timeframeFocus: null,
             intervalFunction: null};
         this.getNewPrice = this.getNewPrice.bind(this);
+        this.handleWatchlistClick = this.handleWatchlistClick.bind(this);
     }
 
     componentDidMount() {
         // debugger
         const id = this.props.match.params.companyId;
+        this.props.fetchWatchlist(id);
         this.props.fetchCompanyInfo(id)
             .then((resp) => {
                 // debugger
@@ -69,6 +72,7 @@ class DetailsPage extends React.Component {
             clearInterval(this.state.intervalFunction);
             this.setState({intervalFunction: null});
             // this.props.history.push(`/stock/${companyId}`)
+            this.props.fetchWatchlist(companyId);
             this.props.fetchCompanyInfo(companyId)
                 .then((resp) => {
                     const ticker = resp.company.ticker;
@@ -126,6 +130,15 @@ class DetailsPage extends React.Component {
         }
     }
 
+    handleWatchlistClick(event) {
+        const id = this.props.company.id;
+        if(event.target.innerHTML === "Add to Watchlist"){
+            this.props.createWatchlist({company_id: id});
+        } else {
+            this.props.removeWatchlist(this.props.currentWatchlist.id);
+        }
+    }
+
     render() {
         // debugger
         if (!this.props.company) {
@@ -138,7 +151,9 @@ class DetailsPage extends React.Component {
             )
         }
         // debugger
-        const { id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume} = this.props.company;
+        const { company: 
+            {id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume},
+            currentWatchlist } = this.props;
         const { data } = this.state;
         let latestPrice = null;
         let startPrice = null;
@@ -164,7 +179,6 @@ class DetailsPage extends React.Component {
                 <NavBar user={this.props.user} fetchCompanies={true} />
                 <section className="logged-in-page-content-container">
                     <section className='logged-in-page-content-left-section'>
-
                         <h1>{name}</h1>
                         <h2>{latestPrice ? "$".concat(Number(latestPrice).toLocaleString()) : latestPrice}</h2>
                         <h4>{
@@ -221,7 +235,10 @@ class DetailsPage extends React.Component {
                         <News news={this.state.news}/>
                     </section>
                     <section className='details-page-transaction-form-container'>
-                        <TransactionForm ticker={ticker} companyId={id} price={Number(latestPrice)}  />
+                        <TransactionForm ticker={ticker} companyId={id} price={Number(latestPrice)} />
+                        <button onClick={this.handleWatchlistClick} className="details-page-watchlist-button" >
+                            {Object.keys(currentWatchlist).length ? "Remove from Watchlist" : "Add to Watchlist"}
+                        </button>
                     </section>
                 </section>
             </div>
@@ -231,15 +248,20 @@ class DetailsPage extends React.Component {
 
 const msp = (state, ownProps) => {
     const id = ownProps.match.params.companyId;
+    const {companies, user, watchlists: {currentWatchlist}} = state.entities;
     return {
-        company: state.entities.companies[id],
-        user: state.entities.user[state.session.currentUserId],
+        company: companies[id],
+        user: user[state.session.currentUserId],
+        currentWatchlist,
     }
 }
 
 const mdp = dispatch => {
     return {
-        fetchCompanyInfo: id => dispatch(fetchCompanyInfo(id))
+        fetchCompanyInfo: id => dispatch(fetchCompanyInfo(id)),
+        fetchWatchlist: id => dispatch(fetchWatchlist(id)),
+        createWatchlist: watchlist => dispatch(createWatchlist(watchlist)),
+        removeWatchlist: id => dispatch(removeWatchlist(id)),
     }
 }
 

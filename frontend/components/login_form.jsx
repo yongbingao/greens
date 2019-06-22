@@ -27,8 +27,6 @@ class LoginForm extends React.Component {
 
     handleDemo(event) {
         this.props.demoLogin({username:"Demo", password:"longpassword"}) 
-        //.then( () => { this.props.history.push('/dashboard')};
-        
     }
 
     render() {

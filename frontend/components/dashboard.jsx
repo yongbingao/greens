@@ -1,10 +1,12 @@
+import {fetchQuotes, fetchBatchNews} from '../util/prices_api_util';
+import {logoutUser} from '../actions/session_actions';
+import {fetchTransactions} from '../actions/transaction_actions';
+import {fetchCompaniesInfo} from '../actions/company_actions';
+import {fetchAllWatchlists} from "../actions/watchlist_actions";
 import React from 'react';
-import { fetchQuotes, fetchBatchNews } from '../util/prices_api_util';
-import { logoutUser } from '../actions/session_actions';
-import { fetchTransactions } from '../actions/transaction_actions';
-import { fetchCompaniesInfo } from '../actions/company_actions';
-import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter, Link} from 'react-router-dom';
+import PortfolioSummary from "./portfolio_summary";
 import NavBar from './nav_bar';
 import Chart from './chart';
 import News from './news';
@@ -24,6 +26,7 @@ class DashboardPage extends React.Component {
         // debugger
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions();
+        this.props.fetchAllWatchlists();
     }
 
     componentWillUnmount() {
@@ -55,42 +58,14 @@ class DashboardPage extends React.Component {
     getNewPrice() {}
 
     render() {
-        const { companies } = this.props;
-        const { quotes } = this.state;
+        const {companies, transactions, watchlists} = this.props;
+        const {quotes} = this.state;
         let graphColor = "green";
         let latestPrice = 1000;
         let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
         
-        const transactionList = this.props.transactions.map(el => {
-            let ticker = null;
-            let price = null;
-            // debugger
-            if (el.net_shares === 0) {
-                return;
-            }
-            if ( companies[el.company_id]) {
-                // debugger
-                ticker = companies[el.company_id].ticker;
-            }
-            if (quotes[ticker]) {
-                // debugger
-                price = (quotes[ticker].quote.latestPrice).toFixed(2);
-            }
-            return (
-                <Link key={ticker} className="logged-in-page-content-right-section-stock" to={`/stock/${el.company_id}`}>
-                    <section className="content-right-section-stock-left">
-                        <span className='content-right-sction-stock-ticker'>{ticker}</span>
-                        <span className='content-right-sction-stock-share'>{`${el.net_shares.toLocaleString()} Share`}</span>
-                    </section>
-                    <span className='content-right-sction-stock-price'>{`$${Number(price).toLocaleString()}`}</span>
-                </Link>
-            )
-        })
-
-        if (transactionList.length) transactionList.unshift(<div key="stocks-title" className="content-right-section-stock-title">Stocks</div>);
-
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user} fetchCompanies={false} />
@@ -137,9 +112,12 @@ class DashboardPage extends React.Component {
                     </section>
                     
                     <section className="logged-in-page-content-right-section">
-                        <ul className="logged-in-page-content-right-section-stocks">
-                            {transactionList}
-                        </ul>
+                        <PortfolioSummary 
+                            transactions={transactions} 
+                            watchlists={watchlists} 
+                            quotes={quotes} 
+                            companies={companies} 
+                        />
                     </section>
                 </section>
             </div>
@@ -148,31 +126,8 @@ class DashboardPage extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-    // let transaction_keys = Object.keys(state.entities.transactions);
-    // const transactions = [];
-    // transaction_keys.forEach(el => {
-    //     if (typeof el === 'number'){
-    //         transactions.push(state.entities.transactions[el])
-    //     }
-    // })
-    // const company_ids = [];
-    // const transactions = [];
-    
-    // transactionsArray.forEach(el => {
-        //     // debugger
-        //     const id = el.company_id
-        //     if (!company_ids.includes(id)){
-            //         company_ids.push(id);
-            //         transactions.push(el);
-            //         if (state.entities.companies){
-                //             // debugger
-                //             companies.push(state.entities.companies[id]);
-                //         }
-                //     } else {
-                    //         transactions[transactions.length - 1] = el;
-                    //     }
-                    // })
     const transactions = Object.values(state.entities.transactions);
+    const watchlists = Object.values(state.entities.watchlists.allWatchlists);
     const companies = {};
     if (state.entities.companies && transactions.length) {
         transactions.forEach( el => {
@@ -183,10 +138,10 @@ const msp = (state, ownProps) => {
             }
         })    
     }
-    // debugger
                     
     return {
         transactions,
+        watchlists,
         companies,
         user: state.entities.user[state.session.currentUserId],
     }
@@ -196,7 +151,8 @@ const mdp = dispatch => {
     return {
         logoutUser: () => dispatch(logoutUser()),
         fetchTransactions: () => dispatch(fetchTransactions()),
-        fetchCompaniesInfo: () => dispatch(fetchCompaniesInfo())
+        fetchCompaniesInfo: () => dispatch(fetchCompaniesInfo()),
+        fetchAllWatchlists: () => dispatch(fetchAllWatchlists()),
     }
 }
 

@@ -110,7 +110,6 @@ class NavBar extends React.Component{
 }
 
 const msp = (state, ownProps) => {
-    debugger
     return {
         companies: Object.values(state.entities.companies)
     }
