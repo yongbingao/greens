@@ -14,9 +14,20 @@ class Api::WatchlistsController < ApplicationController
         render :index
     end
 
+    def show
+        @watchlist = Watchlist.where("user_id = ? AND company_id = ?", current_user.id, params[:id].to_i).first
+
+        if @watchlist 
+            render :show
+        else
+            render json: {}
+        end
+    end
+
     def destroy
         watchlist = Watchlist.find_by(id: params[:id])
         watchlist.destroy
+        render json: watchlist
     end
 
     private
