@@ -1,17 +1,20 @@
 import { RECEIVE_WATCHLIST, RECEIVE_WATCHLISTS, DELETE_WATCHLIST } from '../actions/watchlist_actions';
 import {merge} from "lodash";
 
-const watchlistReducer = (state={}, action) => {
+const watchlistReducer = (state={allWatchlists:{}, currentWatchlist:{}}, action) => {
     Object.freeze(state);
     switch(action.type){
         case RECEIVE_WATCHLISTS:
-            return action.watchlists;
+            return {allWatchlists: action.watchlists, currentWatchlist: {}};
         case RECEIVE_WATCHLIST:
-            return merge({}, state, {[action.watchlist.id]: action.watchlist});
+            debugger
+            return Object.assign({}, state, {currentWatchlist: action.watchlist});
         case DELETE_WATCHLIST:
-            const newState = merge( {}, state);
-            delete newState[action.id];
-            return newState;
+            return Object.assign({}, state, {currentWatchlist: {}});
+            // const newState = merge( {}, state);
+            // newState.currentWatchlist = {};
+            // debugger
+            // return newState;
         default: return state;
     }
 }

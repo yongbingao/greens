@@ -5,6 +5,13 @@ export const fetchAllWatchlists = () => {
     })
 }
 
+export const fetchWatchlist = companyId => {
+    return $.ajax({
+        method: "GET",
+        url: `api/watchlists/${companyId}`
+    })
+}
+
 export const createWatchlist = watchlist => {
     return $.ajax({
         method: "POST",
@@ -13,9 +20,10 @@ export const createWatchlist = watchlist => {
     })
 }
 
-export const deleteWatchlist = id => {
+export const deleteWatchlist = watchlistId => {
+    debugger
     return $.ajax({
         method: "DELETE",
-        url: `api/watchlists/${id}`
+        url: `api/watchlists/${watchlistId}`
     })
 }
