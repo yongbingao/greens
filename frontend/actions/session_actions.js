@@ -44,15 +44,12 @@ export const signupUser = user => dispatch => {
 }
 
 export const logoutUser = () => dispatch => {
-    // debugger
     return APISessionUtil.logout().then( () => {
-        // debugger
         return dispatch(logoutCurrentUser())})
 }
 
 export const updateUser = user => dispatch => {
     return APISessionUtil.updateUser(user)
         .then( resp => {
-            // debugger
             dispatch(receiveCurrentUser(resp))})
 }

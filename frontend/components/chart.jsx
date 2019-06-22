@@ -5,7 +5,6 @@ const Chart = ({data, graphColor, startPrice}) => {
 
     function CustomToolTip({ label, payload, active, coordinate }) {
         if (active && payload && payload.length) {
-            // debugger
             let newLabel;
             let priceChange = (payload[0].value - startPrice).toFixed(2);
             let priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
@@ -33,7 +32,7 @@ const Chart = ({data, graphColor, startPrice}) => {
             return null;
         }
     }
-    // debugger
+    
     return (
         <LineChart
             width={700}

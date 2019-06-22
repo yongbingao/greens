@@ -21,7 +21,6 @@ export const createWatchlist = watchlist => {
 }
 
 export const deleteWatchlist = watchlistId => {
-    debugger
     return $.ajax({
         method: "DELETE",
         url: `api/watchlists/${watchlistId}`

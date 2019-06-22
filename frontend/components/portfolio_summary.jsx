@@ -4,6 +4,9 @@ import {Link} from "react-router-dom"
 const PortfolioSummary = props=> {
     const {transactions, watchlists, quotes, companies} = props;
 
+    if(!Object.keys(quotes).length){
+        return null;
+    }
     const transactionList = transactions.map(transaction => {
         let ticker = null;
         let price = null;
@@ -19,6 +22,7 @@ const PortfolioSummary = props=> {
             // debugger
             price = (quotes[ticker].quote.latestPrice).toFixed(2);
         }
+        
         return (
             <Link key={`${ticker}-stock`} className="logged-in-page-content-right-section-stock" to={`/stock/${transaction.company_id}`}>
                 <section className="content-right-section-stock-left">
@@ -58,10 +62,14 @@ const PortfolioSummary = props=> {
     if (watchlistList.length) watchlistList.unshift(<div key="watchlist-title" className="content-right-section-watchlist-title">Watchlist</div>);
 
     return (
-        <ul className="logged-in-page-content-right-section-stock-watchlist">
-            {transactionList}
-            {watchlistList}
-        </ul>
+        <React.Fragment>
+            <ul className="logged-in-page-content-right-section-stocks">
+                {transactionList}
+            </ul>
+            <ul className="logged-in-page-content-right-section-watchlists">
+                {watchlistList}
+            </ul>
+        </React.Fragment>
     )
 }
 

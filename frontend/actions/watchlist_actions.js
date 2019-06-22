@@ -26,12 +26,12 @@ const deleteWatchlist = () => {
 
 export const createWatchlist = watchlist => dispatch => {
     APIWatchlistUtil.createWatchlist(watchlist)
-        .then(resp => {debugger; dispatch(receiveWatchlist(resp))})
+        .then(resp => dispatch(receiveWatchlist(resp)))
 }
 
 export const removeWatchlist = watchlistId => dispatch => {
     APIWatchlistUtil.deleteWatchlist (watchlistId)
-        .then(resp => {debugger; dispatch(deleteWatchlist())})
+        .then(resp => dispatch(deleteWatchlist()))
 }
 
 export const fetchWatchlist = companyId => dispatch => {

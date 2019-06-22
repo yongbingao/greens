@@ -18,12 +18,12 @@ class DashboardPage extends React.Component {
             data: [],
             news: [],
             intervalFunction: null,
-            quotes: {},    
+            quotes: {},
+            numberOfCompanies: Object.keys(props.companies).length,    
         };
     } 
     
     componentDidMount() {
-        // debugger
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions();
         this.props.fetchAllWatchlists();
@@ -36,7 +36,15 @@ class DashboardPage extends React.Component {
     }
 
     componentDidUpdate() {
-        if (!this.state.intervalFunction && Object.keys(this.props.companies).length > 0){
+        debugger
+        const companiesLength = Object.keys(this.props.companies).length;
+        if(this.state.numberOfCompanies !== companiesLength){
+            debugger
+            this.setState({numberOfCompanies: companiesLength});
+            
+            if(this.state.intervalFunction) clearInterval(this.state.intervalFunction);
+            
+            // if (!this.state.intervalFunction && Object.keys(this.props.companies).length > 0){
             const tickers = Object.values(this.props.companies).map( el => el.ticker);
             fetchQuotes(tickers)
                 .then( quotes => this.setState({quotes}));
@@ -46,13 +54,14 @@ class DashboardPage extends React.Component {
                 newsObj.forEach( el => news = news.concat(el.news));
                 this.setState({news});
             });
-
+    
             this.setState({
                 intervalFunction: setInterval(() => {
                     fetchQuotes(tickers).then( quotes => this.setState({quotes}))
                 }, 60000)
             });
         }
+
     }
 
     getNewPrice() {}
@@ -65,7 +74,7 @@ class DashboardPage extends React.Component {
         let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
-        
+        debugger
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user} fetchCompanies={false} />
@@ -129,15 +138,17 @@ const msp = (state, ownProps) => {
     const transactions = Object.values(state.entities.transactions);
     const watchlists = Object.values(state.entities.watchlists.allWatchlists);
     const companies = {};
-    if (state.entities.companies && transactions.length) {
-        transactions.forEach( el => {
-            // debugger
-            if (state.entities.companies[el.company_id]) {
-                // debugger
-                companies[el.company_id] = state.entities.companies[el.company_id]
-            }
-        })    
+    if (Object.keys(state.entities.companies).length) {
+        transactions.forEach(transaction => {
+            const companyId = transaction.company_id;
+            companies[companyId] = state.entities.companies[companyId];
+        })
+        watchlists.forEach(watchlist => {
+            const companyId = watchlist.company_id;
+            companies[companyId] = state.entities.companies[companyId];
+        } )    
     }
+    debugger
                     
     return {
         transactions,

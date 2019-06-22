@@ -8,7 +8,6 @@ import DetailsPage from './details';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => {
-    // debugger
     return (
         <>
             <ProtectedRoute path='/stock/:companyId' component={DetailsPage} />
