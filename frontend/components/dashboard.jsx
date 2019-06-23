@@ -19,11 +19,12 @@ class DashboardPage extends React.Component {
             news: [],
             intervalFunction: null,
             quotes: {},
-            numberOfCompanies: Object.keys(props.companies).length,    
+            numberOfCompanies: 0,    
         };
     } 
     
     componentDidMount() {
+        debugger
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions();
         this.props.fetchAllWatchlists();
