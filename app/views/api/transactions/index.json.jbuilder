@@ -1,8 +1,15 @@
-@recent_transactions.each do |transaction|
-    json.set! transaction["id"] do
-        json.partial! "api/transactions/transaction", transaction: transaction
+json.recentTransactions do
+    @recent_transactions.each do |transaction|
+        json.set! transaction["id"] do
+            json.partial! "api/transactions/transaction", transaction: transaction
+        end
     end
 end
-# json.companyList do 
-#     json.array! @company_list
-# end
+
+json.allTransactions do 
+    @transactions.each do |transaction|
+        json.set! transaction["id"] do
+            json.partial! "api/transactions/transaction", transaction: transaction
+        end
+    end
+end

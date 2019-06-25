@@ -41,7 +41,7 @@ export const receiveClearTransaction = () => {
 
 export const fetchTransactions = () => dispatch => {
     return APITransactionsUtil.fetchTransactions()
-        .then( transactions => dispatch(receiveTransactions(transactions)))
+        .then( transactions => {debugger; return dispatch(receiveTransactions(transactions))})
 }
 
 export const createTransaction = transaction => dispatch => {
