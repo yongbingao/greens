@@ -126,9 +126,9 @@ class TransactionForm extends React.Component {
 
 const msp = (state, ownProps) => {
     const companyId = ownProps.match.params.companyId;
-    const transactions = Object.values(state.entities.transactions);
+    const recentTransactions = Object.values(state.entities.transactions.recentTransactions);
     let transaction;
-    transactions.forEach( el => {
+    recentTransactions.forEach( el => {
         if (el.company_id === Number(companyId)) transaction = el;
     })
 

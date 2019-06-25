@@ -60,7 +60,7 @@ const PortfolioSummary = props=> {
     });
 
     if (watchlistList.length) watchlistList.unshift(<div key="watchlist-title" className="content-right-section-watchlist-title">Watchlist</div>);
-    debugger
+    // debugger
     return (
         <React.Fragment>
             <ul className="logged-in-page-content-right-section-stocks">

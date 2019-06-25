@@ -150,7 +150,7 @@ class DetailsPage extends React.Component {
                 </React.Fragment>
             )
         }
-        // debugger
+        
         const { company: 
             {id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume},
             currentWatchlist } = this.props;
@@ -185,7 +185,7 @@ class DetailsPage extends React.Component {
                             priceChange ? 
                             (priceChange > 0 ? "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : "-".concat("$", priceChange*-1, ` (${priceChangePercent}%)`)) 
                             : priceChange} </h4>
-                        <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} />
+                        <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} range={"1D"}/>
                         <br/>
                         <section className="logged-in-page-timeframe-buttons">
                             <button 

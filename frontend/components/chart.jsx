@@ -1,12 +1,12 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 
-const Chart = ({data, graphColor, startPrice}) => {
+const Chart = ({data, graphColor, startPrice, range}) => {
 
     function CustomToolTip({ label, payload, active, coordinate }) {
         if (active && payload && payload.length) {
             let newLabel;
-            let priceChange = (payload[0].value - startPrice).toFixed(2);
+            let priceChange = Number((payload[0].value - startPrice).toFixed(2));
             let priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             if (["AM", "PM"].includes(label.split(" ")[1])){
                 newLabel = label.concat(" ET");
@@ -23,7 +23,7 @@ const Chart = ({data, graphColor, startPrice}) => {
                     <span className="price-data">${payload[0].value.toLocaleString()}</span>
                     <span className="price-data-change">{
                         priceChange ?
-                            (priceChange > 0 ? "+".concat("$", priceChange, ` (${priceChangePercent}%)`) : "-".concat("$", priceChange * -1, ` (${priceChangePercent}%)`))
+                            (priceChange > 0 ? "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : "-".concat("$", (priceChange * -1).toLocaleString(), ` (${priceChangePercent}%)`))
                             : priceChange}
                     </span>
                 </div>
@@ -33,6 +33,9 @@ const Chart = ({data, graphColor, startPrice}) => {
         }
     }
     
+    // const today = new Date;
+    // const startDay = new Date(today.getTime() - 30*60*60*24*1000);
+
     return (
         <LineChart
             width={700}
