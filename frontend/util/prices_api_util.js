@@ -27,10 +27,9 @@ export const fetchBatchNews = tickers => {
     })
 }
 
-export const fetchBatchDayPrices = tickers => {
-    debugger
+export const fetchBatchDayPrices = (tickers, timeframe) => {
     return $.ajax({
         method: "GET",
-        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=1d&token=${window.iexAPIKey}`
+        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=${timeframe}&token=${window.iexAPIKey}`
     })
 }

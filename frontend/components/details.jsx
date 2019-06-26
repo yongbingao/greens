@@ -150,7 +150,7 @@ class DetailsPage extends React.Component {
                 </React.Fragment>
             )
         }
-        
+
         const { company: 
             {id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume},
             currentWatchlist } = this.props;
@@ -189,27 +189,27 @@ class DetailsPage extends React.Component {
                         <br/>
                         <section className="logged-in-page-timeframe-buttons">
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "logged-in-page-timeframe-1D" : "")}`} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1D" ? "logged-in-page-timeframe-1D" : "")}`} 
                                 className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1D")}>1D
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "logged-in-page-timeframe-1M" : "")}`} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1M" ? "logged-in-page-timeframe-1M" : "")}`} 
                                 className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1M")}>1M
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "3M" ? "logged-in-page-timeframe-3M" : "")}`} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "3M" ? "logged-in-page-timeframe-3M" : "")}`} 
                                 className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("3M")}>3M
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1Y" ? "logged-in-page-timeframe-1Y" : "")}`} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1Y" ? "logged-in-page-timeframe-1Y" : "")}`} 
                                 className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("1Y")}>1Y
                             </button>
                             <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "5Y" ? "logged-in-page-timeframe-5Y" : "")}`} 
+                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "5Y" ? "logged-in-page-timeframe-5Y" : "")}`} 
                                 className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
                                 onClick={this.getNewPrice("5Y")}>5Y
                             </button>
