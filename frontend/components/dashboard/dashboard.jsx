@@ -280,7 +280,7 @@ class DashboardPage extends React.Component {
                 const net_shares = position.net_shares;
                 let currentPrice;
 
-                if (data[ticker].chart[index] !== undefined) {
+                if (data[ticker] !== undefined && data[ticker].chart[index] !== undefined) {
                     currentPrice = data[ticker].chart[index].marketClose || data[ticker].chart[index].close;
                     if(currentPrice !== null) latestPrices[ticker] = currentPrice;
                     portfolioValue += net_shares * latestPrices[ticker];
@@ -316,7 +316,7 @@ class DashboardPage extends React.Component {
                 const net_shares = position.net_shares;
                 let currentPrice;
     
-                if (data[ticker].chart[i-dataOffset] !== undefined) {
+                if (data[ticker] !== undefined && data[ticker].chart[i-dataOffset] !== undefined) {
                     currentPrice = data[ticker].chart[i-dataOffset].close;
                     if (currentPrice !== null) latestPrices[ticker] = currentPrice;
                     portfolioValue += net_shares * latestPrices[ticker];
