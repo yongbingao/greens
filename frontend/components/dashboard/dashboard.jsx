@@ -287,7 +287,7 @@ class DashboardPage extends React.Component {
                     label = data[ticker].chart[index].label;
                 }
             })
-            if (portfolioValue === 0) {
+            if (portfolioValue === 0 || portfolioValue === NaN) {
                 chartData.push({ label, close: null });
             } else {
                 chartData.push({ label, close: portfolioValue });
@@ -340,6 +340,7 @@ class DashboardPage extends React.Component {
 
         if(chartData.length > 0){
             latestPrice = chartData[chartData.length-1].close;
+            startPrice = chartData[0].close;
             if(latestPrice === null){
                 for(let i = 0; i < chartData.length; i++){
                     if(chartData[i].close === null){
@@ -348,7 +349,14 @@ class DashboardPage extends React.Component {
                     }
                 }
             } 
-            startPrice = chartData[0].close;
+            if(!startPrice){
+                for (let i = 0; i < chartData.length; i++) {
+                    if (chartData[i].close) {
+                        startPrice = chartData[i].close;
+                        break;
+                    }
+                }
+            }
             priceChange = Number((latestPrice - startPrice).toFixed(2));
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
