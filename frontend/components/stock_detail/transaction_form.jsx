@@ -1,6 +1,6 @@
 import React from 'react';
-import { updateUser } from '../actions/session_actions';
-import { createTransaction, fetchTransactions } from '../actions/transaction_actions';
+import { updateUser } from '../../actions/session_actions';
+import { createTransaction, fetchTransactions } from '../../actions/transaction_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -39,7 +39,6 @@ class TransactionForm extends React.Component {
         } else {
             const prevTransaction = this.props.transaction;
             let transaction = {};
-            // debugger
 
             if (!prevTransaction) {
                 transaction = {
@@ -73,14 +72,12 @@ class TransactionForm extends React.Component {
                 this.setState({notEnoughSharesToSell: true});
                 return;
             }
-            // debugger
             this.props.createTransaction(transaction);
             this.props.updateUser({
                 id: this.props.user.id, 
                 current_buying_power: (this.props.user.current_buying_power - this.state.shares * this.props.price)
             });
             this.setState({shares: ""});
-
         }   
     }
 

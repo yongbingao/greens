@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip} from 'recharts';
 
 const Chart = ({data, graphColor, startPrice, range}) => {
 
@@ -32,9 +32,6 @@ const Chart = ({data, graphColor, startPrice, range}) => {
             return null;
         }
     }
-    
-    // const today = new Date;
-    // const startDay = new Date(today.getTime() - 30*60*60*24*1000);
 
     return (
         <LineChart

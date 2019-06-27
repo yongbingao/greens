@@ -1,12 +1,12 @@
 import React from 'react';
-import {fetchCompanyInfo} from '../actions/company_actions';
-import {fetchPrices, fetchNews} from '../util/prices_api_util';
-import {fetchAllWatchlists, fetchWatchlist, createWatchlist, removeWatchlist} from "../actions/watchlist_actions";
+import {fetchCompanyInfo} from '../../actions/company_actions';
+import {fetchPrices, fetchNews} from '../../util/prices_api_util';
+import {fetchWatchlist, createWatchlist, removeWatchlist} from "../../actions/watchlist_actions";
 import {connect} from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
-import Chart from './chart';
-import News from './news';
-import NavBar from './nav_bar';
+import {withRouter} from 'react-router-dom';
+import Chart from '../general_comp/chart';
+import News from '../general_comp/news';
+import NavBar from '../general_comp/nav_bar';
 import TransactionForm from './transaction_form';
 
 class DetailsPage extends React.Component {
@@ -22,16 +22,13 @@ class DetailsPage extends React.Component {
     }
 
     componentDidMount() {
-        // debugger
         const id = this.props.match.params.companyId;
         this.props.fetchWatchlist(id);
         this.props.fetchCompanyInfo(id)
             .then((resp) => {
-                // debugger
                 const ticker = resp.company.ticker
                 fetchPrices(ticker, "1D")
                     .then(data => {
-                        // debugger
                         if (!data.length){
                             fetchPrices(ticker, "1M").then(data => this.setState({ data, timeframeFocus: "1M" }));
                             clearInterval(this.state.intervalFunction);
@@ -45,20 +42,17 @@ class DetailsPage extends React.Component {
                 if (!this.state.intervalFunction) {
                     this.setState(
                         {intervalFunction: setInterval( () => {
-                            // console.log("in componentDidMount interval"); 
                             fetchPrices(ticker, "1D")
                                 .then(data => this.setState({ data }))
                             } 
                     ,60000)}
                     );
-                    // debugger
                 }
             }
         )
     }
 
     componentWillUnmount() {
-        // debugger
         if(this.state.intervalFunction) {
             clearInterval(this.state.intervalFunction);
         }
@@ -66,12 +60,9 @@ class DetailsPage extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         const companyId = this.props.match.params.companyId;
-        // debugger
         if (companyId !== prevProps.match.params.companyId){
-            // debugger
             clearInterval(this.state.intervalFunction);
             this.setState({intervalFunction: null});
-            // this.props.history.push(`/stock/${companyId}`)
             this.props.fetchWatchlist(companyId);
             this.props.fetchCompanyInfo(companyId)
                 .then((resp) => {
@@ -93,31 +84,26 @@ class DetailsPage extends React.Component {
                         this.setState(
                             {
                                 intervalFunction: setInterval(() => {
-                                    // console.log("in componentDidUpdate interval");
                                     fetchPrices(ticker, "1D")
                                         .then(data => this.setState({ data }))
                                 }
                                     , 60000)
                             }
                         );
-                        // debugger
                     }
                 })
         }
     }
 
     getNewPrice(timeframe) {
-        // this.setState({timeframeFocus: null});
         return event => {
             if (this.props.company.ticker){
-                // debugger
                 if (timeframe != "1D") {
                     clearInterval(this.state.intervalFunction);
                     this.setState({intervalFunction: null})
                 } else {
                     this.setState({
                         intervalFunction: setInterval(() => {
-                            // console.log("in getNewPrice interval");
                             fetchPrices(this.props.company.ticker, "1D")
                                 .then(data => this.setState({ data }))
                         }
@@ -140,7 +126,6 @@ class DetailsPage extends React.Component {
     }
 
     render() {
-        // debugger
         if (!this.props.company) {
             return (
                 <React.Fragment>
@@ -165,15 +150,12 @@ class DetailsPage extends React.Component {
             while (!data[pos].close) {
                 pos--;
             }
-            // debugger
             latestPrice = Number((data[pos].close)).toFixed(2);
             startPrice = Number((data[0].open || data[0].marketOpen)).toFixed(2);
             priceChange = Number((latestPrice - startPrice)).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
-            // debugger
         }
-        // debugger
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user} fetchCompanies={true} />
@@ -234,11 +216,13 @@ class DetailsPage extends React.Component {
                         <h3>News</h3>
                         <News news={this.state.news}/>
                     </section>
-                    <section className='details-page-transaction-form-container'>
-                        <TransactionForm ticker={ticker} companyId={id} price={Number(latestPrice)} />
-                        <button onClick={this.handleWatchlistClick} className="details-page-watchlist-button" >
-                            {Object.keys(currentWatchlist).length ? "Remove from Watchlist" : "Add to Watchlist"}
-                        </button>
+                    <section className='details-page-content-right-section-container'>
+                        <div className="details-page-transaction-form-container">
+                            <TransactionForm ticker={ticker} companyId={id} price={Number(latestPrice)} />
+                            <button onClick={this.handleWatchlistClick} className="details-page-watchlist-button" >
+                                {Object.keys(currentWatchlist).length ? "Remove from Watchlist" : "Add to Watchlist"}
+                            </button>
+                        </div>
                     </section>
                 </section>
             </div>

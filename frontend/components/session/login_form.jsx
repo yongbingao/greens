@@ -1,6 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { loginUser, receiveErrors } from '../actions/session_actions';
+import { loginUser, receiveErrors } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 
 class LoginForm extends React.Component {

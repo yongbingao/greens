@@ -10,16 +10,13 @@ const PortfolioSummary = props=> {
     const transactionList = transactions.map(transaction => {
         let ticker = null;
         let price = null;
-        // debugger
         if (transaction.net_shares === 0) {
             return;
         }
         if (companies[transaction.company_id]) {
-            // debugger
             ticker = companies[transaction.company_id].ticker;
         }
         if (quotes[ticker]) {
-            // debugger
             price = (quotes[ticker].quote.latestPrice).toFixed(2);
         }
         
@@ -41,11 +38,9 @@ const PortfolioSummary = props=> {
         let ticker = null;
 
         if (companies[watchlist.company_id]) {
-            // debugger
             ticker = companies[watchlist.company_id].ticker;
         }
         if (quotes[ticker]) {
-            // debugger
             price = (quotes[ticker].quote.latestPrice).toFixed(2);
         }
 
@@ -60,7 +55,6 @@ const PortfolioSummary = props=> {
     });
 
     if (watchlistList.length) watchlistList.unshift(<div key="watchlist-title" className="content-right-section-watchlist-title">Watchlist</div>);
-    // debugger
     return (
         <React.Fragment>
             <ul className="logged-in-page-content-right-section-stocks">

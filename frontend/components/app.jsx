@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import LoginForm from './login_form';
-import SignupForm from './signup_form';
-import SplashPage from './splash';
-import DashboardPage from './dashboard';
-import DetailsPage from './details';
+import LoginForm from './session/login_form';
+import SignupForm from './session/signup_form';
+import SplashPage from './session/splash';
+import DashboardPage from './dashboard/dashboard';
+import DetailsPage from './stock_detail/details';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => {

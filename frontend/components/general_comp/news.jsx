@@ -9,7 +9,7 @@ class News extends React.Component {
         const newsList = this.props.news.map((el, idx) => {
             return (
                 <li key={`news-`.concat(idx)}>
-                    <a href={el.url}>
+                    <a target="_blank" href={el.url}>
                         <object className="logged-in-page-news-image" data={el.image} type="image/png">
                             <img className="logged-in-page-news-image" src={window.newsDefaultImgURL} alt="default-image"/>
                         </object>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { logoutUser } from '../actions/session_actions';
-import { receiveClearTransaction } from '../actions/transaction_actions'
-import { fetchCompaniesInfo } from '../actions/company_actions';
+import { logoutUser } from '../../actions/session_actions';
+import { receiveClearTransaction } from '../../actions/transaction_actions'
+import { fetchCompaniesInfo } from '../../actions/company_actions';
 
 class NavBar extends React.Component{
     constructor(props){

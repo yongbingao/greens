@@ -1,5 +1,5 @@
 import React from 'react';
-import { signupUser, clearErrors } from '../actions/session_actions';
+import { signupUser, clearErrors } from '../../actions/session_actions';
 import { connect} from 'react-redux';
 
 class SignupForm extends React.Component {
@@ -22,12 +22,9 @@ class SignupForm extends React.Component {
 
     handleFocus(type) {
         return event => {
-            // debugger
             this.setState({blankFieldName: null})
             if (this.state.blankFields){
-                // debugger
                 if (type == "password" && event.target.value.length < 10){
-                    // debugger
                     this.setState({blankFieldName: type})
                 } 
                 else if(type == "email address"){
@@ -55,8 +52,6 @@ class SignupForm extends React.Component {
 
     updateField(type){
         return event => {
-            // this.props.clearErrors();
-            // debugger
             if (type == 'password') {
                 if (event.target.value.length >= 10){
                     this.setState({blankFieldName: null});
@@ -82,10 +77,8 @@ class SignupForm extends React.Component {
         event.preventDefault();
         const { fname, lname, email, username, password } = this.state;
         if (!fname || !lname || !email || !username || (password.length < 10)) {
-            // debugger
             this.setState({blankFields: true});
         } else {
-            // debugger
             this.setState({ blankFields: true });
             this.props.signupUser(this.state);
         }
@@ -105,7 +98,6 @@ class SignupForm extends React.Component {
         let invalidUsernameInputField = false;
         
         if (blankFields && blankFieldName){
-            // debugger
             switch(blankFieldName){
                 case "password":
                     if (password.length < 10) invalidPasswordInputField = <span className='password-tooltip'>Your password must be at least 10 <br/>characters.</span>;
@@ -125,9 +117,7 @@ class SignupForm extends React.Component {
             }
         }
 
-        // debugger
         this.props.errors.map( (el, idx) => {
-            // debugger
             if (el.includes("Username")) {
                 invalidUsernameInputField = true;
                 if (focusUsername) {
@@ -142,9 +132,7 @@ class SignupForm extends React.Component {
             }
         })
         
-        // debugger
         if (blankFields && blankFieldName == 'email address' && email) {
-            // debugger
             const re = /[^@]+@[^\.]+\..+/;
             if (!re.test(email)) {
                 invalidEmailInputField = true;

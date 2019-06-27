@@ -1,15 +1,15 @@
-import {fetchQuotes, fetchBatchNews, fetchBatchDayPrices} from '../util/prices_api_util';
-import {logoutUser} from '../actions/session_actions';
-import {fetchTransactions} from '../actions/transaction_actions';
-import {fetchCompaniesInfo} from '../actions/company_actions';
-import {fetchAllWatchlists} from "../actions/watchlist_actions";
+import {fetchQuotes, fetchBatchNews, fetchBatchDayPrices} from '../../util/prices_api_util';
+import {logoutUser} from '../../actions/session_actions';
+import {fetchTransactions} from '../../actions/transaction_actions';
+import {fetchCompaniesInfo} from '../../actions/company_actions';
+import {fetchAllWatchlists} from "../../actions/watchlist_actions";
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import PortfolioSummary from "./portfolio_summary";
-import NavBar from './nav_bar';
-import Chart from './chart';
-import News from './news';
+import NavBar from '../general_comp/nav_bar';
+import Chart from '../general_comp/chart';
+import News from '../general_comp/news';
 
 class DashboardPage extends React.Component {
     constructor(props){
@@ -33,15 +33,14 @@ class DashboardPage extends React.Component {
     } 
     
     componentDidMount() {
-        // debugger
         this.props.fetchCompaniesInfo();
-        this.props.fetchAllWatchlists();
         this.props.fetchTransactions()
             .then(resp => {
                 const allTransactions = Object.values(resp.transactions.allTransactions);
-
+                
                 this.setupOneDayChart(allTransactions);
             });
+        this.props.fetchAllWatchlists();
     }
 
     componentWillUnmount() {
@@ -51,12 +50,10 @@ class DashboardPage extends React.Component {
     }
 
     componentDidUpdate() {
-        // debugger
         const companiesLength = Object.keys(this.props.companies).length;
 
         // checks to see if the list of companies changed based on new information from transactions or wathchlists
         if(this.state.numberOfCompanies !== companiesLength){
-            // debugger
             this.setState({numberOfCompanies: companiesLength});
             
             if(this.state.intervalFunction) clearInterval(this.state.intervalFunction);
@@ -81,11 +78,9 @@ class DashboardPage extends React.Component {
         // fetches data for dashboard chart
         if(this.state.numberOfOpenPositions !== this.state.openPositionCompanyId.length && companiesLength){
             // fetch price from IEX
-            // let tickerList = Object.values(this.props.companies).map(el => el.ticker);
             const companies = this.props.companies;
             let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
             this.setState({numberOfOpenPositions: this.state.openPositionCompanyId.length});
-            debugger
             tickerList = tickerList.filter(ticker => ticker !== "ADDYY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
             fetchBatchDayPrices(tickerList, "1D")
                 .then(resp => {
@@ -237,7 +232,6 @@ class DashboardPage extends React.Component {
         this.setState({openPositionCompanyId: Object.keys(openPositionList)})
     }
 
-    // getNewPrice() {}
     getNewPrice(timeframe) {
         return event => {
             if(timeframe !== this.state.timeframeFocus){
@@ -258,7 +252,6 @@ class DashboardPage extends React.Component {
                     tickerList = tickerList.filter(ticker => ticker !== "ADDYY");
                     fetchBatchDayPrices(tickerList, "1M")
                         .then( resp => {
-                            debugger
                             this.createMultiDayChartData(resp);
                         })
                 } else if(timeframe === "1W"){
@@ -267,7 +260,6 @@ class DashboardPage extends React.Component {
                     tickerList = tickerList.filter(ticker => ticker !== "ADDYY");
                     fetchBatchDayPrices(tickerList, "5D")
                         .then(resp => {
-                            debugger
                             this.createMultiDayChartData(resp);
                         })
                 }
@@ -296,14 +288,11 @@ class DashboardPage extends React.Component {
                 }
             })
             if (portfolioValue === 0) {
-                // chartData.push({ label: histroyItem.label, close: null });
                 chartData.push({ label, close: null });
             } else {
-                // chartData.push({ label: histroyItem.label, close: portfolioValue });
                 chartData.push({ label, close: portfolioValue });
             }
         })
-        debugger
         this.setState({chartData});
     }
 
@@ -333,18 +322,10 @@ class DashboardPage extends React.Component {
                     portfolioValue += net_shares * latestPrices[ticker];
                 }
             })
-            // if (portfolioValue === 0) {
-            //     // chartData.push({ label: portfolioHistroy[i].label, close: null });
-            //     chartData.push({ label, close: null });
-            // } else {
-            //     // chartData.push({ label: portfolioHistroy[i].label, close: portfolioValue });
-            //     chartData.push({ label, close: portfolioValue });
-            // }
             if(portfolioValue !== 0){
                 chartData.push({label, close: portfolioValue});
             }
         }
-        debugger
         this.setState({ chartData });
     }
 
@@ -356,7 +337,7 @@ class DashboardPage extends React.Component {
         let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
-
+        
         if(chartData.length > 0){
             latestPrice = chartData[chartData.length-1].close;
             if(latestPrice === null){
@@ -373,7 +354,6 @@ class DashboardPage extends React.Component {
             graphColor = priceChange > 0 ? "green" : "red";
         }
 
-        // debugger
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user} fetchCompanies={false} />
