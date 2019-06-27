@@ -81,7 +81,7 @@ class DashboardPage extends React.Component {
             const companies = this.props.companies;
             let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
             this.setState({numberOfOpenPositions: this.state.openPositionCompanyId.length});
-            tickerList = tickerList.filter(ticker => ticker !== "ADDYY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
+            tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
             fetchBatchDayPrices(tickerList, "1D")
                 .then(resp => {
                     this.createOneDayChartData(resp);
@@ -241,7 +241,7 @@ class DashboardPage extends React.Component {
                 if(timeframe === "1D"){
                     this.setupOneDayChart(this.props.allTransactions);
                     let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
+                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
                     fetchBatchDayPrices(tickerList, "1D")
                         .then(resp => {
                             this.createOneDayChartData(resp);
@@ -249,7 +249,7 @@ class DashboardPage extends React.Component {
                 } else if(timeframe === "1M"){
                     this.setupMultiDayChart(this.props.allTransactions, 30);
                     let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY");
+                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY");
                     fetchBatchDayPrices(tickerList, "1M")
                         .then( resp => {
                             this.createMultiDayChartData(resp);
@@ -257,7 +257,7 @@ class DashboardPage extends React.Component {
                 } else if(timeframe === "1W"){
                     this.setupMultiDayChart(this.props.allTransactions, 7);
                     let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY");
+                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY");
                     fetchBatchDayPrices(tickerList, "5D")
                         .then(resp => {
                             this.createMultiDayChartData(resp);
@@ -337,7 +337,7 @@ class DashboardPage extends React.Component {
         let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
-        
+
         if(chartData.length > 0){
             latestPrice = chartData[chartData.length-1].close;
             if(latestPrice === null){

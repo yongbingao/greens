@@ -13,8 +13,8 @@ const SplashPage = (props) => {
                         <i id="fa-feather" className="fas fa-feather"></i>
                         <span>Greens</span> 
                     </Link> 
-                    <a href='javascript:;'>Investing</a> 
-                    <a href='javascript:;'>Cash Management</a>
+                    <a target="_blank" href='https://www.linkedin.com/in/yong-bin-gao/'>LinkedIn</a> 
+                    <a target="_blank" href='https://github.com/yongbingao'>Github</a>
                     <div className="splash-page-dropdown">
                         <button className='splash-page-dropdown-button'>More <i className='fas fa-angle-down'></i></button>
                         <div className="splash-page-dropdown-content">
@@ -48,7 +48,7 @@ const SplashPage = (props) => {
                             Demo
                         </button>
                     </div>
-                    <a href="javascript:;">Commissions Disclosure <i className='far fa-question-circle'></i></a>
+                    <span>Commissions Disclosure <i className='far fa-question-circle'></i></span>
                 </section>
                 <section className='splash-page-content-right-section'>
                     <img src={window.splashImgURL} className="splash-page-img" />

@@ -24,10 +24,6 @@
   padding: 10px 0;
 }
 
-.nav-bar-right-section {
-  /* margin-right: 50px; */
-}
-
 .splash-page-nav-bar a, Link {
   padding: 15px 20px;
   text-decoration: none;
@@ -56,11 +52,7 @@
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-}
-
-.splash-page-dropdown-button:hover {
-  border-bottom: 3px solid #21ce99;
-  cursor: pointer;
+  outline: none;
 }
 
 .splash-page-dropdown-content {
@@ -84,11 +76,12 @@
   border: none;
   padding: 10px;
   font-size: 14px;
+  outline: none;
 }
 
 .splash-page-dropdown-content > button:hover {
-  text-decoration: underline;
-  cursor: pointer;
+  text-decoration: none;
+  cursor: default;
 }
 
 .nav-bar-left-section a {
@@ -102,15 +95,15 @@
 
 .nav-bar-left-section > a:hover {
   text-decoration: underline;
-  color: #21ce99;
+  cursor: pointer;
+}
+
+.nav-bar-left-section > a:first-child:hover {
+  cursor: default;
 }
 
 .nav-bar-left-section > .logo-home-link:hover {
   text-decoration: none;
-}
-
-.nav-bar-left-section > .logo-home-link:hover > span {
-  text-decoration: underline;
 }
 
 .splash-page-nav-bar > .nav-bar-left-section > a > .fa-feather:hover {
@@ -206,11 +199,15 @@
   font-weight: 500;
 }
 
-.splash-page-content-left-section a {
+.splash-page-content-left-section a, .splash-page-content-left-section span  {
   margin-bottom: 15px;
   color: #21ce99;
   text-decoration: none;
   margin-top: 25px;
+}
+
+.splash-page-content-left-section a:hover {
+  cursor: pointer;
 }
 
 .splash-page-demo-button {
@@ -234,21 +231,6 @@ i {
   font-size: 12px;
   vertical-align: top;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Shared-css rules */
 .splash-page-green-button {
