@@ -145,7 +145,7 @@ class DetailsPage extends React.Component {
         let priceChange = null;
         let priceChangePercent = null;
         let graphColor = "green";
-        if (data && data.length){
+        if (data.length){
             let pos = data.length - 1;
             while (!data[pos].close) {
                 pos--;
