@@ -35,11 +35,11 @@ class DashboardPage extends React.Component {
     componentDidMount() {
         this.props.fetchCompaniesInfo();
         this.props.fetchTransactions()
-            .then(resp => {
-                const allTransactions = Object.values(resp.transactions.allTransactions);
-                
-                this.setupOneDayChart(allTransactions);
-            });
+        .then(resp => {
+            const allTransactions = Object.values(resp.transactions.allTransactions);
+            
+            this.setupOneDayChart(allTransactions);
+        });
         this.props.fetchAllWatchlists();
     }
 
