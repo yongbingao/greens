@@ -11,14 +11,22 @@ class TransactionForm extends React.Component {
             shares: "",
             notEnoughMoney: false,
             notEnoughSharesToSell: false,
-            invalidShares: false
+            invalidShares: false,
+            currentTab: "Buy",
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateField = this.updateField.bind(this);
+        this.handleBuySell = this.handleBuySell.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchTransactions();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.match.params.companyId !== this.props.match.params.companyId){
+            this.setState({notEnoughMoney: false, notEnoughSharesToSell: false, invalidShares: false});
+        }
     }
 
     updateField(event) {
@@ -31,8 +39,9 @@ class TransactionForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        const multiplier = event.target[1].value === "Buy" ? 1 : -1;
         this.setState({notEnoughMoney: false, notEnoughSharesToSell: false, invalidShares: false})
-        if (this.state.shares === 0 || typeof this.state.shares != 'number') {
+        if (typeof this.state.shares !== 'number' || this.state.shares <= 0) {
             this.setState({invalidShares: true});
         } else if (this.props.user.current_buying_power < (this.state.shares * this.props.price)){
             this.setState({notEnoughMoney: true})
@@ -41,16 +50,22 @@ class TransactionForm extends React.Component {
             let transaction = {};
 
             if (!prevTransaction) {
-                transaction = {
-                    user_id: this.props.user.id,
-                    company_id: this.props.companyId,
-                    purchase_price: this.props.price,
-                    purchase_shares: this.state.shares,
-                    average_price: this.props.price,
-                    net_shares: this.state.shares
+                if(event.target[1].value === "Sell") {
+                    this.setState({notEnoughSharesToSell: true});
+                    return;
+                }
+                else{
+                    transaction = {
+                        user_id: this.props.user.id,
+                        company_id: this.props.companyId,
+                        purchase_price: this.props.price,
+                        purchase_shares: this.state.shares,
+                        average_price: this.props.price,
+                        net_shares: this.state.shares
+                    }
                 }
             } else if (Object.values(prevTransaction).length > 0){
-                const net_shares = prevTransaction.net_shares + this.state.shares;
+                const net_shares = prevTransaction.net_shares + this.state.shares * multiplier;
 
                 if (net_shares < 0) {
                     this.setState({notEnoughSharesToSell: true});
@@ -58,7 +73,7 @@ class TransactionForm extends React.Component {
                 } else {
                     const average_price = net_shares ? 
                         (prevTransaction.average_price * prevTransaction.net_shares 
-                        + this.props.price * this.state.shares) / net_shares : 0;
+                        + this.props.price * this.state.shares * multiplier) / net_shares : 0;
                     transaction = {
                         user_id: this.props.user.id,
                         company_id: this.props.companyId,
@@ -68,21 +83,26 @@ class TransactionForm extends React.Component {
                         net_shares,
                     }
                 }
-            } else if (this.state.shares < 0 ){
-                this.setState({notEnoughSharesToSell: true});
-                return;
-            }
-            this.props.createTransaction(transaction);
-            this.props.updateUser({
-                id: this.props.user.id, 
-                current_buying_power: (this.props.user.current_buying_power - this.state.shares * this.props.price)
-            });
-            this.setState({shares: ""});
+            } 
+            this.props.createTransaction(transaction)
+                .then(() => {
+                    this.props.updateUser({
+                    id: this.props.user.id, 
+                    current_buying_power: (this.props.user.current_buying_power - this.state.shares * this.props.price * multiplier)});
+                    this.setState({shares: ""});
+                });
         }   
+    }
+
+    handleBuySell(type){
+        return (event) => {
+            if (type !== this.state.currentTab) this.setState({currentTab: type});
+        }
     }
 
     render() {
         const { transaction, ticker, price, user } = this.props;
+        const {currentTab} = this.state;
 
         const { invalidShares, notEnoughMoney, notEnoughSharesToSell } = this.state;
         const errorList = (invalidShares || notEnoughMoney || notEnoughSharesToSell) ? (
@@ -99,7 +119,20 @@ class TransactionForm extends React.Component {
 
         return (
             <form className="details-page-transaction-form" onSubmit={this.handleSubmit}>
-                <div className="transaction-form-title">Buy {ticker}</div>
+                <div className="transaction-form-title-container">
+                    <ul className="transaction-form-title-list">
+                        <li 
+                            onClick={this.handleBuySell("Buy")} 
+                            className={`transaction-form-title-buy ${currentTab === "Buy" ? "transaction-active" : ""}`}>
+                            Buy {ticker}
+                        </li>
+                        <li 
+                            onClick={this.handleBuySell("Sell")} 
+                            className={`transaction-form-title-sell ${currentTab === "Sell" ? "transaction-active" : ""}`}>
+                            Sell {ticker}
+                        </li>
+                    </ul>
+                </div>
                 <div className="transaction-form-shares">
                     <label htmlFor="transaction-box-shares">Shares</label>
                     <input id="transaction-box-shares" onChange={this.updateField} type="number" value={this.state.shares} placeholder="0" align="right"/>
@@ -113,7 +146,7 @@ class TransactionForm extends React.Component {
                     <div>${this.state.shares == "-" ? 0.00 : Number((this.state.shares * price).toFixed(2)).toLocaleString()}</div>
                 </div>
                 {errorList}
-                <input className="transaction-form-submit-button" type="submit" value="Buy"/>
+                <input className="transaction-form-submit-button" type="submit" value={currentTab}/>
                 <div className='transaction-form-buying-power'>${Number(user.current_buying_power).toLocaleString()} Buying Power Available</div>
                 <div className='transaction-form-owned-shares'>{(transaction && Object.keys(transaction).length > 0) ? `You own ${transaction.net_shares.toLocaleString()} shares.` : ""}</div>
             </form>
