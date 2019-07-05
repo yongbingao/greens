@@ -43,7 +43,7 @@ const SplashPage = (props) => {
                             className='splash-page-demo-button splash-page-green-button' 
                             onClick={() => {
                                 props.demoLogin({username: "Demo", password:'longpassword'})
-                                .then(props.history.push('/dashboard')) 
+                                    .then(() => props.history.push('/dashboard')); 
                             }}>
                             Demo
                         </button>
