@@ -4,11 +4,10 @@ import { LineChart, Line, XAxis, YAxis, Tooltip} from 'recharts';
 const Chart = ({data, graphColor, startPrice, range}) => {
 
     function CustomToolTip({ label, payload, active, coordinate }) {
-        debugger
         if (active && payload && payload.length) {
             let newLabel;
             let priceChange = Number((payload[0].value - startPrice).toFixed(2));
-            let priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
+            let priceChangePercent = startPrice ? (priceChange / startPrice * 100).toFixed(2) : (priceChange / 1 * 100).toFixed(2);
             if (["AM", "PM"].includes(label.split(" ")[1])){
                 newLabel = label.concat(" ET");
             } else if (label.split(",").length < 2 ){ 

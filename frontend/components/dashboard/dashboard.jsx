@@ -15,15 +15,20 @@ class DashboardPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            chartData: [],
+            chartData: {
+                "1D": [],
+                "1W": [],
+                "1M": [],
+                "3M": [],
+            },
             timeframeFocus: "1D",
+            portfolioHistroy: [],  
+            openPositionCompanyId: [],
+            numberOfOpenPositions: 0,  
             news: [],
             intervalFunction: null,
             quotes: {},
             numberOfCompanies: 0,
-            portfolioHistroy: [],  
-            openPositionCompanyId: [],
-            numberOfOpenPositions: 0,  
         };
         this.createOneDayChartData = this.createOneDayChartData.bind(this);
         this.createMultiDayChartData = this.createMultiDayChartData.bind(this);
@@ -99,26 +104,30 @@ class DashboardPage extends React.Component {
         let i = 0;
         let minCounter = 0;
 
+        const createHistoryEntry = (currentTimeEpoch) => {
+            let hour = (new Date(currentTimeEpoch)).getHours().toString();
+            let minute = (new Date(currentTimeEpoch)).getMinutes().toString();
+            
+            if (hour.length < 2) {
+                hour = "0".concat(hour);
+            }
+            if (minute.length < 2) {
+                minute = "0".concat(minute);
+            }
+
+            const formattedCurrentTime = hour.concat(":", minute);
+
+            portfolioHistroy.push({
+                label: formattedCurrentTime,
+                positions: Object.assign({}, openPositionList)
+            });
+        }
+
         while (portfolioHistroy.length < 390) {
             const currentTimeEpoch = startTimeEpoch + minCounter * 60 * 1000;
 
             if (i >= allTransactions.length) {
-                let hour = (new Date(currentTimeEpoch)).getHours().toString();
-                let minute = (new Date(currentTimeEpoch)).getMinutes().toString();
-
-                if (hour.length < 2) {
-                    hour = "0".concat(hour);
-                }
-                if (minute.length < 2) {
-                    minute = "0".concat(minute);
-                }
-
-                const formattedCurrentTime = hour.concat(":", minute);
-
-                portfolioHistroy.push({
-                    label: formattedCurrentTime,
-                    positions: Object.assign({}, openPositionList)
-                });
+                createHistoryEntry(currentTimeEpoch);
                 minCounter++;
                 continue;
             }
@@ -129,30 +138,17 @@ class DashboardPage extends React.Component {
                 openPositionList[company_id] = allTransactions[i];
                 i++;
             } else {
-                let hour = (new Date(currentTimeEpoch)).getHours().toString();
-                let minute = (new Date(currentTimeEpoch)).getMinutes().toString();
-
-                if (hour.length < 2) {
-                    hour = "0".concat(hour);
-                }
-                if (minute.length < 2) {
-                    minute = "0".concat(minute);
-                }
-
-                const formattedCurrentTime = hour.concat(":", minute);
-
-                portfolioHistroy.push({
-                    label: formattedCurrentTime,
-                    positions: Object.assign({}, openPositionList)
-                });
+                createHistoryEntry(currentTimeEpoch);
                 minCounter++;
             }
         }
-        this.setState({portfolioHistroy})
-        this.setState({openPositionCompanyId: Object.keys(openPositionList)})
+        this.setState({ 
+            portfolioHistroy,
+            openPositionCompanyId: Object.keys(openPositionList)
+        })
     }
 
-    setupMultiDayChart(allTransactions, numOfDays) {
+    setupMultiDayChart(allTransactions, timeframe) {
         const openPositionList = {};
         const portfolioHistroy = [];
 
@@ -160,6 +156,7 @@ class DashboardPage extends React.Component {
         const currentDate = new Date((currentTime).toLocaleDateString()); // sets current date to be at midnight of current date
         const currentDateFourAM = new Date(currentDate.getTime() + 4*60*60*1000);
         let startTimeEpoch;
+        let numOfDays = 0;
 
         // IEX previous day data updates at 4am, check the current time to set up the most recent day with data
         if(currentTime.getTime() > currentDateFourAM.getTime()){
@@ -169,14 +166,35 @@ class DashboardPage extends React.Component {
         }
 
         // revert starting date depending on the number of days of data requested
-        if(numOfDays === 7){
+        if(timeframe === "1W") {
             startTimeEpoch -= 6*24*60*60*1000;
-        } else if(numOfDays === 30){
+            numOfDays = 7;
+        } else if(timeframe === "1M") {
             startTimeEpoch -= 29*24*60*60*1000;
+            numOfDays = 30;
+        } else if(timeframe === "3M") {
+            startTimeEpoch -= 89*24*60*60*1000;
+            numOfDays = 90;
         }
 
         let i = 0;
         let dayCounter = 0;
+
+        const createHistoryEntry = (currentTimeDateFormat) => {
+            const year = currentTimeDateFormat.getFullYear();
+            let month = currentTimeDateFormat.getMonth() + 1;
+            let date = currentTimeDateFormat.getDate();
+
+            if (month < 10) month = "0".concat(month);
+            if (date < 10) date = "0".concat(date);
+
+            const formattedCurrentTime = year.toString().concat("-", month, "-", date);
+
+            portfolioHistroy.push({
+                label: formattedCurrentTime,
+                positions: Object.assign({}, openPositionList)
+            });
+        }
 
         while (dayCounter < numOfDays) {
             const currentTimeEpoch = startTimeEpoch + dayCounter * 24 * 60 * 60 * 1000;
@@ -188,19 +206,7 @@ class DashboardPage extends React.Component {
             }
 
             if (i >= allTransactions.length) {
-                const year = currentTimeDateFormat.getFullYear();
-                let month = currentTimeDateFormat.getMonth() + 1;
-                let date = currentTimeDateFormat.getDate();
-
-                if (month < 10) month = "0".concat(month);
-                if (date < 10) date = "0".concat(date);
-
-                const formattedCurrentTime = year.toString().concat("-", month, "-", date);
-
-                portfolioHistroy.push({
-                    label: formattedCurrentTime,
-                    positions: Object.assign({}, openPositionList)
-                });
+                createHistoryEntry(currentTimeDateFormat);
                 dayCounter++;
                 continue;
             }
@@ -212,55 +218,43 @@ class DashboardPage extends React.Component {
                 openPositionList[company_id] = allTransactions[i];
                 i++;
             } else {
-                const year = currentTimeDateFormat.getFullYear();
-                let month = currentTimeDateFormat.getMonth() + 1;
-                let date = currentTimeDateFormat.getDate();
-
-                if (month < 10) month = "0".concat(month);
-                if (date < 10) date = "0".concat(date);
-
-                const formattedCurrentTime = year.toString().concat("-", month, "-", date);
-
-                portfolioHistroy.push({
-                    label: formattedCurrentTime,
-                    positions: Object.assign({}, openPositionList)
-                });
+                createHistoryEntry(currentTimeDateFormat);
                 dayCounter++;
             }
         }
-        this.setState({portfolioHistroy})
-        this.setState({openPositionCompanyId: Object.keys(openPositionList)})
+        this.setState({
+            portfolioHistroy,
+            openPositionCompanyId: Object.keys(openPositionList),
+        })
     }
 
     getNewPrice(timeframe) {
         return event => {
             if(timeframe !== this.state.timeframeFocus){
                 const companies = this.props.companies;
-                this.setState({timeframeFocus: timeframe});
+                const allTransactions = this.props.allTransactions;
 
+                // this.setState({timeframeFocus: timeframe});
+
+                let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
+                tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY"); // price data for ADDYY and TCEHY requires an upgraded account to access 
                 if(timeframe === "1D"){
-                    this.setupOneDayChart(this.props.allTransactions);
-                    let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
+                    this.setupOneDayChart(allTransactions);
                     fetchBatchDayPrices(tickerList, "1D")
                         .then(resp => {
                             this.createOneDayChartData(resp);
                         })
-                } else if(timeframe === "1M"){
-                    this.setupMultiDayChart(this.props.allTransactions, 30);
-                    let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY");
-                    fetchBatchDayPrices(tickerList, "1M")
-                        .then( resp => {
-                            this.createMultiDayChartData(resp);
-                        })
-                } else if(timeframe === "1W"){
-                    this.setupMultiDayChart(this.props.allTransactions, 7);
-                    let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
-                    tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY");
-                    fetchBatchDayPrices(tickerList, "5D")
+                } else if(this.state.chartData[timeframe].length){
+                    this.setState({ timeframeFocus: timeframe });
+                } else {
+                    let requestTimePeriod = timeframe;
+
+                    if(timeframe === "1W") requestTimePeriod = "5D";
+
+                    this.setupMultiDayChart(allTransactions, timeframe);                  
+                    fetchBatchDayPrices(tickerList, requestTimePeriod)
                         .then(resp => {
-                            this.createMultiDayChartData(resp);
+                            this.createMultiDayChartData(resp, timeframe);
                         })
                 }
             }
@@ -269,98 +263,130 @@ class DashboardPage extends React.Component {
 
     createOneDayChartData(data){
         const chartData = [];
-        const latestPrices = {};
+        const latestClosePrices = {};
+        const latestOpenPrices = {};
+        const newData = Object.assign({}, this.state.chartData);
 
         this.state.portfolioHistroy.forEach((histroyItem, index) => {
             const openPos = Object.values(histroyItem.positions);
             let label = histroyItem.label;
-            let portfolioValue = 0;
+            let portfolioValueClose = 0;
+            let portfolioValueOpen = 0;
+
             openPos.forEach(position => {
                 const ticker = this.props.companies[position.company_id].ticker;
                 const net_shares = position.net_shares;
-                let currentPrice;
 
                 if (data[ticker] !== undefined && data[ticker].chart[index] !== undefined) {
-                    currentPrice = data[ticker].chart[index].marketClose || data[ticker].chart[index].close;
-                    if(currentPrice !== null) latestPrices[ticker] = currentPrice;
-                    portfolioValue += net_shares * latestPrices[ticker];
+                    const closePrice = data[ticker].chart[index].close || data[ticker].chart[index].marketClose;
+                    const openPrice = data[ticker].chart[index].open || data[ticker].chart[index].marketOpen;
+                    
+                    if(closePrice !== null) latestClosePrices[ticker] = closePrice;
+                    if(openPrice !== null) latestOpenPrices[ticker] = openPrice;
+                    
+                    portfolioValueClose += net_shares * latestClosePrices[ticker];
+                    portfolioValueOpen += net_shares * latestOpenPrices[ticker];
                     label = data[ticker].chart[index].label;
                 }
             })
-            if (portfolioValue === 0 || portfolioValue === NaN) {
-                chartData.push({ label, close: null });
+            if (portfolioValueClose !== NaN && portfolioValueOpen !== NaN) {
+                chartData.push({ label, close: portfolioValueClose, open: portfolioValueOpen });
             } else {
-                chartData.push({ label, close: portfolioValue });
+                let close = portfolioValueClose;
+                let open = portfolioValueOpen;
+                
+                if(portfolioValueOpen === NaN) open = null;
+                if(portfolioValueClose === NaN) close = null;
+
+                chartData.push({label, close, open});
             }
         })
-        this.setState({chartData});
+        newData["1D"] = chartData
+        this.setState({chartData: newData, timeframeFocus: "1D"});
     }
 
-    createMultiDayChartData(data){
+    createMultiDayChartData(data, timeframe){
         const chartData = [];
-        const latestPrices = {};
+        const latestClosePrices = {};
+        const latestOpenPrices = {};
         const portfolioHistroy = this.state.portfolioHistroy;
-        let dataOffset = 0;
-        const firstData = Object.values(data)[0].chart[0];
-        for(let i = 0; i < portfolioHistroy.length; i++){
-            if(firstData["date"] > portfolioHistroy[i].label) {
-                dataOffset++;
+        const newData = Object.assign({}, this.state.chartData);
+        const oneDataset = Object.values(data)[0].chart;
+        let dataIndex = 0;
+        let i = 0;
+
+        while(i < portfolioHistroy.length){
+            if(oneDataset[dataIndex]["date"] > portfolioHistroy[i].label) {
+                i++;
                 continue;
-            }
-            
-            const openPos = Object.values(portfolioHistroy[i].positions);
-            const label = Object.values(data)[0].chart[i-dataOffset].label;
-            let portfolioValue = 0;
-            openPos.forEach(position => {
-                const ticker = this.props.companies[position.company_id].ticker;
-                const net_shares = position.net_shares;
-                let currentPrice;
+            } else if(oneDataset[dataIndex]["date"] < portfolioHistroy[i].label){
+                dataIndex++;
+                continue;
+            } else {
+                const openPos = Object.values(portfolioHistroy[i].positions);
+                const label = oneDataset[dataIndex].label;
+                let portfolioValueClose = 0;
+                let portfolioValueOpen = 0;
+
+                openPos.forEach(position => {
+                    const ticker = this.props.companies[position.company_id].ticker;
+                    const net_shares = position.net_shares;
+        
+                    if (data[ticker] !== undefined && data[ticker].chart[dataIndex] !== undefined) {
+                        const currentClosePrice = data[ticker].chart[dataIndex].close;
+                        const currentOpenPrice = data[ticker].chart[dataIndex].open;
     
-                if (data[ticker] !== undefined && data[ticker].chart[i-dataOffset] !== undefined) {
-                    currentPrice = data[ticker].chart[i-dataOffset].close;
-                    if (currentPrice !== null) latestPrices[ticker] = currentPrice;
-                    portfolioValue += net_shares * latestPrices[ticker];
-                }
-            })
-            if(portfolioValue !== 0){
-                chartData.push({label, close: portfolioValue});
+                        if (currentClosePrice !== null) latestClosePrices[ticker] = currentClosePrice;
+                        if (currentOpenPrice !== null) latestOpenPrices[ticker] = currentOpenPrice;
+    
+                        portfolioValueClose += net_shares * latestClosePrices[ticker];
+                        portfolioValueOpen += net_shares * latestOpenPrices[ticker];
+                    }
+                })
+                chartData.push({label, close: portfolioValueClose, open: portfolioValueOpen});
+                i++;
+                dataIndex++;
             }
         }
-        this.setState({ chartData });
+        newData[timeframe] = chartData
+        this.setState({ chartData: newData, timeframeFocus: timeframe });
     }
 
     render() {
         const {companies, recentTransactions, watchlists} = this.props;
-        const {quotes, chartData} = this.state;
+        const {quotes, chartData, timeframeFocus} = this.state;
+        const data = chartData[timeframeFocus];
         let graphColor = "green";
         let latestPrice = 0;
         let startPrice = 0;
         let priceChange = 0;
         let priceChangePercent = 0;
 
-        if(chartData.length > 0){
-            latestPrice = chartData[chartData.length-1].close;
-            startPrice = chartData[0].close;
+        if(data.length > 0){
+            latestPrice = data[data.length-1].close;
+            startPrice = data[0].open;
             if(latestPrice === null){
-                for(let i = 0; i < chartData.length; i++){
-                    if(chartData[i].close === null){
-                        latestPrice = chartData[i - 1].close;
+                for(let i = data.length - 2; i >= 0; i--){
+                    if(data[i].close){
+                        latestPrice = data[i].close;
                         break;
                     }
                 }
             } 
-            if(!startPrice){
-                for (let i = 0; i < chartData.length; i++) {
-                    if (chartData[i].close) {
-                        startPrice = chartData[i].close;
-                        break;
-                    }
-                }
-            }
             priceChange = Number((latestPrice - startPrice).toFixed(2));
-            priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
+            priceChangePercent = startPrice ? (priceChange / startPrice * 100).toFixed(2) : (priceChange / 1 * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
         }
+        const timeframeButtons = Object.keys(chartData).map(el => {
+            return (
+                <button
+                    key={`dashboard-page-timeframe-${el}`}
+                    id={`${(graphColor).concat("-", this.state.timeframeFocus == el ? `logged-in-page-timeframe-${el}` : "")}`}
+                    className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                    onClick={this.getNewPrice(el)}>{el}
+                </button>
+            )
+        })
 
         return (
             <div className="logged-in-page-container">
@@ -375,25 +401,10 @@ class DashboardPage extends React.Component {
                                     .concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : 
                                     "-".concat("$", (priceChange * -1).toLocaleString(), ` (${priceChangePercent}%)`)
                                 ) : priceChange} </h4>
-                        <Chart data={chartData} graphColor={graphColor} startPrice={startPrice} />
+                        <Chart data={data} graphColor={graphColor} startPrice={startPrice} />
                         <br />
                         <section className="logged-in-page-timeframe-buttons">
-                            <button
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1D" ? "logged-in-page-timeframe-1D" : "")}`}
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
-                                onClick={this.getNewPrice("1D")}>1D
-                            </button>
-                            <button
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1W" ? "logged-in-page-timeframe-1W" : "")}`}
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
-                                onClick={this.getNewPrice("1W")}>1W
-                            </button>
-                            <button
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus == "1M" ? "logged-in-page-timeframe-1M" : "")}`}
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)}
-                                onClick={this.getNewPrice("1M")}>1M
-                            </button>
-
+                            {timeframeButtons}
                         </section>
 
                         <h3>Recent News</h3>

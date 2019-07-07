@@ -1,16 +1,10 @@
 /* Charts */
-
-
-
-
-
-
-
 .price-data {
     position: absolute;
     top: -86px;
     font-size: 35px ;
     background-color: #ffffff;
+    width: 500px;
 }
 
 .price-data-change {

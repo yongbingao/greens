@@ -38,7 +38,6 @@ class DetailsPage extends React.Component {
             if(el.open || el.marketOpen){
                 latestOpen = el.open || el.marketOpen;
             }
-            debugger
             return ({
                 label: el.label,
                 close: latestClose,
