@@ -13,12 +13,49 @@ class DetailsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            priceData: {
+                "1D": [],
+                "1M": [],
+                "3M": [],
+                "1Y": [],
+                "5Y": [],
+            },
             news: [],
-            timeframeFocus: null,
+            timeframeFocus: "1D",
             intervalFunction: null};
         this.getNewPrice = this.getNewPrice.bind(this);
         this.handleWatchlistClick = this.handleWatchlistClick.bind(this);
+        this.requestPrices = this.requestPrices.bind(this);
+    }
+
+    normalizeData(data){
+        let latestClose = 0;
+        let latestOpen = 0;
+        return data.map(el => {
+            if(el.close || el.marketClose){
+                latestClose = el.close || el.marketClose;
+            }
+            if(el.open || el.marketOpen){
+                latestOpen = el.open || el.marketOpen;
+            }
+            debugger
+            return ({
+                label: el.label,
+                close: latestClose,
+                open:latestOpen,
+                }
+            )
+        })
+    }
+
+    requestPrices(ticker, timeframe){
+        fetchPrices(ticker, timeframe)
+            .then(respData => {
+                const newData = Object.assign({}, this.state.priceData);
+                newData[timeframe] = this.normalizeData(respData);
+                this.setState({ priceData: newData, timeframeFocus: timeframe })
+            },
+            () => this.setState({timeframeFocus: timeframe}));
     }
 
     componentDidMount() {
@@ -28,22 +65,23 @@ class DetailsPage extends React.Component {
             .then((resp) => {
                 const ticker = resp.company.ticker
                 fetchPrices(ticker, "1D")
-                    .then(data => {
-                        if (!data.length){
-                            fetchPrices(ticker, "1M").then(data => this.setState({ data, timeframeFocus: "1M" }));
-                            clearInterval(this.state.intervalFunction);
-                            this.setState({intervalFunction: null})
+                    .then(oneDayData => {
+                        if (oneDayData.length === 0){
+                            this.requestPrices(ticker, "1M");
                         } else {
-                            this.setState({ data, timeframeFocus: "1D" })}
-                        });
+                            const newData = Object.assign({}, this.state.priceData);
+                            newData["1D"] = this.normalizeData(oneDayData);
+                            this.setState({ priceData: newData, timeframeFocus: "1D" })
+                        }
+                    });
+
                 fetchNews(ticker)
                     .then(news => this.setState({news}));
                 
                 if (!this.state.intervalFunction) {
                     this.setState(
                         {intervalFunction: setInterval( () => {
-                            fetchPrices(ticker, "1D")
-                                .then(data => this.setState({ data }))
+                            this.requestPrices(ticker, "1D");
                             } 
                     ,60000)}
                     );
@@ -62,34 +100,41 @@ class DetailsPage extends React.Component {
         const companyId = this.props.match.params.companyId;
         if (companyId !== prevProps.match.params.companyId){
             clearInterval(this.state.intervalFunction);
-            this.setState({intervalFunction: null});
+            this.setState({
+                intervalFunction: null,
+                priceData: {
+                    "1D": [],
+                    "1M": [],
+                    "3M": [],
+                    "1Y": [],
+                    "5Y": [],
+                }
+            });
             this.props.fetchWatchlist(companyId);
             this.props.fetchCompanyInfo(companyId)
                 .then((resp) => {
                     const ticker = resp.company.ticker;
                     fetchPrices(ticker, '1D')
-                        .then(data => {
-                            if (!data.length) {
-                                fetchPrices(ticker, "1M").then(data => this.setState({ data, timeframeFocus: "1M" }));
-                                clearInterval(this.state.intervalFunction);
-                                this.setState({ intervalFunction: null });
+                        .then(oneDayData => {
+                            if (oneDayData.length === 0) {
+                                this.requestPrices(ticker, "1M");
                             } else {
-                                this.setState({ data, timeframeFocus: "1D" })
+                                const newData = Object.assign({}, this.state.priceData);
+                                newData["1D"] = this.normalizeData(oneDayData);
+                                this.setState({ priceData: newData, timeframeFocus: "1D" })
                             }
                         });
+
                     fetchNews(ticker)
                         .then(news => this.setState({ news }))
 
                     if (!this.state.intervalFunction) {
-                        this.setState(
-                            {
-                                intervalFunction: setInterval(() => {
-                                    fetchPrices(ticker, "1D")
-                                        .then(data => this.setState({ data }))
-                                }
-                                    , 60000)
+                        this.setState({
+                            intervalFunction: setInterval(() => {
+                                    this.requestPrices(ticker, "1D");
+                                }, 60000)
                             }
-                        );
+                        )
                     }
                 })
         }
@@ -97,21 +142,25 @@ class DetailsPage extends React.Component {
 
     getNewPrice(timeframe) {
         return event => {
-            if (this.props.company.ticker){
-                if (timeframe != "1D") {
+            const ticker = this.props.company.ticker;
+            if (this.state.timeframeFocus !== timeframe && ticker){
+                if (timeframe !== "1D") {
                     clearInterval(this.state.intervalFunction);
-                    this.setState({intervalFunction: null})
+                    this.setState({intervalFunction: null});
+                    if(this.state.priceData[timeframe].length){
+                        this.setState({timeframeFocus: timeframe});
+                    } else{
+                        this.requestPrices(ticker, timeframe);
+                    }
                 } else {
+                    this.requestPrices(ticker, timeframe);
                     this.setState({
                         intervalFunction: setInterval(() => {
-                            fetchPrices(this.props.company.ticker, "1D")
-                                .then(data => this.setState({ data }))
+                            this.requestPrices(ticker, "1D");
                         }
                         , 60000)
                     })
                 }
-                fetchPrices(this.props.company.ticker, timeframe)
-                    .then(data => this.setState({data, timeframeFocus: timeframe}))
             }
         }
     }
@@ -139,7 +188,8 @@ class DetailsPage extends React.Component {
         const { company: 
             {id, name, ticker, about, ceo, employees, headquarter, founded, market_cap, pe_ratio, dividend, avg_volume},
             currentWatchlist } = this.props;
-        const { data } = this.state;
+        const { priceData, timeframeFocus } = this.state;
+        const data = priceData[timeframeFocus];
         let latestPrice = null;
         let startPrice = null;
         let priceChange = null;
@@ -147,15 +197,28 @@ class DetailsPage extends React.Component {
         let graphColor = "green";
         if (data.length){
             let pos = data.length - 1;
-            while (!data[pos].close) {
+            while(pos > 0){
+                if(data[pos].close !== null) break;
                 pos--;
             }
             latestPrice = Number((data[pos].close)).toFixed(2);
-            startPrice = Number((data[0].open || data[0].marketOpen)).toFixed(2);
+            startPrice = Number((data[0].open).toFixed(2));
             priceChange = Number((latestPrice - startPrice)).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";
         }
+
+        const timeframeButtons = Object.keys(priceData).map(el => {
+            return (
+                <button
+                    key={`detail-page-timeframe-${el}`}
+                    id={`${(graphColor).concat("-", timeframeFocus === el ? `logged-in-page-timeframe-${el}` : "")}`}
+                    className={"logged-in-page-timeframe-button".concat("-", graphColor)}
+                    onClick={this.getNewPrice(el)}>{el}
+                </button>
+            )
+        })
+
         return (
             <div className="logged-in-page-container">
                 <NavBar user={this.props.user} fetchCompanies={true} />
@@ -167,34 +230,10 @@ class DetailsPage extends React.Component {
                             priceChange ? 
                             (priceChange > 0 ? "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : "-".concat("$", priceChange*-1, ` (${priceChangePercent}%)`)) 
                             : priceChange} </h4>
-                        <Chart data={this.state.data} graphColor={graphColor} startPrice={startPrice} range={"1D"}/>
+                        <Chart data={data} graphColor={graphColor} startPrice={startPrice} range={"1D"}/>
                         <br/>
                         <section className="logged-in-page-timeframe-buttons">
-                            <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1D" ? "logged-in-page-timeframe-1D" : "")}`} 
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
-                                onClick={this.getNewPrice("1D")}>1D
-                            </button>
-                            <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1M" ? "logged-in-page-timeframe-1M" : "")}`} 
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
-                                onClick={this.getNewPrice("1M")}>1M
-                            </button>
-                            <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "3M" ? "logged-in-page-timeframe-3M" : "")}`} 
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
-                                onClick={this.getNewPrice("3M")}>3M
-                            </button>
-                            <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "1Y" ? "logged-in-page-timeframe-1Y" : "")}`} 
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
-                                onClick={this.getNewPrice("1Y")}>1Y
-                            </button>
-                            <button 
-                                id={`${(graphColor).concat("-", this.state.timeframeFocus === "5Y" ? "logged-in-page-timeframe-5Y" : "")}`} 
-                                className={"logged-in-page-timeframe-button".concat("-", graphColor)} 
-                                onClick={this.getNewPrice("5Y")}>5Y
-                            </button>
+                            {timeframeButtons}
                         </section>
                         <br/>
                         <h3>About</h3>

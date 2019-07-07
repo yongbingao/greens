@@ -4,6 +4,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip} from 'recharts';
 const Chart = ({data, graphColor, startPrice, range}) => {
 
     function CustomToolTip({ label, payload, active, coordinate }) {
+        debugger
         if (active && payload && payload.length) {
             let newLabel;
             let priceChange = Number((payload[0].value - startPrice).toFixed(2));
@@ -18,13 +19,14 @@ const Chart = ({data, graphColor, startPrice, range}) => {
             return (
                 <div>
                     <span className="time-data"
-                        style={{ "position": "absolute", "left": `${coordinate.x}px` }}
-                    >{newLabel}</span>
+                        style={{ "position": "absolute", "left": `${coordinate.x}px` }}>
+                    {newLabel}</span>
                     <span className="price-data">${payload[0].value.toLocaleString()}</span>
                     <span className="price-data-change">{
-                        priceChange ?
-                            (priceChange > 0 ? "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) : "-".concat("$", (priceChange * -1).toLocaleString(), ` (${priceChangePercent}%)`))
-                            : priceChange}
+                            priceChange >= 0 ?
+                                "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) 
+                                : "-".concat("$", (priceChange * -1).toLocaleString(), ` (${priceChangePercent}%)`)
+                            }
                     </span>
                 </div>
             );
