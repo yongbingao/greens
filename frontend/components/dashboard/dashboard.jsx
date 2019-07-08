@@ -269,13 +269,11 @@ class DashboardPage extends React.Component {
         const latestClosePrices = {};
         const latestOpenPrices = {};
         const newData = Object.assign({}, this.state.chartData);
-
         this.state.portfolioHistroy.forEach((histroyItem, index) => {
             const openPos = Object.values(histroyItem.positions);
             let label = histroyItem.label;
             let portfolioValueClose = 0;
             let portfolioValueOpen = 0;
-
             openPos.forEach(position => {
                 const ticker = this.props.companies[position.company_id].ticker;
                 const net_shares = position.net_shares;
@@ -292,15 +290,15 @@ class DashboardPage extends React.Component {
                     label = data[ticker].chart[index].label;
                 }
             })
-            if (portfolioValueClose !== NaN && portfolioValueOpen !== NaN) {
+            if (portfolioValueClose && portfolioValueOpen) {
                 chartData.push({ label, close: portfolioValueClose, open: portfolioValueOpen });
             } else {
                 let close = portfolioValueClose;
                 let open = portfolioValueOpen;
-                
-                if(portfolioValueOpen === NaN) open = null;
-                if(portfolioValueClose === NaN) close = null;
 
+                if(portfolioValueOpen === 0 || portfolioValueOpen === NaN) open = null;
+                if(portfolioValueClose === 0 || portfolioValueClose === NaN) close = null;
+                
                 chartData.push({label, close, open});
             }
         })
@@ -440,18 +438,18 @@ const msp = (state, ownProps) => {
     if (Object.keys(state.entities.companies).length) {
         recentTransactions.forEach(transaction => {
             const companyId = transaction.company_id;
-            if(companies[companyId] !== undefined){
+            if (state.entities.companies[companyId] !== undefined){
                 companies[companyId] = state.entities.companies[companyId];
             }
         })
         watchlists.forEach(watchlist => {
             const companyId = watchlist.company_id;
-            if(companies[companyId] !== undefined){
+            if (state.entities.companies[companyId] !== undefined){
                 companies[companyId] = state.entities.companies[companyId];
             }
-        } )    
+        } ) 
     }
-               
+
     return {
         allTransactions,
         recentTransactions,

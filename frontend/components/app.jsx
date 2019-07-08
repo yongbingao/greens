@@ -12,7 +12,7 @@ const App = () => {
         <>
             <ProtectedRoute path='/stock/:companyId' component={DetailsPage} />
             <ProtectedRoute path='/dashboard' component={DashboardPage} />
-            <Route path='/' exact component={SplashPage} />
+            <AuthRoute path='/' exact component={SplashPage} />
             <AuthRoute path='/login' component={LoginForm} />
             <AuthRoute path='/signup' component={SignupForm} />
         </>

@@ -18,11 +18,13 @@ class Api::TransactionsController < ApplicationController
                     FROM transactions
                     WHERE transactions.user_id = ? ) AS rn
                 WHERE rn = 1;", current_user.id]
-            # @transactions = Transaction.where("user_id = ?", current_user.id).order(id: :ASC)
-            # @company_list = @transactions.pluck(:company_id).uniq
             @transactions = Transaction.where("user_id = ?", current_user.id).order(:id)
-
-            render :index
+            
+            if @transactions.length == 0 
+                render json: {allTransactions: {}, recentTransactions: {}}
+            else
+                render :index
+            end
         else
             render json: "Please log in to view your transactions."
         end
