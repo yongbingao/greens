@@ -440,11 +440,15 @@ const msp = (state, ownProps) => {
     if (Object.keys(state.entities.companies).length) {
         recentTransactions.forEach(transaction => {
             const companyId = transaction.company_id;
-            companies[companyId] = state.entities.companies[companyId];
+            if(companies[companyId] !== undefined){
+                companies[companyId] = state.entities.companies[companyId];
+            }
         })
         watchlists.forEach(watchlist => {
             const companyId = watchlist.company_id;
-            companies[companyId] = state.entities.companies[companyId];
+            if(companies[companyId] !== undefined){
+                companies[companyId] = state.entities.companies[companyId];
+            }
         } )    
     }
                
