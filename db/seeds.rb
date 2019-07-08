@@ -76,18 +76,6 @@ company5 = Company.create(
     avg_volume: 5023449,
     pe_ratio: 122.60)
 
-company6 = Company.create(
-    ticker: "ADDYY",
-    name: "adidas AG",
-    about: "adidas AG engages in design, distribution, and marketing of athletic and sporting lifestyle products. It operates through the following segments: Western Europe, North America, USA Reebok, Russia/CIS, Latin America, Asia/Pacific, and Emerging Markets. It operates under the adidas and Reebok brands. The company was founded by Adolf Dassler in 1920 and is headquartered in Herzogenaurach, Germany.",
-    ceo: "Kasper Bo Rørsted",
-    employees: 57016,
-    founded: 1920,
-    headquarter: "Herzogenaurach, Germany",
-    market_cap: 57.27,
-    avg_volume: 20205,
-    dividend: 1.32)
-
 company7 = Company.create(
     ticker: "FB",
     name: "Facebook, Inc.",
@@ -139,18 +127,6 @@ company10 = Company.create(
     pe_ratio: 35.20,
     dividend: 0.78 )
 
-company11 = Company.create(
-    ticker: "TCEHY",
-    name: "Tencent Holdings Ltd.",
-    about: "Tencent Holdings Ltd. is an investment company, which engages in the provision of value-added services and online advertising services. It operates through the following segments: Value-Added Services, Online Advertising, and Others. The Value-added Services segment involves online and mobile games, community value-added services, and applications across various Internet and mobile platforms. The Online Advertising segment represents display based and performance based advertisements. The Other segment consists of trademark licensing, software development services, software sales, and other services. The company was founded by Yi Dan Chen, Hua Teng Ma, Chen Ye Xu, Li Qing Zeng, and Zhi Dong Zhang in 1998 and is headquartered in Shenzhen, China.",
-    ceo: "Hua Teng Ma",
-    employees: 54309,
-    founded: 1998,
-    headquarter: "Shenzhen, China",
-    market_cap: 397.58,
-    avg_volume: 2840120,
-    dividend: 0.31)
-
 company12 = Company.create(
     ticker: "ORCL",
     name: "Oracle Corp.",
@@ -198,3 +174,183 @@ company15 = Company.create(
     headquarter: "Palo Alto, CA",
     market_cap: 32.98, 
     avg_volume: 10406732)
+
+company16 = Company.create(
+    ticker: "X",
+    name: "United States Steel Corp.",
+    about: "United States Steel Corp. engages in the manufacturing and selling of steel products. It operates through the following business segments: Flat-Rolled Products, U.S. Steel Europe, and Tubular Products. The Flat-Rolled Products segment includes managing steel plants and production facilities that manufactures steel slabs, rounds, strip mill plates, sheets, tin mill, iron ore, and coke. The U.S. Steel Europe segment offers producing and marketsing strip mill plates, spiral welded pipe, heating radiators, refractory ceramic materials. The Tubular Products segment involves in manufacturing and trading seamless and electric resistance welded steel casing and tubing. line pipe, and mechanical tubing. The company was founded in 1901 by Andrew Carnegie, John Pierpont Morgan, Charles Michael Schwab and Elbert Henry Gary.",
+    founded: 1901,
+    headquarter: "Pittsburgh, PA",
+    ceo: "David B. Burritt",
+    employees: 29000,
+    market_cap: 2.448,
+    avg_volume: 6533416,
+    pe_ratio: 2.65 
+)
+
+company17 = Company.create(
+    ticker: "BBBY",
+    name: "Bed Bath & Beyond, Inc.",
+    about: "Bed Bath & Beyond, Inc. engages in the operation of retail stores and retails domestics merchandise and home furnishings. It operates through the Bed Bath & Beyond, Christmas Tree Shops, Christmas Tree Shops andThat!, Harmon or Harmon Face Values, buybuy BABY, and World Market, Cost Plus World Market or Cost Plus brands. Its products include domestic merchandise and home furnishings such as bed linens and related items, bath items, kitchen textiles kitchen and tabletop items, fine tabletop, basic house wares, general home furnishings, and consumables. The company was founded by Warren Eisenberg and Leonard Feinstein in 1971 and is .",
+    founded: 1971,
+    headquarter: "Union, NJ",
+    ceo: "Mary A. Winston",
+    employees: 62000,
+    market_cap: 1.471,
+    avg_volume: 4865487,
+    pe_ratio: 6.19
+)
+
+company18 = Company.create(
+    ticker: "DELL",
+    name: "Dell Technologies, Inc.",
+    about: "Dell Technologies, Inc. is a holding company, which engages in the provision of information technology hardware, software, and service solutions through its subsidiaries. It operates through the following segments: Infrastructure Solutions Group (ISG), Client Solutions Group (CSG), and VMware. The ISG segment includes servers, networking, and storage, as well as services and third-party software and peripherals that are closely tied to the sale of ISG hardware. The CSG segment consists of sales to commercial and consumer customers of desktops, thin client products, and notebooks. The VMware segment provides compute, cloud management, networking and security, storage and availability, and other end-user computing offerings. The company was founded by Michael Saul Dell in 1984.",
+    founded: 1984,
+    headquarter: "Round Rock, TX",
+    ceo: "Michael Saul Dell",
+    employees: 157000,
+    market_cap: 37.63,
+    avg_volume: 1262581,
+    pe_ratio: 39.82
+)
+
+company19 = Company.create(
+    ticker: "EBAY",
+    name: "eBay, Inc.",
+    about: "eBay, Inc. operates as a commerce company, which engages in the provision of investments and acquisitions to help enable commerce on platforms for buyers and sellers online or on mobile devices. It operates throught the following platforms: Marketplace; Classifieds; StubHub, Corporate, and Others. The Marketplace platform include online marketplace located at www.ebay.com, its localized counterparts and the eBay mobile apps. The Classified platform focuses in collection of brands such as mobile.de, Kijiji, Gumtree, Marktplaats, eBay Kleinanzeigen and others. The StubHub platform gives online ticket platform located at www.stubhub.com, its localized counterparts and the StubHub mobile apps. The company was founded by Pierre M. Omidyar in September 1995.",
+    founded: 1995,
+    headquarter: "San Jose, CA",
+    ceo: "Devin N. Wenig",
+    employees: 14000,
+    market_cap: 34.425,
+    avg_volume: 2411706,
+    pe_ratio: 20.53
+)
+
+company20 = Company.create(
+    ticker: "GE",
+    name: "General Electric Co.",
+    about: "General Electric Co. is a technology and financial services company that develops and manufactures products for the generation, transmission, distribution, control and utilization of electricity. Its products and services include aircraft engines, power generation, water processing, security technology, medical imaging, business and consumer financing, media content and industrial products. The company operates through the following segments: Power, Oil & Gas, Aviation, Healthcare, Transportation, Appliances & Lighting and GE Capital. The Power segment serves power generation, industrial, government and other customers worldwide with products and services related to energy production. The Oil & Gas segment supplies mission critical equipment for the global oil and gas industry, used in applications spanning the entire value chain from drilling and completion through production, liquefied natural gas and pipeline compression, pipeline inspection, and downstream processing in refineries and petrochemical plants. The Aviation segment products and services include jet engines, aerospace systems and equipment, replacement parts and repair and maintenance services for all categories of commercial aircraft; for a wide variety of military aircraft, including fighters, bombers, tankers and helicopters; for marine applications; and for executive and regional aircraft. The Healthcare segment products include diagnostic imaging systems such as magnetic resonance, computed tomography and positron emission Tomography scanners, X-ray, nuclear imaging, digital mammography and molecular imaging technologies. The Transportation segment engages in global technology and supplier to the railroad, mining, marine and drilling industries. The Appliances & Lighting segment products include major appliances and related services for products such as refrigerators, freezers, electric and gas ranges, cooktops, dishwashers, clothes washers and dryers, microwave ovens, room air conditioners, residential water systems for filtration, softening and heating, and hybrid water heaters. The GE Capital segment offers financial services and products worldwide for businesses of all sizes, services include commercial loans and leases, fleet management, financial programs, credit cards, personal loans and other financial services. The company was founded by Thomas A. Edison in 1878.",
+    founded: 1878,
+    headquarter: "Boston, MA",
+    ceo: "H. Lawrence Culp",
+    employees: 283000,
+    market_cap: 89.257,
+    avg_volume: 31984717,
+    pe_ratio: 16.85
+)
+
+company21 = Company.create(
+    ticker: "HD",
+    name: "The Home Depot, Inc.",
+    about: "Home Depot, Inc. is a home improvement retailer, which engages in the sale of building materials and home improvement products. Its products include building materials, home improvement products, lawn and garden products, and decor products. It offers home improvement installation services and tool and equipment rental. The company was founded by Bernard Marcus, Arthur M. Blank, Kenneth Gerald Langone and Pat Farrah on June 29, 1978.", 
+    founded: 1978,
+    headquarter: "Atlanta, GA",
+    ceo: "Craig A. Menear",
+    employees: 413000,
+    market_cap: 233.866,
+    avg_volume: 1271929,
+    pe_ratio: 20.95
+)
+
+company22 = Company.create(
+    ticker: "K",
+    name: "Kellogg Co.",
+    about: "Kellogg Co. engages in the manufacturing, marketing, and distribution of ready-to-eat cereal and convenience foods. Its markets cookies, crackers, crisps, and other convenience foods, under brands such as Kellogg's, Keebler, Cheez-It, Pringles, Murray, Austin and Famous Amos, to supermarkets in the U.S. It operates through the following seven segments: U.S. Snacks, U.S. Morning Foods, U.S. Specialty Channels, North America Other, Europe, Latin America, and Asia Pacific. The U.S. Snacks segment offers cookies, crackers, savory snacks, wholesome snacks and fruit-flavored snacks. The U.S. Morning Foods segment includes cereal and toaster pastries. The U.S. Specialty Channels engages in selling kellogg products to channels such as food service, convenience stores, vending and others. The North America Other segment includes U.S. Frozen, Kashi company, and RX businesses. The Europe segment consists of European countries. The Latin America segment comprises of Central America and Mexico. The Asia Pacific segment composes of Sub-Saharan Africa, Australia, and Asian and Pacific markets. The company was founded by Will Keith Kellogg in 1906.",
+    founded: 1906,
+    headquarter: "Battle Creek, MI",
+    ceo: "Steven A. Cahillane",
+    employees: 34000,
+    market_cap: 18.901,
+    avg_volume: 1014216,
+    pe_ratio: 14.84
+)
+
+company23 = Company.create(
+    ticker: "LOW",
+    name: "Lowe's Cos., Inc.",
+    about: "Lowe's Cos., Inc. engages in the retail sale of home improvement products. It offers products for maintenance, repair, remodelling, home decorating, and property maintenance. It also provides home improvement products in the following categories: appliances, bathroom, building supply, electrical, flooring, hardware, paint, kitchen, plumbing, lighting & fans, outdoor living, windows, and doors. The company was founded in 1946.",
+    founded: 1946,
+    headquarter: "Mooresville, NC",
+    ceo: "Marvin R. Ellison",
+    employees: 300000,
+    market_cap: 81.588,
+    avg_volume: 1807002,
+    pe_ratio: 18.88
+)
+
+company24 = Company.create(
+    ticker: "PYPL",
+    name: "PayPal Holdings, Inc.",
+    about: "PayPal Holdings, Inc. engages in the development of technology platform for digital payments. Its solutions include PayPal, PayPal Credit, Braintree, Venmo, Xoom, and Paydiant products. It manages a two-sided proprietary global technology platform that links customers, which consist of both merchants and consumers, to facilitate the processing of payment transactions. The company was founded in December 1998.",
+    founded: 1998,
+    headquarter: "San Jose, CA",
+    ceo: "Daniel H. Schulman",
+    employees: 21800,
+    market_cap: 136.95,
+    avg_volume: 2034422,
+    pe_ratio: 59.82
+)
+
+company25 = Company.create(
+    ticker: "S",
+    name: "Sprint Corp.",
+    about: "Sprint Corp. is a holding company which engages in the provision of telecommunications services. The company operates through the Wireless and Wireline segments. The Wireless segment offers a variety of wireless voice and data transmission services, devices and accessories, and equipment rentals from devices leased to customers. The Wireline segment delivers wireline voice and data communications services to domestic and international companies, businesses, and consumers. The company was founded on October 5, 2012.",
+    founded: 2012,
+    headquarter: "Overland Park, KS",
+    ceo: "Michel Combes",
+    employees: 28500,
+    market_cap: 28.799,
+    avg_volume: 6573267,
+    pe_ratio: 16.69
+)
+
+company26 = Company.create(
+    ticker: "UBER",
+    name: "Uber Technologies, Inc.",
+    about: "Uber Technologies, Inc. operates as a technology platform for people and things mobility. The firm offers multi-modal people transportation, restaurant food delivery, and connecting freight carriers and shippers. The company was founded by Oscar Salazar Gaitan, Travis Kalanick, and Garrett Camp in 2009.",
+    founded: 2009,
+    headquarter: "San Francisco, CA",
+    ceo: "Dara Khosrowshahi",
+    employees: 22263,
+    market_cap: 72.795,
+    avg_volume: 6084503,
+)
+
+company27 = Company.create(
+    ticker: "VZ",
+    name: "Verizon Communications, Inc.",
+    about: "Verizon Communications, Inc. is a holding company, which engages in the provision communications, information and entertainment products and services to consumers, businesses and governmental agencies. It operates through Wireless and Wireline segments. The Wireless segment provides wireless voice and data services and equipment sales, which are provided to consumer, business, and government customers. The Wireline segment offers broadband video and data; corporate networking solutions; data center and cloud services; security and managed network services; and local and long distance voice services. It also offers voice, data and video services and solutions. The company was founded in 1983.",
+    founded: 1983,
+    headquarter: "New York, NY",
+    ceo: "Hans Erik Vestberg",
+    employees: 144500,
+    market_cap: 239.962,
+    avg_volume: 6086934,
+    pe_ratio: 11.45
+)
+
+company28 = Company.create(
+    ticker: "WMT",
+    name: "Walmart, Inc.",
+    about: "Walmart, Inc. engages in retail and wholesale business. It operates through the following business segments: Walmart U.S., Walmart International, and Sam's Club. The Walmart U.S. segment perates as a merchandiser of consumer products, operating under the Walmart, Wal-Mart, and Walmart Neighborhood Market brands, as well as walmart.com and other eCommerce brands. The Walmart International segment manags supercenters, supermarkets, hypermarkets, warehouse clubs, and cash & carryl. The Sam's Club segment comprises membership-only warehouse clubs and samsclubs.com. The company was founded by Samuel Moore Walton and James Lawrence Walton in 1945.",
+    founded: 1945,
+    headquarter: "Bentonville, AR",
+    ceo: "C. Douglas McMillon",
+    employees: 2200000,
+    market_cap: 321.527,
+    avg_volume: 2126220,
+    pe_ratio: 22.95
+)
+
+company29 = Company.create(
+    ticker: "Z",
+    name: "Zillow Group, Inc.",
+    about: "Zillow Group, Inc. engages in the provision of real estate and home-related information marketplaces on mobile and the web. The company operates through the following segments: Internet, Media & Technology (IMT), Homes and Mortgages segment. The IMT segment includes premier agent, rentals and new construction marketplaces, as well as dotloop, display and other advertising and business software solutions. The Homes segment includes Zillow Group's buying and selling of homes directly. The Mortgages segment includes advertising sold to mortgage lenders and other mortgage professionals, mortgage originations through MLOA and the sale of mortgages on the secondary market, as well as Mortech mortgage software solutions. The company was founded by Richard N. Barton and Lloyd D. Frink on July 25, 2014.",
+    founded: 2014,
+    headquarter: "Seattle, WA",
+    ceo: "Richard N. Barton",
+    employees: 4336,
+    market_cap: 9.914,
+    avg_volume: 983367,
+)
