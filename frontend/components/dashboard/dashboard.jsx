@@ -84,7 +84,10 @@ class DashboardPage extends React.Component {
         if(this.state.numberOfOpenPositions !== this.state.openPositionCompanyId.length && companiesLength){
             // fetch price from IEX
             const companies = this.props.companies;
-            let tickerList = this.state.openPositionCompanyId.map(companyId => companies[companyId].ticker);
+            let tickerList = [];
+            this.state.openPositionCompanyId.forEach(companyId => {
+                if(companies[companyId]) tickerList.push(companies[companyId].ticker);
+            });
             this.setState({numberOfOpenPositions: this.state.openPositionCompanyId.length});
             tickerList = tickerList.filter(ticker => ticker !== "ADDYY" && ticker !== "TCEHY"); //remove ADDYY, price data for ADDYY requires requires an upgraded account to access 
             fetchBatchDayPrices(tickerList, "1D")
