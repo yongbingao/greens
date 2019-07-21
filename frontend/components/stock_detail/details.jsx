@@ -29,14 +29,15 @@ class DetailsPage extends React.Component {
     }
 
     normalizeData(data){
-        let latestClose = 0;
-        let latestOpen = 0;
+        let latestClose = null;
+        let latestOpen = null;
+
         return data.map(el => {
-            if(el.close || el.marketClose){
-                latestClose = el.close || el.marketClose;
+            if (el.close) {
+                latestClose = el.close;
             }
-            if(el.open || el.marketOpen){
-                latestOpen = el.open || el.marketOpen;
+            if(el.open){
+                latestOpen = el.open;
             }
             return ({
                 label: el.label,
@@ -195,13 +196,18 @@ class DetailsPage extends React.Component {
         let priceChangePercent = null;
         let graphColor = "green";
         if (data.length){
-            let pos = data.length - 1;
-            while(pos > 0){
-                if(data[pos].close !== null) break;
-                pos--;
+            let latestPos = data.length - 1;
+            let beginPos = 0;
+            while(latestPos > 0){
+                if(data[latestPos].close !== null) break;
+                latestPos--;
             }
-            latestPrice = Number((data[pos].close)).toFixed(2);
-            startPrice = Number((data[0].open).toFixed(2));
+            while(beginPos < data.length - 1){
+                if(data[beginPos].open !== null) break;
+                beginPos++;
+            }
+            latestPrice = Number((data[latestPos].close)).toFixed(2);
+            startPrice = Number((data[beginPos].open).toFixed(2));
             priceChange = Number((latestPrice - startPrice)).toFixed(2);
             priceChangePercent = (priceChange / startPrice * 100).toFixed(2);
             graphColor = priceChange > 0 ? "green" : "red";

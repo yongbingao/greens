@@ -1,8 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip} from 'recharts';
 
-const Chart = ({data, graphColor, startPrice, range}) => {
-
+const Chart = ({data, graphColor, startPrice}) => {
     function CustomToolTip({ label, payload, active, coordinate }) {
         if (active && payload && payload.length) {
             let newLabel;
@@ -20,7 +19,7 @@ const Chart = ({data, graphColor, startPrice, range}) => {
                     <span className="time-data"
                         style={{ "position": "absolute", "left": `${coordinate.x}px` }}>
                     {newLabel}</span>
-                    <span className="price-data">${payload[0].value.toLocaleString()}</span>
+                <span className="price-data">${Number(payload[0].value.toFixed(2)).toLocaleString()}</span>
                     <span className="price-data-change">{
                             priceChange >= 0 ?
                                 "+".concat("$", priceChange.toLocaleString(), ` (${priceChangePercent}%)`) 

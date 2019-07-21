@@ -9,3 +9,4 @@ bundle.js.map
 .DS_Store
 .byebug_history
 .ruby-version
+.vscode/

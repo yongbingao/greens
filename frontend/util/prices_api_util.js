@@ -1,7 +1,7 @@
 export const fetchPrices = (ticker, timeframe) => {
     return $.ajax({
         method: "GET",
-        url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${timeframe}?token=${window.iexAPIKey}`
+        url: `https://cloud.iexapis.com/stable/stock/${ticker}/chart/${timeframe}?chartIEXOnly=true&token=${window.iexAPIKey}`
     })
 }
 
@@ -29,6 +29,6 @@ export const fetchBatchNews = tickers => {
 export const fetchBatchDayPrices = (tickers, timeframe) => {
     return $.ajax({
         method: "GET",
-        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=${timeframe}&token=${window.iexAPIKey}`
+        url: `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickers.join(",")}&types=chart&range=${timeframe}&chartIEXOnly=true&token=${window.iexAPIKey}`
     })
 }
