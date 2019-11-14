@@ -43,7 +43,7 @@ class TransactionForm extends React.Component {
         this.setState({notEnoughMoney: false, notEnoughSharesToSell: false, invalidShares: false})
         if (typeof this.state.shares !== 'number' || this.state.shares <= 0) {
             this.setState({invalidShares: true});
-        } else if (this.props.user.current_buying_power < (this.state.shares * this.props.price)){
+        } else if (event.target[1].value === "Buy" && this.props.user.current_buying_power < (this.state.shares * this.props.price)){
             this.setState({notEnoughMoney: true})
         } else {
             const prevTransaction = this.props.transaction;
